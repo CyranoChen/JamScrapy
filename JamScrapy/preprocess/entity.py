@@ -23,3 +23,12 @@ class People(Base):
     position = Column(Integer)
     profileurl = Column(String(16))
     roletype = Column(String(16))
+
+
+class Group(Base):
+    __tablename__ = 'jam_group_from_post'
+    id = Column(Integer, primary_key=True)
+    groupname = Column(String(16))
+    membercount = Column(Integer)
+    memberinfourl = Column(String(16))
+    groupurl = Column(String(16))

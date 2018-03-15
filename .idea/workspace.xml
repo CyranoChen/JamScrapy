@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/__init__.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/config.py" afterPath="$PROJECT_DIR$/JamScrapy/config.py" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
+      <change beforePath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" afterPath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,28 +17,19 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_group.coverage" NAME="preprocess_group Coverage Results" MODIFIED="1521096818898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/AcnScrapy$acn_url_spider.coverage" NAME="acn_url_spider Coverage Results" MODIFIED="1520321980659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy/spiders" />
     <SUITE FILE_PATH="coverage/AcnScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1520328461577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people.coverage" NAME="preprocess_people Coverage Results" MODIFIED="1521022255994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people.coverage" NAME="preprocess_people Coverage Results" MODIFIED="1521101493673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$topic2post.coverage" NAME="topic2post Coverage Results" MODIFIED="1520498982476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1520581039386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mysql.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/mysql.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
+            <state relative-caret-position="504">
               <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
               <folding />
             </state>
@@ -48,8 +39,8 @@
       <file leaf-file-name="jam_search_spider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="75" column="100" lean-forward="true" selection-start-line="75" selection-start-column="95" selection-end-line="75" selection-end-column="100" />
+            <state relative-caret-position="1575">
+              <caret line="75" column="100" lean-forward="false" selection-start-line="75" selection-start-column="95" selection-end-line="75" selection-end-column="100" />
               <folding>
                 <element signature="e#45#58#0" expanded="true" />
               </folding>
@@ -61,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+              <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -71,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="672">
-              <caret line="32" column="30" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
+              <caret line="32" column="30" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
               <folding>
                 <element signature="e#193#221#0" expanded="true" />
               </folding>
@@ -82,8 +73,8 @@
       <file leaf-file-name="jam_post_spider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="81" column="72" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="72" />
+            <state relative-caret-position="1701">
+              <caret line="81" column="72" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="72" />
               <folding>
                 <element signature="e#45#58#0" expanded="true" />
               </folding>
@@ -104,10 +95,35 @@
       <file leaf-file-name="preprocess_people.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="466">
+              <caret line="419" column="27" lean-forward="true" selection-start-line="419" selection-start-column="27" selection-end-line="419" selection-end-column="27" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#490#1861#0" expanded="false" />
+                <element signature="e#1889#3350#0" expanded="false" />
+                <element signature="e#3384#4797#0" expanded="false" />
+                <element signature="e#4824#6284#0" expanded="false" />
+                <element signature="e#6311#7122#0" expanded="false" />
+                <element signature="e#7152#8615#0" expanded="false" />
+                <element signature="e#8642#10010#0" expanded="false" />
+                <element signature="e#10038#11405#0" expanded="false" />
+                <element signature="e#11441#13175#0" expanded="false" />
+                <element signature="e#13214#14951#0" expanded="false" />
+                <element signature="e#14989#16725#0" expanded="false" />
+                <marker date="1521101493664" expanded="true" signature="17026:17087" ph="update jam_people_from_post... " />
+                <marker date="1521101493664" expanded="true" signature="17026:17107" ph="update jam_people_from_post... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocess_group.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="412">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +132,8 @@
       <file leaf-file-name="entity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+            <state relative-caret-position="630">
+              <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="13" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -184,6 +200,7 @@
         <option value="$PROJECT_DIR$/JamScrapy/config.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/post.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
       </list>
     </option>
@@ -194,9 +211,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="49" />
+    <option name="y" value="23" />
+    <option name="width" value="1631" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -233,7 +252,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -272,6 +290,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -300,20 +319,20 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.preprocess_people">
-    <configuration name="acn_url_spider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="preprocess_group" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AcnScrapy/spiders" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="AcnScrapy" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AcnScrapy/spiders/acn_list_spider.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -396,19 +415,19 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.acn_url_spider" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test" />
-      <item index="2" class="java.lang.String" itemvalue="Python.topic2post" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.preprocess_people" />
+      <item index="0" class="java.lang.String" itemvalue="Python.test" />
+      <item index="1" class="java.lang.String" itemvalue="Python.topic2post" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.preprocess_people" />
+      <item index="4" class="java.lang.String" itemvalue="Python.preprocess_group" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.preprocess_people" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.topic2post" />
-        <item index="3" class="java.lang.String" itemvalue="Python.test" />
-        <item index="4" class="java.lang.String" itemvalue="Python.acn_url_spider" />
+        <item index="1" class="java.lang.String" itemvalue="Python.preprocess_group" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.topic2post" />
+        <item index="4" class="java.lang.String" itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -426,6 +445,14 @@
       <option name="presentableId" value="Default" />
       <updated>1520310414073</updated>
     </task>
+    <task id="LOCAL-00001" summary="Add Preprocess logic of People">
+      <created>1521022709231</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1521022709231</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -438,21 +465,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="49" y="23" width="1631" height="1027" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37666327" sideWeight="0.502442" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.38892385" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32939914" sideWeight="0.6110762" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37666327" sideWeight="0.497558" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17460318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18376337" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39918116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -468,6 +495,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Preprocess logic of People" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Preprocess logic of People" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="2" />
@@ -475,7 +507,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AcnScrapy/items.py" />
     <entry file="file://$PROJECT_DIR$/AcnScrapy/middlewares.py" />
     <entry file="file://$PROJECT_DIR$/AcnScrapy/pipelines.py" />
     <entry file="file://$PROJECT_DIR$/AcnScrapy/settings.py" />
@@ -546,9 +577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#33#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -556,7 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1218">
           <caret line="58" column="9" lean-forward="false" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -564,7 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1239">
           <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -572,7 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -580,14 +605,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="16" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -600,30 +624,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="32" column="30" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
-          <folding>
-            <element signature="e#193#221#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="81" column="72" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="72" />
-          <folding>
-            <element signature="e#45#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="75" column="100" lean-forward="true" selection-start-line="75" selection-start-column="95" selection-end-line="75" selection-end-column="100" />
+        <state relative-caret-position="1575">
+          <caret line="75" column="100" lean-forward="false" selection-start-line="75" selection-start-column="95" selection-end-line="75" selection-end-column="100" />
           <folding>
             <element signature="e#45#58#0" expanded="true" />
           </folding>
@@ -632,7 +636,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
+        <state relative-caret-position="504">
           <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
           <folding />
         </state>
@@ -646,22 +650,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1701">
+          <caret line="81" column="72" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="72" />
+          <folding>
+            <element signature="e#45#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="32" column="30" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="e#193#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="630">
+          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="13" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="466">
+          <caret line="419" column="27" lean-forward="true" selection-start-line="419" selection-start-column="27" selection-end-line="419" selection-end-column="27" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#490#1861#0" expanded="false" />
+            <element signature="e#1889#3350#0" expanded="false" />
+            <element signature="e#3384#4797#0" expanded="false" />
+            <element signature="e#4824#6284#0" expanded="false" />
+            <element signature="e#6311#7122#0" expanded="false" />
+            <element signature="e#7152#8615#0" expanded="false" />
+            <element signature="e#8642#10010#0" expanded="false" />
+            <element signature="e#10038#11405#0" expanded="false" />
+            <element signature="e#11441#13175#0" expanded="false" />
+            <element signature="e#13214#14951#0" expanded="false" />
+            <element signature="e#14989#16725#0" expanded="false" />
+            <marker date="1521101493664" expanded="true" signature="17026:17087" ph="update jam_people_from_post... " />
+            <marker date="1521101493664" expanded="true" signature="17026:17107" ph="update jam_people_from_post... " />
           </folding>
         </state>
       </provider>
