@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
+    <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Finish the logic of preprocessing people and group">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
-      <change beforePath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" afterPath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,23 +90,23 @@
       <file leaf-file-name="preprocess_people.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="419" column="27" lean-forward="true" selection-start-line="419" selection-start-column="27" selection-end-line="419" selection-end-column="27" />
+            <state relative-caret-position="504">
+              <caret line="431" column="27" lean-forward="true" selection-start-line="431" selection-start-column="27" selection-end-line="431" selection-end-column="27" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#490#1861#0" expanded="false" />
-                <element signature="e#1889#3350#0" expanded="false" />
-                <element signature="e#3384#4797#0" expanded="false" />
-                <element signature="e#4824#6284#0" expanded="false" />
-                <element signature="e#6311#7122#0" expanded="false" />
-                <element signature="e#7152#8615#0" expanded="false" />
-                <element signature="e#8642#10010#0" expanded="false" />
-                <element signature="e#10038#11405#0" expanded="false" />
-                <element signature="e#11441#13175#0" expanded="false" />
-                <element signature="e#13214#14951#0" expanded="false" />
-                <element signature="e#14989#16725#0" expanded="false" />
-                <marker date="1521101493664" expanded="true" signature="17026:17087" ph="update jam_people_from_post... " />
-                <marker date="1521101493664" expanded="true" signature="17026:17107" ph="update jam_people_from_post... " />
+                <element signature="e#1889#3376#0" expanded="false" />
+                <element signature="e#3410#4823#0" expanded="false" />
+                <element signature="e#4850#6336#0" expanded="false" />
+                <element signature="e#6363#7174#0" expanded="false" />
+                <element signature="e#7204#8693#0" expanded="false" />
+                <element signature="e#8720#10088#0" expanded="false" />
+                <element signature="e#10116#11483#0" expanded="false" />
+                <element signature="e#11519#13279#0" expanded="false" />
+                <element signature="e#13318#15081#0" expanded="false" />
+                <element signature="e#15119#16881#0" expanded="false" />
+                <marker date="1521112278520" expanded="true" signature="17182:17243" ph="update jam_people_from_post... " />
+                <marker date="1521112278520" expanded="true" signature="17182:17263" ph="update jam_people_from_post... " />
               </folding>
             </state>
           </provider>
@@ -452,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521022709231</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finish the logic of preprocessing people and group">
+      <created>1521112278958</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1521112278958</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -469,7 +471,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.38892385" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32939914" sideWeight="0.6110762" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.6110762" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37666327" sideWeight="0.497558" order="7" side_tool="false" content_ui="tabs" />
@@ -497,7 +499,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Preprocess logic of People" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Preprocess logic of People" />
+    <MESSAGE value="Finish the logic of preprocessing people and group" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish the logic of preprocessing people and group" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -692,23 +695,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="419" column="27" lean-forward="true" selection-start-line="419" selection-start-column="27" selection-end-line="419" selection-end-column="27" />
+        <state relative-caret-position="504">
+          <caret line="431" column="27" lean-forward="true" selection-start-line="431" selection-start-column="27" selection-end-line="431" selection-end-column="27" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#490#1861#0" expanded="false" />
-            <element signature="e#1889#3350#0" expanded="false" />
-            <element signature="e#3384#4797#0" expanded="false" />
-            <element signature="e#4824#6284#0" expanded="false" />
-            <element signature="e#6311#7122#0" expanded="false" />
-            <element signature="e#7152#8615#0" expanded="false" />
-            <element signature="e#8642#10010#0" expanded="false" />
-            <element signature="e#10038#11405#0" expanded="false" />
-            <element signature="e#11441#13175#0" expanded="false" />
-            <element signature="e#13214#14951#0" expanded="false" />
-            <element signature="e#14989#16725#0" expanded="false" />
-            <marker date="1521101493664" expanded="true" signature="17026:17087" ph="update jam_people_from_post... " />
-            <marker date="1521101493664" expanded="true" signature="17026:17107" ph="update jam_people_from_post... " />
+            <element signature="e#1889#3376#0" expanded="false" />
+            <element signature="e#3410#4823#0" expanded="false" />
+            <element signature="e#4850#6336#0" expanded="false" />
+            <element signature="e#6363#7174#0" expanded="false" />
+            <element signature="e#7204#8693#0" expanded="false" />
+            <element signature="e#8720#10088#0" expanded="false" />
+            <element signature="e#10116#11483#0" expanded="false" />
+            <element signature="e#11519#13279#0" expanded="false" />
+            <element signature="e#13318#15081#0" expanded="false" />
+            <element signature="e#15119#16881#0" expanded="false" />
+            <marker date="1521112278520" expanded="true" signature="17182:17243" ph="update jam_people_from_post... " />
+            <marker date="1521112278520" expanded="true" signature="17182:17263" ph="update jam_people_from_post... " />
           </folding>
         </state>
       </provider>
