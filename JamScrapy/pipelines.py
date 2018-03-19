@@ -7,6 +7,8 @@
 from JamScrapy import config
 from JamScrapy.mysql import MySQL
 
+from sqlalchemy import create_engine
+
 
 class JamScrapyPipeline(object):
     def process_item(self, item, spider):
@@ -14,6 +16,8 @@ class JamScrapyPipeline(object):
             return self.__process_jam_search_spider(item)
         elif spider.name == 'JamPostSpider':
             return self.__process_jam_post_spider(item)
+        elif spider.name == 'JamProfileSpider':
+            return self.__process_jam_profile_spider(item)
 
     def __process_jam_search_spider(self, item):
         urls = []
@@ -46,6 +50,19 @@ class JamScrapyPipeline(object):
 
         #sql = f'insert into jam_post_spider(url,body,createtime) values ("{para[0]}","{para[1]}",NOW())'
 
+        result = db.query(sql)
+
+        return item
+
+    def __process_jam_profile_spider(self, item):
+        # Connect to the database
+        db = MySQL()
+
+        para = [db.escape_string(str(item["peoplename"])),
+                db.escape_string(str(item["url"])),
+                db.escape_string(str(item["body"]))]
+
+        sql = f'insert into jam_profile_spider(peoplename,url,body,createtime) values ("{para[0]}","{para[1]}","{para[2]}",NOW())'
         result = db.query(sql)
 
         return item

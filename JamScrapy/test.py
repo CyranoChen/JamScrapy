@@ -1,12 +1,10 @@
-from JamScrapy.mysql import MySQL
+from JamScrapy import config
+from sqlalchemy import create_engine
 
-
-db = MySQL()
-results = db.query_dic({
-    'select': 'id, baseurl',
-    'from': 'jam_post_spider',
-    'where': 'body IS NULL'
-})
+engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+results = []
+results = engine.execute(
+    'SELECT distinct displayname, profileurl FROM jam_people_from_post WHERE displayname <> \'Alumni\' ORDER BY displayname')
 
 print(results)
 
