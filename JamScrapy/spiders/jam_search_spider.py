@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 import scrapy
 from scrapy_splash import SplashRequest
-
+from sqlalchemy import create_engine
 from JamScrapy import config
 from JamScrapy.items import JamScrapyListItem
 
@@ -11,14 +11,23 @@ class JamSearchSpider(scrapy.Spider):
     # 爬虫名称
     name = "JamSearchSpider"
     # 设置下载延时, 避免被BAN
-    download_delay = 2
+    download_delay = 1
     # 允许域名
     allowed_domains = [config.DOMAIN]
     # 开始URL
     start_urls = []
-    for i in [1]:
-    #for i in range(1, 141, 1):
-        start_urls.append('https://' + config.DOMAIN + config.START_SEARCH_URL.format(config.KEYWORD, i))
+    START_SEARCH_URL = '/universal_search/search?page={1}&query={0}'
+
+    #for i in [1]:
+    #for i in range(1, 880, 1):
+        #start_urls.append('https://' + config.DOMAIN + START_SEARCH_URL.format('blockchain', i))
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    results = engine.execute(f"select * from spider_jam_search where body = '[]' and keyword = 'blockchain'")
+
+    # print(name, results.rowcount)
+
+    # print(results.rowcount)
 
     # 爬取规则,不带callback表示向该类url递归爬取
     # rules = (
@@ -30,11 +39,12 @@ class JamSearchSpider(scrapy.Spider):
         script = """        
         function main(splash)
           splash:init_cookies({
-            {name="_ct_remember", value="06b2bff297aa3bc7", domain="jam4.sapjam.com"},
-            {name="_ct_session", value="VGRxczJiRWJSM1gzNEFuTlZHSzkxVlJyODhaaVZUNmY5RFd0RktiNEZRcHI1YkRxKzc3ZTlkTXRqR1pQbWhUdVVKT3B0QmdUSWdSdlRrMDlnaTBFd1FlY2xLZi9MOFY1YjhDVUFUbWQ5TWVvUm80UmE5byt0dExCU3poVmk3NDBBR1p4ajE0OUFidlpNTFd3cUZQditwYyt2WmpBMndDVWlyZUFtZW1PSTg1cDBLZTczUlpRZ0hScHRxUHAxb2d4dVRKalpVRTNoWVEyN0xUeEVpVlNRSmQrK1RyalN4WjZIOWJ6NDRrRXhPUXZ3VndycFV5djE5R01YdThyay84RSsvdndhdTB0Qlg1RklPejR1WUJuYytmM0gyWUdSZUxkbE1acUs3UndHdWxPRmJGVVg1dmdybzBjVTRyYTc2YmNQek1pSDZDelpKQTZ1TEQ4K0lhTVZHbWN4aEdEZkZMa1R0VHVJc3lmcDhtcC9hdWp3Wk14cGl0VXBCWk12c2pRbDF3RDNKR1NhdDhCRVg5MG03YnRZSkZINVQ4SXpqeFNuL2NEOEh5M1lHczAxNUEvWGhjbDM5UzR3ckkwWWNKRHdxdVN4cHlQbGdTZFZaOFlyU0VBT2VoRlJRbWhCazNYNGJ2WWM3THB6bDVUaVhrb29LM3dsNERFRGdZYnhyY2NJeHJ0RW5zOGl0RlhTWGdwR3ByNWRXT2h3TVdVdEljQnFVZk5OU2Q2SkgrZnExY2hxb0piNVczUEpLcmlZdFZqNHhIZkZLcDRRYVdCakN5cmtabzdaZ3o4cjRwbHJZNW1VMzRmN29hVUVSR29qQTFybG4xV1lvbmVYZ0IwUmpYdS0telRQTlFRNnF6VnVLUGNSQVJhK2V0UT09--9fa36dafa14437eee85749cbbb8028ea050cb9a4", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="06b2bff297aa3bc7", domain="jam4.sapjam.com"},
-            {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="9aa43982ac568099.1520411233.0.1520411233..", domain="jam4.sapjam.com"},
-            {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="41d407f316823a9b.1520411233.1.1520411234.1520411233.", domain="jam4.sapjam.com"},          
+            {name="_ct_remember", value="2889fcb20d521b83", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="bVRLdDlnN3NBWkRFZ05kWnFPbTkrZktFRm5xb1UydkZPTW1LL1JlNkViVHNja1VmU2Q1dXVMK3JSNlJ5Lzg1aXlMUU9zeWlsOGdjWDY3bDBGQU9JSUw5MjJhbTkwRExoVTk4c0FvNkdZVWREVjZBYWQvdHJjNDF2N1Q1UTFqa05jY0ZiYmpYbEF5UVYybmdXMW5tM3ZuTkswdDZaKzdwbVB1dFVsc1RlN0dwbVROODAzc0NtNHQvNDRWS3hXb3VBdXZJOUhFOXVLSDR4M21XUjhHWXc4SzNNd0NBTmFMZzFva0NQNmNETnRHc1NhQWFLZldWWXNQU1I3TTUrTXppNmU1TGw3dFllaFVybmF5L1ZkcnhyT2ZXWVJqZW9qNjRQM0haa3RqYU4yRVBhcXZXMHMrUkxjZ0J3SVl1eWZwOU1lbDlmU1FOK1hidjBvVk14VmJKVlUvRUUvMERYd2trRUh3emhNN2UxUVhPUnhoRmlGeWNUNTRFSHRYVUJEWEprbWE5WkxTNElzbDRabjFkakdlQmpTOUkrWHgxRnRQK3dWVUtjYmNJaWVXTXVWeXIvTGFCLzV3cVpEaVRnS0licGFTWk9TNUsyaW56c2pldWlKaDZwTVB5NTlHN2xXV2U5UG1QY1dNL3JVOEF2eDFCVFl4MUZzQ3IxRlpmSmxLdUl1NCtMcGJTNTB0WE1jczlIOVQzc21wUTFQSFlNTjVsR1Y4UDB3cTgxdlZFYmZTendyK2syMnlFTkkzaVo0MFFqRXhQcTBneFhWNzEyYnp1enB6RmxJUE1oTC9ZZU9YRitQTzBCSFF6U3RhZHVBV0d6QXFIZlFLbktqNERDYTNvOS0tbHlNRDRFTVZIc1BuTmJCMEFqQmowQT09--383d0537ecc59bed8cb321f3122e4f3836ba106a", domain="jam4.sapjam.com"},
+            {name="_ct_sso", value="jamatsap.com", domain="jam4.sapjam.com"},
+            {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="073c5e6fa9ebae9a.1522726660.0.1522726660..", domain="jam4.sapjam.com"},
+            {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="dd65c29bb6b360bc.1522726660.1.1522726729.1522726660.", domain="jam4.sapjam.com"},          
+            {name="_swa_ref.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="%5B%22%22%2C%22%22%2C1522726660%2C%22https%3A%2F%2Faccounts.sap.com%2Fsaml2%2Fidp%2Fsso%2Faccounts.sap.com%3FSAMLRequest%3DnVNdb9owFP0rkd8hhtCkswgShUlD7bYI0j7sBTn2TZstsT1fh9J%2FXydAhbSV%5CnBx4sS75f55x7PEXe1IbNW%2Fei1vC3BXTBvqkVsj6QktYqpjlWyBRvAJkTbDP%2F%5Cn%2FsDGQ8qM1U4LXZNgtUyJgPjmlo%2FGwMUoomWcFONExMlICioLmciYQlkWnMeU%5CnBE9gsdIqJb6Nr0ZsYaXQceX8Ex3dDuhkQKOcRixKWER%2FkSA7zrqrlKzU82Vg%5CnxSEJ2bc8zwbZz01OgjkiWOeHLrTCtgG7AburBDyuH1Ly4pxBFoa%2FeTMZIjf%2B%5CnHgrdhJ0IIZqQCyTB0otTKe564KcKLoRulcOu6qNkHFbShIj6nzCZTbsE1lO2%5CnZ1JfJsRP4MnsM6j%2BGK7e%2BvnbWgteb%2FHAcOv3tKsk2HB1T%2B%2FM89PXL%2Fc3j4JO%5Cn1J%2BdkWUxDc8gHfAZ9sNjWC0zXVfi7RpHzOtavy4scAcpcbYFEp5aH30Gsned%5CnX4eD%2FVWuW3SUbYXdPmDPhTupe954UXvx1lBeo%2FXFNMFE19o%2FZ%2F561VZ2HgXh%5CnieWWKzTauqO0%2F8MzO8Q%2BkeMjev4zZ%2B8%3D%5Cn%22%5D", domain="jam4.sapjam.com"},
             {name="_swa_ses.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="*", domain="jam4.sapjam.com"}     
           })
           
@@ -58,9 +68,11 @@ class JamSearchSpider(scrapy.Spider):
         end
         """
 
-        for url in self.start_urls:
+        for r in self.results:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)
-            yield SplashRequest(url, callback=self.parse, endpoint='execute', cache_args=['lua_source'], args={'lua_source': script}, headers={'X-My-Header': 'value'})
+            yield SplashRequest(r.url, callback=self.parse, endpoint='execute', cache_args=['lua_source'],
+                                args={'lua_source': script}, headers={'X-My-Header': 'value'},
+                                meta={'id': r.id})
 
     def parse(self, response):
         item = JamScrapyListItem()
@@ -73,8 +85,9 @@ class JamSearchSpider(scrapy.Spider):
         # sel : 页面源代码
         result = scrapy.Selector(response)
 
+        item['id'] = response.meta['id']
         item['topics'] = result.xpath('//li[@class="search_result"]/div[@class="title"]/span/a/@href').extract()
-        #item['body'] = 'test'
+        # item['body'] = 'test'
         item['body'] = result.xpath('//div[@class="usr_results"]').extract()
 
         yield item

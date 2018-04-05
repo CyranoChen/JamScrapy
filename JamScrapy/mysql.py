@@ -50,16 +50,13 @@ class MySQL:
             sql = "SELECT " + _sql_dic['select'] + " FROM " + _sql_dic['from']
             if 'where' in _sql_dic.keys():
                 sql += self.where(_sql_dic['where'])
-            print(sql)
             return self.query(sql)
         elif 'insert' in _sql_dic.keys():
             sql = "INSERT INTO " + _sql_dic['insert'] + self.quote(_sql_dic['domain_array'], type_filter=False) \
                   + " VALUES " + self.quote(_sql_dic['value_array'])
-            print(sql)
             return self.query(sql)
         if 'delete' in _sql_dic.keys():
             sql = "DELETE FROM " + _sql_dic['delete'] + self.where(_sql_dic['where'])
-            print(sql)
             return self.query(sql)
 
     def where(self, _sql):

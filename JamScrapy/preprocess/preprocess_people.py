@@ -9,12 +9,20 @@ from JamScrapy.preprocess.entity import Post, People
 
 def query_posts_by_category(category):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    session = sessionmaker(bind=engine)()
-    return session.query(Post).filter(and_(Post.url.like(f'%{category}%'), Post.body.isnot(None))).all()
+
+    return engine.execute(f"SELECT * FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'"
+                          f" AND baseurl like '%%{category}%%' AND url not like '%%deleted%%'")
+
+
+KEYWORD = 'blockchain'
 
 
 def process_questions():
     posts = query_posts_by_category('questions')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -26,15 +34,12 @@ def process_questions():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -42,14 +47,18 @@ def process_questions():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_blogs():
     posts = query_posts_by_category('blogs')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -63,15 +72,12 @@ def process_blogs():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -79,14 +85,18 @@ def process_blogs():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_discussions():
     posts = query_posts_by_category('discussions')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -98,15 +108,12 @@ def process_discussions():
         participators = html.xpath('//div[@class="feed-comment-actor"]/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-comment-actor"]/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -114,14 +121,18 @@ def process_discussions():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_wiki():
     posts = query_posts_by_category('wiki')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -135,15 +146,12 @@ def process_wiki():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -151,14 +159,18 @@ def process_wiki():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_poll():
     posts = query_posts_by_category('poll')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -167,22 +179,23 @@ def process_poll():
         creators = html.xpath('//div[@class="poll-details"]/p[@class="time"]/a/text()').extract()
         creator_profiles = html.xpath('//div[@class="poll-details"]/p[@class="time"]/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_profile():
     posts = query_posts_by_category('profile')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -196,15 +209,12 @@ def process_profile():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -212,14 +222,18 @@ def process_profile():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_feed():
     posts = query_posts_by_category('feed')
+    print(posts.rowcount)
+
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    session = sessionmaker(bind=engine)()
 
     for p in posts:
         print(p.url)
@@ -231,15 +245,12 @@ def process_feed():
         participators = html.xpath('//div[@class="feed-comment-actor"]/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-comment-actor"]/a/@href').extract()
 
-        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -247,14 +258,15 @@ def process_feed():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_ideas():
     posts = query_posts_by_category('ideas')
+    print(posts.rowcount)
 
     for p in posts:
         print(p.url)
@@ -274,7 +286,7 @@ def process_ideas():
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -282,19 +294,18 @@ def process_ideas():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_groups_events():
+    posts = query_posts_by_category('events')
+    print(posts.rowcount)
+
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    posts = session.query(Post).filter(and_(Post.baseurl.like('%groups%'), Post.baseurl.like('%events%'),
-                                            Post.body.isnot(None))).all()
-
-    print(len(posts))
 
     for p in posts:
         print(p.url)
@@ -308,15 +319,12 @@ def process_groups_events():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        # engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        # session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -324,19 +332,18 @@ def process_groups_events():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_groups_documents():
+    posts = query_posts_by_category('documents')
+    print(posts.rowcount)
+
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    posts = session.query(Post).filter(and_(Post.baseurl.like('%groups%'), Post.baseurl.like('%documents%'),
-                                            Post.body.isnot(None))).all()
-
-    print(len(posts))
 
     for p in posts:
         print(p.url)
@@ -350,15 +357,12 @@ def process_groups_documents():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        # engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        # session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -366,19 +370,18 @@ def process_groups_documents():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def process_groups_sw_items():
+    posts = query_posts_by_category('sw_items')
+    print(posts.rowcount)
+
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    posts = session.query(Post).filter(and_(Post.baseurl.like('%groups%'), Post.baseurl.like('%sw_items%'),
-                                            Post.body.isnot(None))).all()
-
-    print(len(posts))
 
     for p in posts:
         print(p.url)
@@ -392,15 +395,12 @@ def process_groups_sw_items():
         participators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
-        # engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        # session = sessionmaker(bind=engine)()
-
         print('creators:', creators)
 
         if len(creators) > 0:
             for index in range(len(creators)):
                 obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=creator_profiles[index], roletype='creator')
+                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
         print('participators:', participators)
@@ -408,16 +408,16 @@ def process_groups_sw_items():
         if len(participators) > 0:
             for index in range(len(participators)):
                 obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
-                             profileurl=participator_profiles[index], roletype='participator')
+                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
-        session.commit()
+    session.commit()
 
 
 def clean_up_participators():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    creators = session.query(People).filter(People.roletype == 'creator').all()
+    creators = session.query(People).filter(and_(People.roletype == 'creator', People.keyword == KEYWORD)).all()
 
     print(len(creators))
 
@@ -426,18 +426,19 @@ def clean_up_participators():
         where postid = {c.postid} and displayname = \'{c.displayname}\' and roletype = \'participator\' ''')
         # print('postid:', c.postid, 'creator:', c.displayname, 'clean up:', len(results))
 
+
 if __name__ == '__main__':
-    # process_questions()
-    # process_blogs()
-    # process_discussions()
-    # process_wiki()
-    # process_poll()
-    # process_profile()
-    # process_feed()
-    # process_ideas()
-    # process_groups_events()
-    # process_groups_documents()
-    # process_groups_sw_items()
+    process_questions()
+    process_blogs()
+    process_discussions()
+    process_wiki()
+    process_poll()
+    process_profile()
+    process_feed()
+    process_ideas()
+    process_groups_events()
+    process_groups_documents()
+    process_groups_sw_items()
     clean_up_participators()
 
     print("All Done")

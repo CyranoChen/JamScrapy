@@ -1,25 +1,26 @@
 import scrapy
-from sqlalchemy import and_
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from JamScrapy import config
-from JamScrapy.preprocess.entity import Post, Group
+from JamScrapy.preprocess.entity import Group
+
+KEYWORD = 'blockchain'
 
 
 def process_groups_overview():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    posts = session.query(Post).filter(and_(Post.baseurl.like('%groups%'), Post.baseurl.notlike('%sw_items%'),
-                                            Post.baseurl.notlike('%documents%'), Post.baseurl.notlike('%events%'),
-                                            Post.body.isnot(None))).all()
+    results = engine.execute(f"SELECT * FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'"
+                          f" AND baseurl like '%%groups%%' AND baseurl not like '%%sw_items%%'"
+                          f" AND baseurl not like '%%documents%%' AND baseurl not like '%%events%%'")
 
-    print(len(posts))
+    print(results.rowcount)
 
-    for p in posts:
-        print(p.url)
+    for r in results:
+        print(r.url)
 
-        html = scrapy.Selector(text=p.body)
+        html = scrapy.Selector(text=r.body)
         group_name = html.xpath('//div[@class="group-name"]/span/span/text()').extract()
         member_count = html.xpath('//div[@class="group-num-members jam-small-text"]/span/a/span/text()').extract()
         member_info_url = html.xpath('//div[@class="group-num-members jam-small-text"]/span/a/@href').extract()
@@ -29,12 +30,16 @@ def process_groups_overview():
             print(member_info_url[0])
 
             obj = Group(groupname=group_name[0], membercount=int(member_count[0]),
-                        memberinfourl=member_info_url[0], groupurl=p.url)
+                        memberinfourl=member_info_url[0], groupurl=r.url, keyword=KEYWORD)
+
             session.add(obj)
 
-        session.commit()
+            for item in obj.__dict__.items():
+                print(item)
+
+    session.commit()
 
 
 if __name__ == '__main__':
-    # process_groups_overview()
+    process_groups_overview()
     print("All Done")

@@ -5,5 +5,4 @@ DB_CONNECT_STRING = 'mysql+pymysql://root:Linfeng01!@127.0.0.1:3306/scrapy?chars
 DOMAIN = 'jam4.sapjam.com'
 
 
-START_SEARCH_URL = '/universal_search/search?page={1}&query={0}'
-KEYWORD = 'chatbot'
+

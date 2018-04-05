@@ -1,25 +1,17 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint, Index
-
-import json
+from sqlalchemy.orm import sessionmaker, relationship
 
 Base = declarative_base()
 
 
 class Post(Base):
-    __tablename__ = 'jam_post'
+    __tablename__ = 'jam_post_spider'
     id = Column(Integer, primary_key=True)
+    baseurl = Column(String(16))
     url = Column(String(16))
-    title = Column(String(16))
-    author = Column(String(16))
-    category = Column(String(16))
-    recency = Column(String(16))
-    tag = Column(String(16))
-    content = Column(String(64))
-    comments = Column(Integer)
-    likes = Column(Integer)
-    views = Column(Integer)
-    keyword = Column(String(16))
+    body = Column(String(64))
+    createtime = Column(DateTime())
 
 
 class People(Base):
@@ -31,7 +23,6 @@ class People(Base):
     position = Column(Integer)
     profileurl = Column(String(16))
     roletype = Column(String(16))
-    keyword = Column(String(16))
 
 
 class Group(Base):
@@ -41,7 +32,6 @@ class Group(Base):
     membercount = Column(Integer)
     memberinfourl = Column(String(16))
     groupurl = Column(String(16))
-    keyword = Column(String(16))
 
 
 class Profile(Base):
@@ -58,22 +48,3 @@ class Profile(Base):
     groups = Column(String(16))
     followers = Column(String(16))
     following = Column(String(16))
-
-
-class PortalProfile(Base):
-    __tablename__ = 'portal_profile'
-    id = Column(Integer, primary_key=True)
-    profileurl = Column(String(16))
-    username = Column(String(16))
-    displayname = Column(String(16))
-    boardarea = Column(String(16))
-    functionalarea = Column(String(16))
-    costcenter = Column(String(16))
-    officelocation = Column(String(16))
-    manager = Column(String(16))
-    localinfo = Column(String(16))
-    email = Column(String(16))
-    phone = Column(String(16))
-    mobile = Column(String(16))
-    address = Column(String(16))
-    assistant = Column(String(16))
