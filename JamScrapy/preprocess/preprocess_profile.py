@@ -10,7 +10,7 @@ from JamScrapy.preprocess.entity import Profile
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     session = sessionmaker(bind=engine)()
-    profiles = engine.execute('SELECT * FROM jam_profile_spider ORDER BY peoplename')
+    profiles = engine.execute('SELECT * FROM spider_jam_profile ORDER BY peoplename')
 
     print(profiles.rowcount)
 

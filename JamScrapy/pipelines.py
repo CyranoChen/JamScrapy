@@ -73,7 +73,6 @@ class JamScrapyPipeline(object):
 
         return item
 
-
     def __process_jam_profile_spider(self, item):
         # Connect to the database
         db = MySQL()
@@ -82,7 +81,9 @@ class JamScrapyPipeline(object):
                 db.escape_string(str(item["url"])),
                 db.escape_string(str(item["body"]))]
 
-        sql = f'insert into jam_profile_spider(peoplename,url,body,createtime) values ("{para[0]}","{para[1]}","{para[2]}",NOW())'
+        sql = f'insert into spider_jam_profile(peoplename, url, body, createtime, keyword) ' \
+              f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "blockchain")'
+
         result = db.query(sql)
 
         return item

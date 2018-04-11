@@ -22,7 +22,7 @@ class JamPostSpider(scrapy.Spider):
 
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     results = engine.execute(f"select * from spider_jam_post where body = '[]' and keyword = 'blockchain'")
-    print(name, results.rowcount)
+    # print(name, results.rowcount)
 
     start_urls = []
 
