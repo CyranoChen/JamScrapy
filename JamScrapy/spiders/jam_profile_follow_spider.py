@@ -22,7 +22,7 @@ class JamProfileFollowSpider(scrapy.Spider):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     results = engine.execute('SELECT * FROM jam_profile order by id')
 
-    # print(results.rowcount)
+    # print(name, results.rowcount)
 
     for item in results:
         uid = item.profileurl.split("/")[-1]
@@ -33,11 +33,11 @@ class JamProfileFollowSpider(scrapy.Spider):
         script = """        
         function main(splash)         
           splash:init_cookies({
-            {name="_ct_remember", value="3be80cb227346380", domain="jam4.sapjam.com"},
-            {name="_ct_session", value="ZnRnNmtPZlhzRHVabTR5SUY1OW1RNTlrdlBwaHErbHhWYnNTMmJ2ZTBUTVdjcGVuQVdNWW1lK21ralVMcWx5dUMxS3MrcFVKNTBGeDRtVm40UkE5aHl6cXYyc05oNlJQN0xoZVl0bFcyQlA3MXBYclY1TGtpWVpYZVBIUXdhcFdMLzRvOUZrcFQyenFvVHExTFBFT2tBcW8zY25aakVWeld1UFE5Wk9qei9wckxiMzA5emFXUUN0UnRDWUNpdHpPaDZNSlU5bG9lMm9PSUYwbEphZU5xUUZvOHBwQW5vK0I5TFc4OEgzQ0F5Ly9PU2xMN2F5cTBuVDJ5cXF1ZmhkNUxMM2V3QUhIdlJ5Y2RtYWd3TGp5eGo0bU9yWkMrT1pRM3kvblJWckhDMDR6VUJmUGdYZlFZN2ZQVHlYS0JvaTFIelpmUzE1dGpNcGdRNzg3R3h2cGUwRFZBaHU0T0lGeGpzekJwTDVDVmE3MW5EakRSUk5uZzF0WWprRFplVnk3endmOVJBTGJtNW1YY3NHZURoN0IraXoyOWxsbVpHRis3Z0lCQ2cwMEFBODgrTTBaZUtwR3o1WW5SQ3JKZFpwNDk4U0o2VWRvekFZTzdNaWhwT1JST25SOVdRNUxIS3pYMFdkZXFJY3VxQU9FWW9nRURUaHpPNVhmWERlQ05weWtOeElnNHhrcFhoSUxZYkZWeXR4a3luZG8xMy9JVHEyc3JOOUZDNDN4eHBFdmwzU2N4ckczNGdabXA2UDkyamltanF6VkgwR3BkSk1tdjBaOHdLUkU0K0NuNXNYZ1NZeW1CaUc2dm1wZWhKTkYwODVwcHVxREZyc0NIaGJlUThsUS0tZUpocGVHRjFxdGlNZ0lCdnhYQXZEZz09--a8fc9c0ee39a1f4de0eaab07852b536aa96a006b", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="jamatsap.com", domain="jam4.sapjam.com"},
-            {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="ced4b00e4c1caa25.1522053703.0.1522053703..", domain="jam4.sapjam.com"},
-            {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="e0753f6a2aced465.1522053704.1.1522053704.1522053704.", domain="jam4.sapjam.com"},          
+            {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"},
+            {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_pk_id#", domain="jam4.sapjam.com"},
+            {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_swa_id#", domain="jam4.sapjam.com"},          
             {name="_swa_ses.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="*", domain="jam4.sapjam.com"}     
           })
           
@@ -60,6 +60,14 @@ class JamProfileFollowSpider(scrapy.Spider):
           }
         end
         """
+
+        script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
+        script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
+        script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
+        script = script.replace('#_pk_id#', config.JAM_COOKIE['_pk_id'])
+        script = script.replace('#_swa_id#', config.JAM_COOKIE['_swa_id'])
+
+        # print(script)
 
         for item in self.start_urls:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)

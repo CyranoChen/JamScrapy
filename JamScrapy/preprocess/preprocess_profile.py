@@ -9,13 +9,22 @@ from JamScrapy.preprocess.entity import Profile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    session = sessionmaker(bind=engine)()
-    profiles = engine.execute('SELECT * FROM spider_jam_profile ORDER BY peoplename')
+    profiles = engine.execute("SELECT * FROM spider_jam_profile where keyword='blockchain' ORDER BY peoplename ")
 
     print(profiles.rowcount)
 
+    session = sessionmaker(bind=engine)()
+
+    count = 0
+
     for p in profiles:
         print(p.id, p.peoplename, p.url, p.createtime)
+
+        profile = session.query(Profile).filter(Profile.displayname == p.peoplename).first()
+        print(p.peoplename, profile)
+
+        if profile:
+            count += 1
 
         html = scrapy.Selector(text=p.body)
         user_name = html.xpath('//div[@class="viewJobInfo"]/text()').extract()
@@ -33,30 +42,33 @@ def process_profiles():
         report_profiles = html.xpath('''//div[@class="clearfix org-chart-sections" and @aria-label="Direct Reports"] 
             //div[@class="badgeDetails"]/ul/li/a/@href''').extract()
 
-        if user_name and display_name:
+        if profile is None and user_name and display_name:
             profile = Profile(profileurl=p.url, username=user_name[0], displayname=display_name[0])
 
-            if avatar:
-                profile.avatar = avatar[0]
+        if avatar:
+            profile.avatar = avatar[0]
 
-            if managers and manager_profiles and len(managers) == len(manager_profiles):
-                json_managers = []
-                for i in range(len(managers)):
-                    json_managers.append({'name': managers[i], 'url': manager_profiles[i]})
-                profile.managers = json.dumps(json_managers)
+        if managers and manager_profiles and len(managers) == len(manager_profiles):
+            json_managers = []
+            for i in range(len(managers)):
+                json_managers.append({'name': managers[i], 'url': manager_profiles[i]})
+            profile.managers = json.dumps(json_managers)
 
-            if reports and report_profiles and len(reports) == len(report_profiles):
-                json_reports = []
-                for i in range(len(reports)):
-                    json_reports.append({'name': reports[i], 'url': report_profiles[i]})
-                profile.reports = json.dumps(json_reports)
+        if reports and report_profiles and len(reports) == len(report_profiles):
+            json_reports = []
+            for i in range(len(reports)):
+                json_reports.append({'name': reports[i], 'url': report_profiles[i]})
+            profile.reports = json.dumps(json_reports)
 
-            print(profile.reports)
-            session.add(profile)
+        if profile:
+            session.merge(profile)
 
     session.commit()
+    session.close()
 
+    return count;
 
 if __name__ == '__main__':
-    # process_profiles()
+    count = process_profiles()
+    print('Duplicate:', count)
     print("All Done")
