@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint, Index
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, UniqueConstraint, Index
 
 import json
 
@@ -77,3 +77,11 @@ class PortalProfile(Base):
     mobile = Column(String(16))
     address = Column(String(16))
     assistant = Column(String(16))
+
+
+class Knowledge(Base):
+    __tablename__ = 'jam_knowledge'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(16))
+    abstract = Column(String(64))
+    score = Column(Float)

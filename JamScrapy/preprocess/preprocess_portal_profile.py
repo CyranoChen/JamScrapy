@@ -9,13 +9,22 @@ from JamScrapy.preprocess.entity import PortalProfile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    session = sessionmaker(bind=engine)()
-    profiles = engine.execute('SELECT * FROM portal_profile_spider where body <> "[]" ORDER BY username')
+    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" ORDER BY username')
 
     print(profiles.rowcount)
 
+    session = sessionmaker(bind=engine)()
+
+    count = 0
+
     for p in profiles:
         print(p.id, p.username, p.url, p.createtime)
+
+        profile = session.query(PortalProfile).filter(PortalProfile.username == p.username).first()
+        print(p.username, profile)
+
+        if profile:
+            count += 1
 
         html = scrapy.Selector(text=p.body)
         user_name = html.xpath('//li[@class="uid"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
@@ -43,13 +52,13 @@ def process_profiles():
         assistant = html.xpath(
             '//li[@class="assistant_link"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
 
-        if user_name and display_name:
+        if profile is None and user_name and display_name:
             profile = PortalProfile(profileurl=p.url,
                                     username=user_name[0].replace('\\n', ''),
                                     displayname=display_name[0].replace('\\n', ''),
                                     # boardarea = board_area[0],
                                     # functional_area = functional_area[0],
-                                    costcenter=cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', ''),
+                                    # costcenter=cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', ''),
                                     # officelocation = office_location[0],
                                     # manager = manager[0],
                                     # localtime = local_time[0],
@@ -58,11 +67,15 @@ def process_profiles():
                                     # mobile = mobile[0],
                                     # address = address[0]
                                     )
+
             if board_area:
                 profile.boardarea = board_area[0].replace('\\n', '')
 
             if functional_area:
                 profile.functionalarea = functional_area[0].replace('\\n', '')
+
+            if cost_center:
+                profile.costcenter = cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', '')
 
             if office_location:
                 profile.officelocation = office_location[0].replace('\\n', '').replace('\\xa0\\xa0', '')
@@ -85,14 +98,16 @@ def process_profiles():
             if assistant:
                 profile.assistant = assistant[0].replace('\\n', '')
 
-            session.add(profile)
-
-            #for key, v in profile.__dict__.items():
-                #print(key, v)
+            if profile:
+                session.merge(profile)
 
     session.commit()
+    session.close()
+
+    return count;
 
 
 if __name__ == '__main__':
-    process_profiles()
+    count = process_profiles()
+    print('Duplicate:', count)
     print("All Done")

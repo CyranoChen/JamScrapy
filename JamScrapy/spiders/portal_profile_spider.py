@@ -20,7 +20,7 @@ class PortalProfileSpider(scrapy.Spider):
 
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     #start_urls = engine.execute('SELECT distinct username FROM jam_profile')
-    results = engine.execute('select distinct username from jam_profile where username not in (select username from portal_profile_spider)')
+    results = engine.execute('select distinct username from jam_profile where username not in (select username from spider_portal_profile)')
 
     print(name, results.rowcount)
 
