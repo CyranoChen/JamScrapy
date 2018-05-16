@@ -1,8 +1,10 @@
 ﻿<!DOCTYPE html>
 <html style="height: 100%">
+
 <head>
     <meta charset="utf-8">
 </head>
+
 <body style="height: 100%; margin: 0">
     <div id="container" style="height: 100%"></div>
     <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
@@ -27,7 +29,9 @@
                     label: {
                         normal: {
                             position: 'right',
-                            formatter: '{b}'
+                            formatter: function (param) {
+                                return param.name + ': ' + param.value;
+                            }
                         }
                     },
                     draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用。
@@ -48,6 +52,13 @@
             };
 
             chart.setOption(option);
+
+            chart.on('click', function (param) {
+                //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.username));
+                if (param.data.profileurl != undefined) {
+                    window.open(param.data.profileurl);
+                }
+            });
         });
 
         //if (option && typeof option === "object") {
@@ -55,4 +66,5 @@
         //}
     </script>
 </body>
+
 </html>

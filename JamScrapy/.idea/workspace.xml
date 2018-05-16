@@ -2,21 +2,91 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Create profile spider and crawl the profile of people">
-      <change afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/storage_v2/_src_/schema/sys.zb4BAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-Blockchain-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-Blockchain-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/JamTopic-GenerateJson-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamTopic-Blockchain.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/JamTopic-Blockchain.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/JamTopic-ChatBot.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamTopic-GenerateJson.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/links.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/AcnScrapy.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/JamTopic-Blockchain-PeopleExtraction-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/JamTopic-Blockchain-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/JamTopic-ChatBot-PeopleExtraction-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/JamTopic-ChatBot-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.ipynb_checkpoints/utility-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipelines.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/.ipynb_checkpoints/entity-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/entity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_group.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_knowledge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_people.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_portal_profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_post.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/preprocess_profile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/jam_post_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/jam_profile_follow_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/jam_profile_group_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/jam_profile_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/jam_search_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spiders/portal_profile_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JamTopic-Blockchain-PeopleExtraction.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JamTopic-Blockchain.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JamTopic-ChatBot-PeopleExtraction.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JamTopic-ChatBot.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../The Domain Nexus.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../domain nexus 100519.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/JamTopic-Blockchain.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/JamTopic-ChatBot.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/JamTopic-GenerateJson.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-blockchain-final-group.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-blockchain-final.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-blockchain-lesslinks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-blockchain.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-chatbot-group.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/jam-people-chatbot.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/data/map-city-geo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/overview-blockchain-circular.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/overview-blockchain.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/overview-chatbot-circular.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/overview-chatbot.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/dataTool.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/echarts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/echarts.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.intellisense.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.min.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.slim.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.slim.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/scripts/jquery-3.3.1.slim.min.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/Nexus/worldmap.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/contributes-blockchain.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/contributes-chatbot.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/links.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/nodes-division.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/nodes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../output/wordcloud.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/prototype/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/prototype/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/prototype/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prototype/prototype/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scrapy.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utility.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,11 +134,18 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="scrapy: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="scrapy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="scrapy: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="portal_profile: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -88,7 +165,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -183,7 +260,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,16 +272,11 @@
               <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
               <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
-              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
-              <item name="preprocess" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -216,7 +287,7 @@
     <property name="database.data.extractors.current.id" value="SQL Updates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -399,18 +470,17 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32903227" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.38892385" side_tool="true" weight="0.32903227" />
       <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32903227" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6110762" weight="0.3344086" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32903227" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32903227" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6110762" weight="0.3344086" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.497558" weight="0.29032257" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="8" visible="true" weight="0.4516129" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49848485" visible="true" weight="0.24684343" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49848485" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.18118687" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.18118687" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32976714" />
       <window_info id="Structure" order="1" sideWeight="0.50151515" side_tool="true" weight="0.2057898" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892474" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39892474" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -418,6 +488,7 @@
       <window_info anchor="right" x="0" y="0" width="357" height="827" id="Documentation" order="5" side_tool="true" weight="0.32976714" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.10752688" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
     </layout>
   </component>
@@ -428,6 +499,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
     <MESSAGE value="Add Preprocess logic of People" />
     <MESSAGE value="Finish the logic of preprocessing people and group" />
     <MESSAGE value="Create profile spider and crawl the profile of people" />
@@ -499,13 +573,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile_spider">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile_spider" />
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -745,20 +813,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_4.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -766,17 +821,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_people_from_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_people_from_post" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
