@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="scripts/echarts.min.js"></script>
+    <script type="text/javascript" src="scripts/echarts-gl.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var chart = echarts.init(dom);
+        var app = {};
+        chart.showLoading();
+
+        $.getJSON('data/flights.json', function (data) {
+            chart.hideLoading();
+
+            function getAirportCoord(idx) {
+                return [data.airports[idx][3], data.airports[idx][4]];
+            }
+            var routes = data.routes.map(function (line) {
+                return {
+                    coords: [
+                        getAirportCoord(line[1]),
+                        getAirportCoord(line[2])
+                    ],
+                    value: line[0]
+                }
+            });
+
+            //console.log(routes);
+
+            option = {
+                backgroundColor: '#000',
+                tooltip: {
+                    show: true
+                },
+                visualMap: [{
+                    // show: false,
+                    type: 'continuous',
+                    seriesIndex: 0,
+                    text: ['scatter3D'],
+                    textStyle: {
+                        color: '#fff'
+                    },
+                    calculable: true,
+                    max: 10,
+                    inRange: {
+                        color: ['#87aa66', '#eba438', '#d94d4c']
+                    }
+                }],
+                globe: {
+                    baseTexture: 'data/earth.jpg',
+                    heightTexture: 'data/bathymetry_bw_composite_4k.jpg',
+                    displacementScale: 0.1,
+                    shading: 'lambert',
+                    environment: 'data/starfield-none.jpg',
+                    light: {
+                        ambient: {
+                            intensity: 0.1
+                        },
+                        main: {
+                            intensity: 1.5
+                        }
+                    },
+                    layers: [{
+                        type: 'blend',
+                        blendTo: 'emission',
+                        texture: 'data/night.jpg'
+                    }, {
+                        type: 'overlay',
+                        texture: 'data/clouds.png',
+                        shading: 'lambert',
+                        distance: 5
+                    }],
+                    viewControl: {
+                        autoRotate: false
+                    }
+                },
+                series: {
+                    type: 'lines3D',
+                    coordinateSystem: 'globe',
+                    blendMode: 'lighter',
+                    effect: {
+                        show: true
+                    },
+                    lineStyle: {
+                        width: 1,
+                        //color: 'rgb(50, 50, 150)',
+                        opacity: 0.1
+                    },
+                    data: routes
+                }
+            };
+
+            chart.setOption(option);
+        });
+    </script>
+</body>
+
+</html>

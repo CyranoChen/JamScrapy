@@ -15,55 +15,310 @@
         var app = {};
         chart.showLoading();
 
-        $.get('data/jam-people-chatbot.json', function (people) {
+        function qs(search_for) {
+            var query = window.location.search.substring(1);
+            var parms = query.split('&');
+            for (var i = 0; i < parms.length; i++) {
+                var pos = parms[i].indexOf('=');
+                if (pos > 0 && search_for == parms[i].substring(0, pos)) {
+                    return parms[i].substring(pos + 1);;
+                }
+            }
+            return null;
+        }
+
+        // 设置阈值
+        if (qs("edge") != null) {
+            THRESHOLD_EDGE = qs("edge");
+        } else {
+            THRESHOLD_EDGE = 0; // social:0-4, org:0-10-20, comment:100 per time
+        }
+
+        if (qs("node") != null) {
+            THRESHOLD_NODE = qs("node");
+        } else {
+            THRESHOLD_NODE = 0;
+        }
+
+        THRESHOLD_DEGREE = 0;
+        THRESHOLD_SHOW_LABEL = 66; // 2 sigma: 66, 3 sigma: 49
+
+        if (qs("group") != null) {
+            THRESHOLD_GROUP_BY_FIELD = qs("group");
+        } else {
+            THRESHOLD_GROUP_BY_FIELD = 'boardarea';
+        }
+
+        if (qs("type") != null) {
+            CHART_TYPE = qs("type");
+        } else {
+            CHART_TYPE = "none"
+        }
+
+        CHART_RANDOM_LOCATION = false;
+
+        CANVAS_WIDTH = 1600;
+        CANVAS_HEIGHT = 900;
+        CANVAS_BLANK = 150;
+
+        DEBUG = true;
+
+        function get_coordinate(category, cate_res, cate_dict, total_count, rand) {
+            if (!rand) {
+                var count_curr = 0;
+                for (i = 0; i <= cate_res.indexOf(category); i++) {
+                    count_curr += cate_dict[cate_res[i]];
+                }
+                var count_prev = count_curr - cate_dict[category];
+
+                var angle_start = count_prev / total_count * 360;
+                var angle_end = count_curr / total_count * 360;
+
+                var angle = Math.random() * (angle_end - angle_start) + angle_start;
+                var radius = Math.random() * (get_radius(angle, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2) - CANVAS_BLANK) +
+                    CANVAS_BLANK;
+
+                var x = Math.sin(angle / 360 * 2 * Math.PI) * radius;
+                var y = Math.cos(angle / 360 * 2 * Math.PI) * radius;
+
+                //console.log(category, angle, get_radius(angle, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2), radius, x, y);
+            } else {
+                var x = (Math.random() * CANVAS_WIDTH - CANVAS_WIDTH / 2).toFixed(0);
+                var y = (Math.random() * CANVAS_HEIGHT - CANVAS_HEIGHT / 2).toFixed(0);
+            }
+
+            return [x, y];
+        }
+
+        function get_radius(angle, width, height) {
+            var max_r = Math.sqrt(width ** 2 + height ** 2);
+            var r = height / Math.abs(Math.cos(angle / 360 * 2 * Math.PI));
+
+            if (r > max_r) {
+                r = width / Math.abs(Math.sin(angle / 360 * 2 * Math.PI))
+            }
+
+            return r;
+        }
+
+        var render = $.get('data/jam-people-chatbot.json', function (dataset) {
             chart.hideLoading();
 
+            // 设置筛选节点(node)
+            var nodes = []
+            dataset.nodes.forEach(function (node) {
+                if ((node.value >= THRESHOLD_NODE) && (node.networkdegree >= THRESHOLD_DEGREE)) {
+                    nodes.push(node);
+                }
+            });
+
+            // 设置分类
+            var categories = [];
+            //var categories_colors = ["#999999", "#A7A250", "#6D9881", "#E6AC3B"];
+            var cate_res = [];
+            var cate_dict = {};
+            /// 统计每个分类的节点数量
+            nodes.forEach(function (node) {
+                if (node[THRESHOLD_GROUP_BY_FIELD] != null) {
+                    cate = node[THRESHOLD_GROUP_BY_FIELD];
+                } else {
+                    cate = 'None';
+                }
+                if (!cate_dict[cate]) {
+                    cate_res.push(cate);
+                    cate_dict[cate] = 1;
+                } else {
+                    cate_dict[cate] += 1;
+                }
+            });
+
+            cate_res.sort();
+            cate_res.forEach(function (c) {
+                if (c == 'None') {
+                    categories.push({
+                        "name": c,
+                        "itemStyle": {
+                            "color": "#999999"
+                        }
+                    });
+                } else {
+                    categories.push({
+                        "name": c
+                    });
+                }
+            });
+
+            // 遍历节点，计算分类汇总与坐标
+            nodes.forEach(function (node) {
+                if (node[THRESHOLD_GROUP_BY_FIELD] != null) {
+                    node.category = node[THRESHOLD_GROUP_BY_FIELD];
+                } else {
+                    node.category = 'None';
+                }
+
+                node.categoryid = cate_res.indexOf(node.category);
+
+                if (CHART_TYPE == "none") {
+                    coord = get_coordinate(node.category, cate_res, cate_dict, nodes.length,
+                        CHART_RANDOM_LOCATION);
+                    node.x = coord[0];
+                    node.y = coord[1];
+                }
+
+                node.symbolSize = node.value / 5 + 2;
+                node.label = {
+                    normal: {
+                        show: node.value >= THRESHOLD_SHOW_LABEL
+                    }
+                };
+            });
+
+            // 设置节点排序，仅针对circular
+            if (CHART_TYPE == "circular") {
+                nodes.sort(function (a, b) {
+                    return a.categoryid - b.categoryid;
+                });
+            }
+
+            // 设置筛选边(edge)
+            var links = []
+            dataset.links.forEach(function (edge) {
+                if (edge.weight >= THRESHOLD_EDGE) {
+                    //console.log(edge.weight, Math.log(edge.weight) + 0.1);
+                    edge.lineStyle = {
+                        normal: {
+                            //width: Math.min(1, Math.log(edge.weight / 10) + 0.1)
+                            width: 0.3
+                        }
+                    };
+                    links.push(edge);
+                }
+            });
+
             var option = {
-                legend: {
-                    data: ['Isolates', 'Connectors', 'Influencers', 'Brokers']
+                legend: [{
+                    // selectedMode: 'single',
+                    data: categories.map(function (c) {
+                        return c.name;
+                    })
+                }],
+                tooltip: {
+                    show: true,
+                    triggerOn: 'click',
+                    enterable: true
                 },
                 series: [{
                     type: 'graph',
-                    layout: 'force',
-                    animation: false,
+                    layout: CHART_TYPE,
+                    force: {
+                        initLayout: 'circular',
+                        edgeLength: 15, // 边的两个节点之间的距离，这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越大则长度越长。
+                        repulsion: 40, // 支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大。default: 50
+                        gravity: 0.2 // 节点受到的向中心的引力因子。该值越大节点越往中心点靠拢。default: 0.1
+                    },
+                    circular: {
+                        rotateLabel: true
+                    },
+                    draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用
+                    animation: true,
+                    roam: 'scale', // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
                     label: {
                         normal: {
                             position: 'right',
                             formatter: function (param) {
-                                return param.name + ': ' + param.value;
+                                return param.name;
                             }
                         }
                     },
-                    draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用。
-                    data: people.nodes.map(function (node, idx) {
-                        //node.id = idx;
-                        return node;
-                    }),
-                    categories: people.categories,
-                    force: {
-                        // initLayout: 'circular'
-                        // repulsion: 20,
-                        edgeLength: 10, // 边的两个节点之间的距离，这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越小则长度越长。
-                        repulsion: 50, // 支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大。default: 50
-                        gravity: 0.2 // 节点受到的向中心的引力因子。该值越大节点越往中心点靠拢。default: 0.1
+                    focusNodeAdjacency: true, // 节点hover时显示连接节点与边
+                    categories: categories,
+                    data: nodes,
+                    edges: links,
+                    lineStyle: {
+                        //width: 0.3,
+                        color: 'source',
+                        curveness: 0.2,
+                        opacity: 0.3
                     },
-                    edges: people.links
+                    emphasis: {
+                        label: {
+                            show: true
+                        },
+                        edgeLabel: {
+                            show: true
+                        },
+                        lineStyle: {
+                            width: 2.5,
+                            opacity: 0.8
+                        }
+                    },
+                    tooltip: {
+                        formatter: function (param) {
+                            console.log(param);
+                            if (param.dataType == 'edge') {
+                                return param.name + ": " + param.data.weight;
+                            } else if (param.dataType == 'node') {
+                                var tooltip = [];
+
+                                if (param.data.avatar != undefined) {
+                                    tooltip.push('<img src="https://jam4.sapjam.com' +
+                                        param.data.avatar.replace('285', '32') +
+                                        '" width="32" height="32" style="margin-right: 5px" />'
+                                    );
+                                }
+
+                                tooltip.push(
+                                    '<a href="' + param.data.profile +
+                                    '" target="_blank" style="font-weight:bold;color:#E6AC3B">' +
+                                    param.name + '</a>' + ': ' + param.value.toFixed(2),
+                                    '<hr size="1"  style="margin: 3px 0" />',
+                                    '<ul>',
+                                    '<li>id: ' + param.data.username + '</li>',
+                                    '<li>mobile: ' + param.data.mobile + '</li>',
+                                    '<li>email: ' + param.data.email + '</li>',
+                                    '<li>boardarea: ' + param.data.boardarea + '</li>',
+                                    '<li>functionalarea: ' + param.data.functionalarea +
+                                    '</li>',
+                                    '<li>costcenter: ' + param.data.costcenter + '</li>',
+                                    '<li>officelocation: ' + param.data.officelocation +
+                                    '</li>',
+                                    '<li>localinfo: ' + param.data.localinfo + '</li>'
+                                );
+
+                                if (param.value > 0) {
+                                    tooltip.push('<li>posts: ' + param.data.posts +
+                                        ', comments: ' +
+                                        param.data.comments + ', likes: ' +
+                                        param.data.likes + ', views: ' +
+                                        param.data.views + '</li>',
+                                        '</ul>');
+                                }
+
+                                if (DEBUG) {
+                                    tooltip.push('<hr size="1"  style="margin: 3px 0" />');
+                                    tooltip.push('x: ' + param.data.x.toFixed(0),
+                                        ', y: ' + param.data.y.toFixed(0),
+                                        ', category: ', param.data.category);
+                                }
+
+                                return tooltip.join('');
+                            }
+                        }
+                    }
                 }]
             };
 
-            chart.setOption(option);
+            if (option && typeof option === "object") {
+                chart.setOption(option, true);
+            }
 
-            chart.on('click', function (param) {
+            /* chart.on('click', function (param) {
                 //window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.username));
-                if (param.data.profileurl != undefined) {
-                    window.open(param.data.profileurl);
+                if (param.data.profile != undefined) {
+                    window.open(param.data.profile);
                 }
-            });
+            }); */
         });
-
-        //if (option && typeof option === "object") {
-        //    chart.setOption(option, true);
-        //}
     </script>
 </body>
 
