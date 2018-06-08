@@ -25,7 +25,6 @@ class JamScrapyPipeline(object):
         elif spider.name == 'PortalProfileSpider':
             return self.__process_portal_profile_spider(item)
 
-
     def __process_jam_search_spider(self, item):
         urls = []
         for url in item['topics']:
@@ -40,15 +39,15 @@ class JamScrapyPipeline(object):
 
         para = [db.escape_string(str(item["url"])),
                 db.escape_string(str(item["body"])),
-                db.escape_string(str(item["topics"])),
-                db.escape_string(str(item['id']))]
+                db.escape_string(str(item["topics"]))]
+                #db.escape_string(str(item['id']))]
 
-        # sql = f'insert into spider_jam_search (url, body, topics, createtime, keyword) ' \
-        #       f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "blockchain")'
+        sql = f'insert into spider_jam_search (url, body, topics, createtime, keyword) ' \
+               f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "{config.KEYWORD}")'
 
-        sql = f'update spider_jam_search set body="{para[1]}", topics="{para[2]}", createtime=NOW() where id = {para[3]}'
+        #sql = f'update spider_jam_search set body="{para[1]}", topics="{para[2]}", createtime=NOW() where id = {para[3]}'
 
-        result = db.query(sql)
+        db.query(sql)
 
         return item
 
@@ -59,13 +58,13 @@ class JamScrapyPipeline(object):
 
         para = [db.escape_string(str(item["baseurl"])),
                 db.escape_string(str(item["url"])),
-                db.escape_string(str(item["body"])),
-                db.escape_string(str(item['id']))]
+                db.escape_string(str(item["body"]))]
+                #db.escape_string(str(item['id']))]
 
-        # sql = f'insert into spider_jam_post (baseurl, url, body, createtime, keyword) ' \
-        #       f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "blockchain")'
+        sql = f'insert into spider_jam_post (baseurl, url, body, createtime, keyword) ' \
+              f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "{config.KEYWORD}")'
 
-        sql = f'update spider_jam_post set body="{para[2]}", createtime=NOW() where id = {para[3]}'
+        #sql = f'update spider_jam_post set body="{para[2]}", createtime=NOW() where id = {para[3]}'
 
         # print(item["url"])
 

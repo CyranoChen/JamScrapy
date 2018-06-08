@@ -10,8 +10,8 @@ class MySQL:
         'host': '127.0.0.1',
         'port': 3306,
         'user': 'root',
-        'passwd': 'Linfeng01!',
-        'db': 'scrapy',
+        'passwd': 'Password01!',
+        'db': 'nexus',
         # utf8 -> utf8mb4 针对互联网emoji表情符号，修改编码
         'charset': 'utf8mb4'
     }

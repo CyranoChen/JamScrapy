@@ -1,3 +1,4 @@
+
 *.log
 scrapy.bak.sql
 *.pyc

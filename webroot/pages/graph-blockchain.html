@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../plugins/ionslider/ionicons.min.css">
+    <!-- Ion Slider -->
+    <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.css">
+    <!-- ion slider Nice -->
+    <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div id="contentheader" class="content-header"></div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div id="container"></div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside id="controlsidebar" class="control-sidebar control-sidebar-dark"></aside>
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <!-- Ion Slider -->
+    <script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/select2.full.min.js"></script>
+
+    <script src="../plugins/echarts/echarts.min.js"></script>
+    <script src="../plugins/echarts/map/world.js"></script>
+
+    <script src="../dist/js/pages/graph-lib.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#sidebar").load("../shared/sidebar.html");
+        $("#footer").load("../shared/footer.html");
+        $("#controlsidebar").load("../shared/controlsidebar.html");
+        $("#contentheader").load("../shared/contentheader.html");
+
+        $(function () {
+            DEBUG = true;
+            DOMAIN_TOPIC = "Blockchain"
+
+            $("#container").css("height", document.body.clientHeight -
+                    $(".main-header").outerHeight() - $(".content-header").outerHeight() - 100)
+                .click(function () {
+                    $('body').removeClass('control-sidebar-slide-open');
+                });
+
+            var $config = $("#panel-config");
+            $config.find(".config-force").hide();
+            $config.find(".config-circular").hide();
+            $config.find("#range-time").ionRangeSlider({
+                min: 0,
+                max: 12,
+                from: 0,
+                type: 'single',
+                step: 3,
+                postfix: ' months ago',
+                prettify: false,
+                hasGrid: true,
+                onFinish: function (obj) {
+                    alert(obj.fromNumber);
+                }
+            });
+
+            var dom = document.getElementById("container");
+            var chart = echarts.init(dom);
+            chart.showLoading();
+
+            init_chart_config();
+            render_chart("../data/jam-people-" + DOMAIN_TOPIC + ".json", chart);
+        });
+    </script>
+</body>
+
+</html>
