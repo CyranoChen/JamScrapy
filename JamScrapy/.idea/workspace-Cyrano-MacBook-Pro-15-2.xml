@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Create profile spider and crawl the profile of people">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6cc0c932-fb67-4cbb-a330-ec5909eaffaa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69/storage_v2/_src_/schema/sys.zb4BAA.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/__init__.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/JamScrapy$topic2post.coverage" NAME="topic2post Coverage Results" MODIFIED="1520498982476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
+    <SUITE FILE_PATH="coverage/AcnScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1520328461577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy" />
+    <SUITE FILE_PATH="coverage/JamScrapy$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1522732091774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_portal_profile.coverage" NAME="preprocess_portal_profile Coverage Results" MODIFIED="1523851447363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_profile.coverage" NAME="preprocess_profile Coverage Results" MODIFIED="1523512582816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/AcnScrapy$acn_url_spider.coverage" NAME="acn_url_spider Coverage Results" MODIFIED="1520321980659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy/spiders" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_knowledge.coverage" NAME="preprocess_knowledge Coverage Results" MODIFIED="1525841607517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_group.coverage" NAME="preprocess_group Coverage Results" MODIFIED="1522821636146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_post.coverage" NAME="preprocess_post Coverage Results" MODIFIED="1522820569415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people.coverage" NAME="preprocess_people Coverage Results" MODIFIED="1522824082906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="root@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="root@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JamScrapy" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="jam_search_spider.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="903">
+              <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+              <folding>
+                <element signature="e#45#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1050">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
+              <folding>
+                <element signature="e#193#221#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jam_post_spider.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="649">
+              <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+              <folding>
+                <element signature="e#45#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>pipe</find>
+      <find>AcnScrapy</find>
+      <find>FROM jam_post_spider WHERE body IS NULL</find>
+      <find>json.loads</find>
+      <find>Joseph Hou</find>
+      <find>tags</find>
+      <find>JAM_COOKIE</find>
+      <find>jam_cookie</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/xiaohuar_spider.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/arsenalcn_spider.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/middlewares.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/url_spider.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/MySqlDbHelper.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/acn_url_spider.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/test.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/items.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/settings.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/config.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/mysql.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/acn_list_spider.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/pipelines.py" />
+        <option value="$PROJECT_DIR$/AcnScrapy/spiders/jam_search_spider.py" />
+        <option value="$PROJECT_DIR$/scrapy.cfg" />
+        <option value="$PROJECT_DIR$/JamScrapy/middlewares.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/search2post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/topic2post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/settings.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/post.py" />
+        <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile_spider.sql" />
+        <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/test.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_2.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/cfa2b0ec-2da8-425a-b62f-d58141a5bd6d/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_4.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_1.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/items.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/config.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/mysql.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/pipelines.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="36" />
+    <option name="y" value="23" />
+    <option name="width" value="2480" />
+    <option name="height" value="1417" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyPep8Inspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="JamScrapy" type="cbb8eebc:String" user="JamScrapy" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="AcnScrapy&#9;FILE&#9;file:///Users/i345795/OneDrive - SAP SE/projects/JamScrapy/.idea/AcnScrapy.iml" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="database.data.extractors.current.id" value="SQL Updates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <recent name="$PROJECT_DIR$/JamScrapy/spiders" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.preprocess_portal_profile">
+    <configuration name="preprocess_group" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="preprocess_knowledge" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="preprocess_people" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="preprocess_portal_profile" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="preprocess_profile" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.preprocess_portal_profile" />
+      <item itemvalue="Python.preprocess_knowledge" />
+      <item itemvalue="Python.preprocess_people" />
+      <item itemvalue="Python.preprocess_profile" />
+      <item itemvalue="Python.preprocess_group" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.preprocess_group" />
+        <item itemvalue="Python.preprocess_profile" />
+        <item itemvalue="Python.preprocess_people" />
+        <item itemvalue="Python.preprocess_knowledge" />
+        <item itemvalue="Python.preprocess_portal_profile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="" />
+      <created>1520310414073</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1520310414073</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add Preprocess logic of People">
+      <created>1521022709231</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1521022709231</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Finish the logic of preprocessing people and group">
+      <created>1521112278958</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1521112278958</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Create profile spider and crawl the profile of people">
+      <created>1521448001512</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1521448001512</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="50" y="23" width="1630" height="1027" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49937028" weight="0.32903227" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5006297" side_tool="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="Database Changes" sideWeight="0.49937028" weight="0.32903227" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49937028" weight="0.32903227" />
+      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49937028" weight="0.32903227" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32886904" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.18073048" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.19332494" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296131" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32962668" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24980143" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" sideWeight="0.50388455" side_tool="true" weight="0.25416997" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="7" visible="true" weight="0.12779061" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Add Preprocess logic of People" />
+    <MESSAGE value="Finish the logic of preprocessing people and group" />
+    <MESSAGE value="Create profile spider and crawl the profile of people" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create profile spider and crawl the profile of people" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile_spider" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/mysql/table/db" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/sys/table/sys_config" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_post.sql" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_search.sql" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_profile.sql" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_2.sql" />
+    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/sqlalchemy/orm/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="265" selection-start-line="265" selection-end-line="265" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile_spider" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile.sql" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_portal_profile" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-735">
+          <caret line="55" selection-start-line="55" selection-end-line="68" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/jam_knowledge" />
+    <entry file="das://cfa2b0ec-2da8-425a-b62f-d58141a5bd6d/schema/information_schema/view/tables" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/cfa2b0ec-2da8-425a-b62f-d58141a5bd6d/console.sql" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/information_schema/view/tables" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_profile" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_search" />
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_profile" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_4.sql" />
+    <entry file="das://table:/814308b6/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/scrapy.jam_people_from_post" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/jam_profile" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/jam_post" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/spider_jam_post" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8533">
+          <caret line="419" column="106" selection-start-line="419" selection-start-column="36" selection-end-line="419" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8820">
+          <caret line="427" column="73" selection-start-line="427" selection-start-column="59" selection-end-line="427" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_1.sql" />
+    <entry file="das://6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/jam_people_from_post" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console.sql" />
+    <entry file="file://$PROJECT_DIR$/scrapy.cfg">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="34" selection-start-line="34" selection-end-line="41" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/6555df22/7331fb95-07b4-420b-ab71-b4fb22430c69/nexus.spider_jam_search" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/mysql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="843">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/6555df22/7331fb95-07b4-420b-ab71-b4fb22430c69/nexus.spider_jam_post" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="67" column="64" selection-start-line="67" selection-start-column="32" selection-end-line="67" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="908" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="908" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#193#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding>
+            <element signature="e#45#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2e69ece7-95e2-4bb8-b1e1-84bd61311929/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+          <folding>
+            <element signature="e#45#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

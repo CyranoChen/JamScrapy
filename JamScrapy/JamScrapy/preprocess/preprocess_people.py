@@ -25,7 +25,7 @@ def process_questions():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath('//span[@class="jam-item-creator"]/a/text()').extract()
@@ -38,7 +38,7 @@ def process_questions():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -46,7 +46,7 @@ def process_questions():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -61,7 +61,7 @@ def process_blogs():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -76,7 +76,7 @@ def process_blogs():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -84,7 +84,7 @@ def process_blogs():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -99,7 +99,7 @@ def process_discussions():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath('//span[@class="jam-item-creator"]/a[@id="content-member-badge"]/text()').extract()
@@ -112,7 +112,7 @@ def process_discussions():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -120,7 +120,7 @@ def process_discussions():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -135,7 +135,7 @@ def process_wiki():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -150,7 +150,7 @@ def process_wiki():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -158,7 +158,7 @@ def process_wiki():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -173,7 +173,7 @@ def process_poll():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath('//div[@class="poll-details"]/p[@class="time"]/a/text()').extract()
@@ -183,7 +183,7 @@ def process_poll():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -198,7 +198,7 @@ def process_profile():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -213,7 +213,7 @@ def process_profile():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -221,7 +221,7 @@ def process_profile():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -236,7 +236,7 @@ def process_feed():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath('//div[@class="feed-action-container"]/span/a/text()').extract()
@@ -249,7 +249,7 @@ def process_feed():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -257,7 +257,7 @@ def process_feed():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -269,7 +269,7 @@ def process_ideas():
     print(posts.rowcount)
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath('//span[@class="jam-item-creator"]/a/text()').extract()
@@ -285,7 +285,7 @@ def process_ideas():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -293,7 +293,7 @@ def process_ideas():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -308,7 +308,7 @@ def process_groups_events():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -323,7 +323,7 @@ def process_groups_events():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -331,7 +331,7 @@ def process_groups_events():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -346,7 +346,7 @@ def process_groups_documents():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -361,7 +361,7 @@ def process_groups_documents():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -369,7 +369,7 @@ def process_groups_documents():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -384,7 +384,7 @@ def process_groups_sw_items():
     session = sessionmaker(bind=engine)()
 
     for p in posts:
-        print(p.url)
+        print(p.baseurl)
 
         html = scrapy.Selector(text=p.body)
         creators = html.xpath(
@@ -399,7 +399,7 @@ def process_groups_sw_items():
 
         if len(creators) > 0:
             for index in range(len(creators)):
-                obj = People(displayname=creators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=creators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
                 session.add(obj)
 
@@ -407,7 +407,7 @@ def process_groups_sw_items():
 
         if len(participators) > 0:
             for index in range(len(participators)):
-                obj = People(displayname=participators[index], postid=p.id, posturl=p.url, position=index,
+                obj = People(displayname=participators[index], postid=p.id, posturl=p.baseurl, position=index,
                              profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
                 session.add(obj)
 
