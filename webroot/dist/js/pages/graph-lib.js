@@ -1,4 +1,75 @@
-function qs(search_for) {
+var config = {
+    'THRESHOLD_SHOW_LABEL': 66, // 2 sigma: 66, 3 sigma: 49
+    'THRESHOLD_NODE': 66,
+    'THRESHOLD_EDGE': 30,
+    'THRESHOLD_DEGREE': 0,
+    'CHART_TYPE': 'geo',
+    'GROUP_BY_FIELD': 'networktype',
+    'HIDDEN_LEGEND': {},
+    'CANVAS_WIDTH': 1600,
+    'CANVAS_HEIGHT': 800,
+    'CANVAS_BLANK': 150,
+    'CHART_FIX_LOCATION': false,
+    'DICT': {
+        'TYPE': ['g', 'n', 'f', 'c'],
+        'FIELD': {
+            'Geographic': ['networktype', 'boardarea', 'functionalarea', 'costcenter'],
+            'Category Burst': ['boardarea', 'functionalarea', 'costcenter'],
+            'Force': ['networktype', 'boardarea', 'functionalarea'],
+            'Circular': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter']
+        },
+        'GEO_REGION': {
+            'America': {
+                'top': -300,
+                'bottom': -70,
+                'left': -600,
+                'right': -200
+            },
+            'Asia': {
+                'top': -300,
+                'bottom': 0,
+                'left': 300,
+                'right': 700
+            },
+            'Australia': {
+                'top': 160,
+                'bottom': 280,
+                'left': 500,
+                'right': 650
+            },
+            'Europe': {
+                'top': -400,
+                'bottom': -200,
+                'left': -30,
+                'right': 150
+            },
+            'None': {
+                'top': 300,
+                'bottom': 400,
+                'left': -800,
+                'right': -500
+            },
+            'Africa': {
+                'top': 50,
+                'bottom': 300,
+                'left': 50,
+                'right': 180
+            },
+            'Pacific': {
+                'top': 250,
+                'bottom': 400,
+                'left': 750,
+                'right': 800
+            }
+        }
+    },
+    'DATA_SOURCE': {},
+    'DATA_MONTH_AGO': 0,
+    'DOMAIN': '',
+    'DEBUG': false
+};
+
+function querystring(search_for) {
     var query = window.location.search.substring(1);
     var parms = query.split('&');
     for (var i = 0; i < parms.length; i++) {
@@ -10,33 +81,92 @@ function qs(search_for) {
     return null;
 }
 
-function init_chart_config() {
-    THRESHOLD_NODE = 1;
-    THRESHOLD_EDGE = 10; // social:0-4, org:0-10-20, comment:100 per time
-    THRESHOLD_DEGREE = 0;
-    THRESHOLD_SHOW_LABEL = 66; // 2 sigma: 66, 3 sigma: 49
-    THRESHOLD_GROUP_BY_FIELD = 'networktype';
+function init_chart(topic, chart, debug) {
+    config.DEBUG = debug;
 
-    CHART_TYPE = "geo";
-    CHART_RANDOM_LOCATION = false;
+    if (querystring('domain') != undefined) {
+        config.DOMAIN = querystring('domain');
+    } else {
+        config.DOMAIN = topic.toLowerCase();
+    }
 
-    CANVAS_WIDTH = 1600;
-    CANVAS_HEIGHT = 800;
-    CANVAS_BLANK = 150;
+    if (querystring('node') != undefined && !isNaN(parseInt(querystring('node')))) {
+        if (parseInt(querystring('node')) >= 0) {
+            config.THRESHOLD_NODE = 100 - Math.min(100, parseInt(querystring('node')));
+        }
+    }
 
-    FORCE_EDGELENGTH = 15; // 边的两个节点之间的距离，这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越大则长度越长。
-    FORCE_REPULSION = 50; // 支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大。default: 50
-    FORCE_GRAVITY = 0.1; // 节点受到的向中心的引力因子。该值越大节点越往中心点靠拢。default: 0.1
+    if (querystring('edge') != undefined && !isNaN(parseInt(querystring('edge')))) {
+        if (parseInt(querystring('edge')) >= 0) {
+            config.THRESHOLD_EDGE = 100 - Math.min(100, parseInt(querystring('edge')));
+        }
+    }
 
-    DICT_FIELD = {
-        'Geographic': ['networktype', 'boardarea', 'functionalarea', 'costcenter'],
-        'Category Burst': ['boardarea', 'functionalarea', 'costcenter'],
-        'Force': ['networktype', 'boardarea', 'functionalarea'],
-        'Circular': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter']
-    };
+    if (querystring('type') != undefined && config.DICT.TYPE.indexOf(querystring('type').toLowerCase()) >= 0) {
+        switch (querystring('type').toLowerCase()) {
+            case 'g':
+                config.CHART_TYPE = 'geo';
+                break;
+            case 'n':
+                config.CHART_TYPE = 'none';
+                break;
+            case 'f':
+                config.CHART_TYPE = 'force';
+                break;
+            case 'c':
+                config.CHART_TYPE = 'circular';
+                break;
+        }
+    }
+
+    if (querystring('group') != undefined) {
+        var groups = config.DICT.FIELD[$("select#ddl-layout").find("option[value='" + config.CHART_TYPE + "']").text()];
+        if (groups.indexOf(querystring('group').toLowerCase()) >= 0) {
+            // 根据当前layout可能的group方式获取
+            config.GROUP_BY_FIELD = querystring('group').toLowerCase();
+        }
+    }
+
+    if (querystring('ago') != undefined && !isNaN(parseInt(querystring('ago')))) {
+        if (parseInt(querystring('ago')) >= 0) {
+            // 3的倍数，0~12
+            config.DATA_MONTH_AGO = Math.floor(Math.min(12, parseInt(querystring('ago'))) / 3) * 3;
+        }
+    }
+
+    if (querystring('nocates') != undefined) {
+        var arr = querystring('nocates').split(',');
+        if (arr.length > 0) {
+            for (var i in arr) {
+                var cate = decodeURIComponent(arr[i]);
+                config.HIDDEN_LEGEND[cate] = false;
+            }
+        }
+    }
+
+    $("#panel-config .config-graph div.config").hide();
+    $("#panel-config .config-graph div.config-" + config.CHART_TYPE.substring(0, 1)).show();
+    $("#panel-config #range-time").ionRangeSlider({
+        min: -12,
+        max: 0,
+        from: -config.DATA_MONTH_AGO,
+        type: 'single',
+        step: 3,
+        postfix: ' months ago',
+        prettify: false,
+        hasGrid: true,
+        onFinish: function (obj) {
+            config.DATA_MONTH_AGO = (-obj.fromNumber);
+            render_chart("../data/jam-people-" + config.DOMAIN + "-" + (-obj.fromNumber) +
+                ".json", chart);
+        }
+    });
+
+    render_chart("../data/jam-people-" + config.DOMAIN + "-" + config.DATA_MONTH_AGO + ".json", chart);
+    bind_buttons(chart);
 }
 
-function get_coordinate(category, cate_res, cate_dict, total_count, rand) {
+function get_cate_coordinate(category, cate_res, cate_dict, total_count, rand) {
     var x, y = 0;
 
     if (!rand) {
@@ -50,16 +180,29 @@ function get_coordinate(category, cate_res, cate_dict, total_count, rand) {
         var angle_end = count_curr / total_count * 360;
 
         var angle = Math.random() * (angle_end - angle_start) + angle_start;
-        var radius = Math.random() * (get_radius(angle, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2) - CANVAS_BLANK) +
-            CANVAS_BLANK;
+        var radius = Math.random() * (get_radius(angle, config.CANVAS_WIDTH / 2, config.CANVAS_HEIGHT / 2) - config.CANVAS_BLANK) +
+            config.CANVAS_BLANK;
 
         x = Math.sin(angle / 360 * 2 * Math.PI) * radius;
         y = Math.cos(angle / 360 * 2 * Math.PI) * radius;
 
-        //console.log(category, angle, get_radius(angle, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2), radius, x, y);
+        //console.log(category, angle, get_radius(angle, config.CANVAS_WIDTH / 2, config.CANVAS_HEIGHT / 2), radius, x, y);
     } else {
-        x = (Math.random() * CANVAS_WIDTH - CANVAS_WIDTH / 2).toFixed(0);
-        y = (Math.random() * CANVAS_HEIGHT - CANVAS_HEIGHT / 2).toFixed(0);
+        x = (Math.random() * config.CANVAS_WIDTH - config.CANVAS_WIDTH / 2).toFixed(0);
+        y = (Math.random() * config.CANVAS_HEIGHT - config.CANVAS_HEIGHT / 2).toFixed(0);
+    }
+
+    return [x, y];
+}
+
+function get_geo_coordinate(node) {
+    var x, y = 0;
+
+    if (node.region) {
+        var relative_rect = config.DICT.GEO_REGION[node.region];
+
+        x = (Math.random() * (relative_rect.right - relative_rect.left) + relative_rect.left).toFixed(0);
+        y = (Math.random() * (relative_rect.bottom - relative_rect.top) + relative_rect.top).toFixed(0);
     }
 
     return [x, y];
@@ -119,13 +262,14 @@ function get_tooltips(param) {
             '</ul>');
     }
 
-    if (DEBUG) {
+    if (config.DEBUG) {
         console.log(param);
         tooltips.push(
             '<hr size="1"  style="margin: 3px 0" />'
         );
-        tooltips.push('x: ' + param.data.x.toFixed(0),
-            ', y: ' + param.data.y.toFixed(0),
+
+        tooltips.push('x: ' + param.data.x,
+            ', y: ' + param.data.y,
             ', category: ' + param.data.category,
             ', index: ' + param.dataIndex);
     }
@@ -147,8 +291,7 @@ function generate_dataset(dataset) {
     // 设置筛选节点(node)
     var nodes = [];
     dataset.nodes.forEach(function (node) {
-        if ((node.value >= THRESHOLD_NODE) && (node.networkdegree >=
-                THRESHOLD_DEGREE)) {
+        if ((node.value >= config.THRESHOLD_NODE) && (node.networkdegree >= config.THRESHOLD_DEGREE)) {
             nodes.push(node);
         }
     });
@@ -160,8 +303,8 @@ function generate_dataset(dataset) {
     var cate_dict = {};
     /// 统计每个分类的节点数量
     nodes.forEach(function (node) {
-        if (node[THRESHOLD_GROUP_BY_FIELD] != null) {
-            cate = node[THRESHOLD_GROUP_BY_FIELD];
+        if (node[config.GROUP_BY_FIELD] != null) {
+            cate = node[config.GROUP_BY_FIELD];
         } else {
             cate = 'None';
         }
@@ -175,7 +318,7 @@ function generate_dataset(dataset) {
 
     cate_res.sort();
     cate_res.forEach(function (c) {
-        if (c == 'None') {
+        if (c == 'None' || c == 'Isolates' || c == 'Soloists') {
             categories.push({
                 "name": c,
                 "itemStyle": {
@@ -191,31 +334,30 @@ function generate_dataset(dataset) {
 
     // 遍历节点，计算分类汇总与坐标
     nodes.forEach(function (node) {
-        if (node[THRESHOLD_GROUP_BY_FIELD] != null) {
-            node.category = node[THRESHOLD_GROUP_BY_FIELD];
+        if (node[config.GROUP_BY_FIELD] != null) {
+            node.category = node[config.GROUP_BY_FIELD];
         } else {
             node.category = 'None';
         }
 
         node.categoryid = cate_res.indexOf(node.category);
 
-        if (CHART_TYPE == "none") {
-            coord = get_coordinate(node.category, cate_res, cate_dict, nodes.length,
-                CHART_RANDOM_LOCATION);
-            node.x = coord[0];
-            node.y = coord[1];
-        } else if (CHART_TYPE == "geo") {
-            // TODO 
-            coord = get_coordinate(node.category, cate_res, cate_dict, nodes.length,
-                CHART_RANDOM_LOCATION);
-            node.x = coord[0];
-            node.y = coord[1];
+        if (!config.CHART_FIX_LOCATION) {
+            if (config.CHART_TYPE == "none") {
+                coord = get_cate_coordinate(node.category, cate_res, cate_dict, nodes.length, false);
+                node.x = coord[0];
+                node.y = coord[1];
+            } else if (config.CHART_TYPE == "geo") {
+                coord = get_geo_coordinate(node);
+                node.x = coord[0];
+                node.y = coord[1];
+            }
         }
 
-        node.symbolSize = node.value / 5 + 2;
+        node.symbolSize = node.value / 6 + 1;
         node.label = {
             normal: {
-                show: node.value >= THRESHOLD_SHOW_LABEL
+                show: node.value >= config.THRESHOLD_SHOW_LABEL
             },
             emphasis: {
                 show: true
@@ -224,29 +366,31 @@ function generate_dataset(dataset) {
     });
 
     // 设置节点排序，仅针对circular
-    if (CHART_TYPE == "circular") {
+    if (config.CHART_TYPE == "circular") {
         nodes.sort(function (a, b) {
             return a.categoryid - b.categoryid;
         });
     }
 
-    if (CHART_TYPE == "force") {
-        EDGE_WIDTH = 1;
-    } else {
-        EDGE_WIDTH = 0.3;
-    }
-
     // 设置筛选边(edge)
     var links = [];
     dataset.links.forEach(function (edge) {
-        if (edge.weight >= THRESHOLD_EDGE) {
-            //console.log(edge.weight, Math.log(edge.weight) + 0.1);
+        if (edge.weight >= config.THRESHOLD_EDGE) {
+            if (config.CHART_TYPE == "force") {
+                EDGE_WIDTH = 1;
+                EDGE_CURVENESS = 0;
+            } else {
+                EDGE_WIDTH = Math.min(2, edge.weight / 100);
+                EDGE_CURVENESS = 0.2;
+            }
+
             edge.lineStyle = {
                 normal: {
-                    //width: Math.min(1, Math.log(edge.weight / 10) + 0.1)
-                    width: EDGE_WIDTH
+                    width: EDGE_WIDTH,
+                    curveness: EDGE_CURVENESS
                 }
             };
+
             links.push(edge);
         }
     });
@@ -259,183 +403,180 @@ function generate_dataset(dataset) {
 }
 
 function get_option(dataset) {
-    if (DEBUG) {
-        console.clear();
-        console.log(dataset);
+    var chart_type = config.CHART_TYPE;
+    if (config.CHART_TYPE == 'geo') {
+        chart_type = 'none';
     }
 
-    if (CHART_TYPE == "geo") {
-        return {
-            legend: [{
-                type: 'scroll',
-                orient: 'vertical',
-                left: 5,
-                // selectedMode: 'single',
-                data: dataset.categories.map(function (c) {
-                    return c.name;
-                })
-            }],
-            tooltip: {
-                show: true,
-                triggerOn: 'click',
-                enterable: true
+    var option = {
+        legend: [{
+            type: 'scroll',
+            orient: 'vertical',
+            left: 5,
+            // selectedMode: 'single',
+            data: dataset.categories.map(function (c) {
+                return c.name;
+            }),
+            selected: config.HIDDEN_LEGEND
+        }],
+        tooltip: {
+            show: true,
+            triggerOn: 'click',
+            enterable: true
+        },
+        series: [{
+            id: 'people',
+            type: 'graph',
+            layout: chart_type,
+            force: {
+                initLayout: 'circular',
+                edgeLength: 20, // 边的两个节点之间的距离，这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越大则长度越长。
+                repulsion: 50, // 支持设置成数组表达斥力的范围，此时不同大小的值会线性映射到不同的斥力。值越大则斥力越大。default: 50
+                gravity: 0.05 //节点受到的向中心的引力因子。该值越大节点越往中心点靠拢。default: 0.1
             },
-            geo: {
-                map: 'world',
-                silent: false, //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
-                itemStyle: {
-                    normal: {
-                        opacity: 0.5,
-                        borderWidth: 0.2,
-                        areaColor: '#eee'
-                    },
-                    emphasis: {
-                        opacity: 1,
-                        areaColor: '#ddd'
-                    }
-                },
-                roam: false,
-                //regions: coldata
+            circular: {
+                rotateLabel: true
             },
-            series: [{
-                id: 'people',
-                type: 'graph',
-                layout: 'none',
-                force: {
-                    //initLayout: 'circular',
-                    edgeLength: FORCE_EDGELENGTH,
-                    repulsion: FORCE_REPULSION,
-                    gravity: FORCE_GRAVITY
-                },
-                circular: {
-                    rotateLabel: true
-                },
-                draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用
-                animation: true,
-                roam: false, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
-                focusNodeAdjacency: false, // 节点hover时显示连接节点与边
-                label: {
-                    normal: {
-                        position: 'right',
-                        formatter: function (param) {
-                            return param.name;
-                        }
-                    }
-                },
-                categories: dataset.categories,
-                data: dataset.nodes,
-                edges: dataset.links,
-                lineStyle: {
-                    //width: 0.3,
-                    color: 'source',
-                    curveness: 0.2,
-                    opacity: 0.5
-                },
-                emphasis: {
-                    label: {
-                        show: true
-                    },
-                    edgeLabel: {
-                        show: true
-                    },
-                    lineStyle: {
-                        width: 2.5,
-                        opacity: 0.8
-                    }
-                },
-                tooltip: {
+            draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用
+            animation: true,
+            roam: false, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+            focusNodeAdjacency: true, // 节点hover时显示连接节点与边
+            legendHoverLink: true, // 无效果，检查 TODO
+            hoverAnimation: true, // 无效果，检查 TODO
+            label: {
+                normal: {
+                    position: 'right',
                     formatter: function (param) {
-                        if (param.dataType == 'edge') {
-                            return param.name + ": " + param.data.weight;
-                        } else if (param.dataType == 'node') {
-                            return get_tooltips(param).join('');
-                        }
+                        return param.name;
                     }
                 }
-            }]
-        };
-    } else {
-        return {
-            legend: [{
-                type: 'scroll',
-                orient: 'vertical',
-                left: 5,
-                // selectedMode: 'single',
-                data: dataset.categories.map(function (c) {
-                    return c.name;
-                })
-            }],
-            tooltip: {
-                show: true,
-                triggerOn: 'click',
-                enterable: true
             },
-            series: [{
-                id: 'people',
-                type: 'graph',
-                layout: CHART_TYPE,
-                force: {
-                    //initLayout: 'circular',
-                    edgeLength: FORCE_EDGELENGTH,
-                    repulsion: FORCE_REPULSION,
-                    gravity: FORCE_GRAVITY
-                },
-                circular: {
-                    rotateLabel: true
-                },
-                draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用
-                animation: true,
-                roam: false, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
-                focusNodeAdjacency: false, // 节点hover时显示连接节点与边
+            categories: dataset.categories,
+            data: dataset.nodes,
+            edges: dataset.links,
+            lineStyle: {
+                //width: 0.3,
+                color: 'source',
+                opacity: 0.3
+            },
+            emphasis: {
                 label: {
-                    normal: {
-                        position: 'right',
-                        formatter: function (param) {
-                            return param.name;
-                        }
-                    }
+                    show: true
                 },
-                categories: dataset.categories,
-                data: dataset.nodes,
-                edges: dataset.links,
+                edgeLabel: {
+                    show: true
+                },
                 lineStyle: {
-                    //width: 0.3,
-                    color: 'source',
-                    curveness: 0.2,
-                    opacity: 0.5
-                },
-                emphasis: {
-                    label: {
-                        show: true
-                    },
-                    edgeLabel: {
-                        show: true
-                    },
-                    lineStyle: {
-                        width: 2.5,
-                        opacity: 0.8
-                    }
-                },
-                tooltip: {
-                    formatter: function (param) {
-                        if (param.dataType == 'edge') {
-                            return param.name + ": " + param.data.weight;
-                        } else if (param.dataType == 'node') {
-                            return get_tooltips(param).join('');
-                        }
+                    width: 2.5,
+                    opacity: 0.8
+                }
+            },
+            tooltip: {
+                formatter: function (param) {
+                    if (param.dataType == 'edge') {
+                        return param.name + ": " + param.data.weight.toFixed(2);
+                    } else if (param.dataType == 'node') {
+                        return get_tooltips(param).join('');
                     }
                 }
-            }]
+            }
+        }]
+    };
+
+    if (config.CHART_TYPE == "geo") {
+        option.geo = {
+            map: 'world',
+            silent: false, //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
+            itemStyle: {
+                normal: {
+                    opacity: 0.5,
+                    borderWidth: 0.2,
+                    areaColor: '#eee'
+                },
+                emphasis: {
+                    opacity: 1,
+                    areaColor: '#ddd'
+                }
+            },
+            roam: false,
+            //regions: coldata
         };
     }
+
+    if (config.DEBUG) {
+        console.clear();
+        console.log(dataset);
+        console.log(option);
+    }
+
+    return option;
+}
+
+function bind_buttons(chart) {
+    $("button#btn-bookmark").click(function () {
+        var url = [location.protocol, '//', location.host, location.pathname].join('');
+        url = url.concat(
+            "?type=", config.CHART_TYPE.substring(0, 1),
+            "&group=", config.GROUP_BY_FIELD,
+            "&ago=", config.DATA_MONTH_AGO,
+            "&node=", 100 - config.THRESHOLD_NODE,
+            "&edge=", 100 - config.THRESHOLD_EDGE
+        );
+
+        // 添加LEGEND显示传参
+        config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+        if (config.HIDDEN_LEGEND != {}) {
+            var nocates = [];
+            $.each(config.HIDDEN_LEGEND, function (k, v) {
+                if (!v) {
+                    nocates.push(encodeURIComponent(k));
+                }
+            });
+
+            if (nocates.length > 0) {
+                url = url.concat("&nocates=", nocates.join(','));
+            }
+        }
+
+        window.open(url);
+    });
+
+    $("button#btn-roam").click(function () {
+        chart.setOption({
+            series: [{
+                roam: !(chart.getOption().series[0].roam)
+            }]
+        }, false);
+    });
+
+    $("button#btn-legend").click(function () {
+        chart.setOption({
+            legend: [{
+                show: !(chart.getOption().legend[0].show)
+            }]
+        }, false);
+    });
+
+    $("button#btn-hover").click(function () {
+        chart.setOption({
+            series: [{
+                focusNodeAdjacency: !(chart.getOption().series[0].focusNodeAdjacency)
+            }]
+        }, false);
+    });
 }
 
 function render_chart(filepath, chart) {
     $.get(filepath, function (data, status) {
         if (status === "success" && data != null) {
-            var ds = generate_dataset(data);
+            config.DATA_SOURCE = data;
+            config.CHART_FIX_LOCATION = false;
+            $("input#cb-fix-location").prop('checked', config.CHART_FIX_LOCATION);
+
+            config.DATA_SOURCE.operation = "initial";
+            var ds = generate_dataset(config.DATA_SOURCE);
             var option = get_option(ds);
-            bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+            bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
             chart.hideLoading();
 
@@ -444,41 +585,26 @@ function render_chart(filepath, chart) {
             }
 
             $("button#btn-refresh").click(function () {
-                var ds = generate_dataset(data);
+                config.DATA_SOURCE.operation = "refresh";
+                config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+
+                var ds = generate_dataset(config.DATA_SOURCE);
                 var option = get_option(ds);
-                bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+                bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
                 if (option && typeof option === "object") {
                     chart.setOption(option, true);
                 }
             });
 
-            $("button#btn-roam").click(function () {
-                chart.setOption({
-                    series: [{
-                        roam: !(chart.getOption().series[0].roam)
-                    }]
-                }, false);
-            });
-
-            $("button#btn-legend").click(function () {
-                chart.setOption({
-                    legend: [{
-                        show: !(chart.getOption().legend[0].show)
-                    }]
-                }, false);
-            });
-
-            $("button#btn-hover").click(function () {
-                chart.setOption({
-                    series: [{
-                        focusNodeAdjacency: !(chart.getOption().series[0].focusNodeAdjacency)
-                    }]
-                }, false);
-            });
-
             $("button#btn-search-reset").click(function () {
                 $("#ddl-search").val("").select2();
+                // 恢复hover
+                chart.setOption({
+                    series: [{
+                        focusNodeAdjacency: true
+                    }]
+                }, false);
                 chart.dispatchAction({
                     type: 'unfocusNodeAdjacency',
                     seriesId: 'people'
@@ -487,12 +613,24 @@ function render_chart(filepath, chart) {
 
             $("#ddl-search").change(function () {
                 if ($(this).val() != "" && $(this).val() >= 0) {
+                    // 失效hover
+                    chart.setOption({
+                        series: [{
+                            focusNodeAdjacency: false
+                        }]
+                    }, false);
                     chart.dispatchAction({
                         type: 'focusNodeAdjacency',
                         seriesId: 'people',
                         dataIndex: $(this).val()
                     });
                 } else {
+                    // 恢复hover
+                    chart.setOption({
+                        series: [{
+                            focusNodeAdjacency: true
+                        }]
+                    }, false);
                     chart.dispatchAction({
                         type: 'unfocusNodeAdjacency',
                         seriesId: 'people'
@@ -504,18 +642,21 @@ function render_chart(filepath, chart) {
             $("#range-node").ionRangeSlider({
                 min: 0,
                 max: 100,
-                from: 1,
+                from: (100 - config.THRESHOLD_NODE),
                 type: 'single',
                 step: 1,
                 postfix: '',
                 prettify: false,
                 hasGrid: true,
                 onFinish: function (obj) {
-                    THRESHOLD_NODE = obj.fromNumber;
+                    config.THRESHOLD_NODE = 100 - obj.fromNumber;
 
-                    var ds = generate_dataset(data);
+                    config.DATA_SOURCE.operation = "node";
+                    config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+
+                    var ds = generate_dataset(config.DATA_SOURCE);
                     var option = get_option(ds);
-                    bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+                    bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
                     if (option && typeof option === "object") {
                         chart.setOption(option, true);
@@ -527,18 +668,21 @@ function render_chart(filepath, chart) {
             $("#range-edge").ionRangeSlider({
                 min: 0,
                 max: 100,
-                from: 10,
+                from: (100 - config.THRESHOLD_EDGE),
                 type: 'single',
                 step: 1,
                 postfix: '',
                 prettify: false,
                 hasGrid: true,
                 onFinish: function (obj) {
-                    THRESHOLD_EDGE = obj.fromNumber;
+                    config.THRESHOLD_EDGE = 100 - obj.fromNumber;
 
-                    var ds = generate_dataset(data);
+                    config.DATA_SOURCE.operation = "edge";
+                    config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+
+                    var ds = generate_dataset(config.DATA_SOURCE);
                     var option = get_option(ds);
-                    bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+                    bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
                     if (option && typeof option === "object") {
                         chart.setOption(option, true);
@@ -547,16 +691,16 @@ function render_chart(filepath, chart) {
             });
 
             // Graphy Setting - layout
-            $("select#ddl-layout").change(function () {
+            $("select#ddl-layout").val(config.CHART_TYPE).change(function () {
                 if ($(this).val() !== "") {
                     $(".config-graph div.config").hide();
-                    $(".config-graph div.config-" + $(this).val()).show();
+                    $(".config-graph div.config-" + $(this).val().substring(0, 1)).show();
 
                     $groupby = $("select#ddl-groupby");
                     var selected_group = $groupby.val();
                     $groupby.empty();
 
-                    groups = DICT_FIELD[$(this).find("option:selected").text()];
+                    groups = config.DICT.FIELD[$(this).find("option:selected").text()];
                     if (groups != undefined && groups.length > 0) {
                         $(groups).each(function (i, g) {
                             $groupby.append("<option value=" + g + ">" + g + "</option>");
@@ -569,12 +713,15 @@ function render_chart(filepath, chart) {
                         $groupby.val($groupby.find("option:first").val());
                     }
 
-                    CHART_TYPE = $(this).val();
-                    THRESHOLD_GROUP_BY_FIELD = $groupby.val();
+                    config.CHART_TYPE = $(this).val();
+                    config.GROUP_BY_FIELD = $groupby.val();
 
-                    var ds = generate_dataset(data);
+                    config.DATA_SOURCE.operation = "layout";
+                    config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+
+                    var ds = generate_dataset(config.DATA_SOURCE);
                     var option = get_option(ds);
-                    bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+                    bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
                     if (option && typeof option === "object") {
                         chart.setOption(option, true);
@@ -582,19 +729,65 @@ function render_chart(filepath, chart) {
                 }
             });
 
-            // DataSet Setting - group by
-            $("select#ddl-groupby").change(function () {
-                if ($(this).val() !== "") {
-                    THRESHOLD_GROUP_BY_FIELD = $(this).val();
+            // Graphy Setting - layout
+            $("input#cb-fix-location").change(function () {
+                config.CHART_FIX_LOCATION = $(this).is(':checked');
+            });
 
-                    var ds = generate_dataset(data);
+            // DataSet Setting - group by
+            $("select#ddl-groupby").val(config.GROUP_BY_FIELD).change(function () {
+                if ($(this).val() !== "") {
+                    config.GROUP_BY_FIELD = $(this).val();
+
+                    config.DATA_SOURCE.operation = "groupby";
+                    config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+
+                    var ds = generate_dataset(config.DATA_SOURCE);
                     var option = get_option(ds);
-                    bind_select2(ds, $("#ddl-search"), DOMAIN_TOPIC);
+                    bind_select2(ds, $("#ddl-search"), config.DOMAIN);
 
                     if (option && typeof option === "object") {
                         chart.setOption(option, true);
                     }
                 }
+            });
+
+            $("button#btn-download").click(function () {
+                var dataset = {
+                    "nodes": [],
+                    "links": []
+                };
+
+                var ds = generate_dataset(config.DATA_SOURCE);
+
+                ds.nodes.forEach(function (n) {
+                    dataset.nodes.push({
+                        "name": n.name,
+                        "username": n.username,
+                        "value": n.value
+                    });
+                });
+
+                ds.links.forEach(function (l) {
+                    dataset.links.push({
+                        "source": l.source,
+                        "target": l.target,
+                        "weight": l.weight
+                    });
+                });
+
+                $("<a />", {
+                        "download": "dataset-".concat(config.DOMAIN.toLowerCase(),
+                            "-t", config.DATA_MONTH_AGO,
+                            "-n", 100 - config.THRESHOLD_NODE,
+                            "-l", 100 - config.THRESHOLD_EDGE,
+                            ".json"),
+                        "href": "data:application/json," + encodeURIComponent(JSON.stringify(dataset)) // 最多2M
+                    })
+                    .appendTo("body")
+                    .click(function () {
+                        $(this).remove();
+                    })[0].click();
             });
         }
     });

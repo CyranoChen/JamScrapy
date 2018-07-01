@@ -3,7 +3,7 @@ DB_CONNECT_STRING = 'mysql+pymysql://root:Password01!@127.0.0.1:3306/nexus?chars
 
 # 爬取域名
 DOMAIN = 'jam4.sapjam.com'
-KEYWORD = 'CRM'
+KEYWORD = 'intelligent enterprise'
 
 JAM_COOKIE = {
     '_ct_remember': '136b5c2b205f2b86',

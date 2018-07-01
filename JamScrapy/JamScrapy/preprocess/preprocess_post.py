@@ -7,7 +7,12 @@ import json
 from JamScrapy import config
 from JamScrapy.preprocess.entity import Post
 
-KEYWORD = 'blockchain'
+KEYWORD = config.KEYWORD
+
+PROFILES = dict()
+
+def init_profiles():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
 
 def query_posts_by_category(category):

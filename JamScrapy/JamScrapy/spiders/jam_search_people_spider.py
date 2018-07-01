@@ -7,21 +7,19 @@ from JamScrapy import config
 from JamScrapy.items import JamScrapySearchItem
 
 
-class JamSearchSpider(scrapy.Spider):
+class JamSearchPeopleSpider(scrapy.Spider):
     # 爬虫名称
-    name = "JamSearchSpider"
+    name = "JamSearchPeopleSpider"
     # 设置下载延时, 避免被BAN
     download_delay = 1
     # 允许域名
     allowed_domains = [config.DOMAIN]
 
     request_urls = []
-    url = '/universal_search/search?page={1}&query={0}'
+    url = '/universal_search/search?category=people&page={0}&query=&type=active+user'
 
-    total_pages = 328
-
-    for i in range(1, total_pages + 1, 1):
-        request_urls.append('https://' + config.DOMAIN + url.format('"intelligent+enterprise"', i))
+    for i in range(1, 6322, 1):
+        request_urls.append('https://' + config.DOMAIN + url.format(i))
 
     #print(name, len(request_urls))
 
@@ -29,8 +27,8 @@ class JamSearchSpider(scrapy.Spider):
         script = """        
         function main(splash)
           splash:init_cookies({
-            {name="_ct_remember", value="1ac7b1a816057bee", domain="jam4.sapjam.com"},
-            {name="_ct_session", value="Yk82eVZ5enlIcUp3c3Q2VDNhandnL1I0dFlQOURtcmVjZWdZdWxrMzgzekFlQ3MyU29oVTZpU2RhWFN2ZmRCTjd1VHlkQ1A4OFVtVE9hai8xemNWOWIvU3BNbERMbDg2QkMrRzM1bkhqLzRZV0Z5NGNmbFp0SGVYMEl2NGE0Mk1yOFMzeGNXZmxWV2k2ZHh1bUNIRldYcnRCVXBUb1hpb3BNYzRxdzc2RzgwNTNZZkR6MGVrSXhESlJaRXgvc010bG04MWl1dWk0d05zWGt2QTZuNkxjVWtMalF4SDBQdmtyTWcrMG40M0VpVEc5b3MwcXZNUVJlZ0JjL0ZBbzFwWTkyRUt1L2NqUHJKOEZzTXpUSmtDbG14UFIzV3RRZk15RThmaGdUeDNXUXFkNmdySEk4cXJxRDVjdHJ5aFlnZnB1dTE4bi9FZ2tSUjVDc0dPaE5zdFc0Q2NEeHFFMk1nR3o1UW1ReVVwdlNiOThiY1ErZWZ1Z2NzMHJRcWxoSFEwWElnSTJiamVGQ2pZem92VHU3UmtZQjZ6OHQ1NmFwWnBSMnFBWEhvdXo0SkZQbXJhdkNxS2N3M2kzUXFEVGNsa3JJVnNRRDhnd2NCc3g4TXdKc0VEclZNN3NMMHRiL0Z2TGozaHBWVk5TYjlLS0sxdWdxY1FIWjJZcTZJVUlITXJVNFA3OFVub3FKUkVhczlFaHR5SmxJVEpKVjZkRi9oTGViei8zdVFEVjRnSHEwbm5NR1Z5eWxvYVlHc2h4cWY5b29ZdEN2NHpZVmdQQzhxd2szUFIyWVdsT0NnQm9halhIME5PV1F2ZGtGNVhGbU1PYUhBZ2UvZXU0UU5DeXF4Uy0talJIZDAvTlpBMUhvQjRsUlBGaVMzdz09--ac23fc93f1d0baf132e68dc4c5844767a02f6e5b", domain="jam4.sapjam.com"},
+            {name="_ct_remember", value="136b5c2b205f2b86", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="QzdNTitBa2p6c2NIOHFtM2lyM3JnWkVvUFpEMHNMM2laYUc1RXdJWFVHZ1VxVER0bUlmMlMzT1lDdjZsYTc5Nkp2WDhsdTRUNmp3V1l2ekZJcHIzYzlhbktDM1hQdzhPQVFUcVNPQVdEWlo3ekl1L1lpUVh3d3VrcWhJbWlIbTBtUEUyclBFczB1cXpuMzdmbFpnVjJNNUcycXhJa3ovSHFvNHZRamJCWlRsRkJTYlRhdnNhN2RlbFFxKzk3WDNqNmg3R0F0U3NMeUVleW1VdFlOd0loZUFpaHQ3bFlVUVdQQis5OTF4RGV0R25aUVhPV3pWT1R3VDhGY0RRK0VyUHNlUE9LYXMwcytBRVVvVm5DSFl1NHpSV203bXA0UGhMUDl0NnhFRXNaVndYbUNXdzBIeDVSeXluYStFekNaV3oyOFBDTmpzWCtodWwwRUpxcG9FQnh1SDJSWmVrQnRjN2ZJK3FKd1plU0xUNTcyVjJjaFhFS3BWNWQ1ajROT1FLOGsxWGFWUkRZb2d6NUxpZkpnTmhvVzBOeG94bWtrcHdVdHlwNE44dnJZTUJJQytxODVrQWdhMXVHeHhFa1lYOFF2ZE1Md3RMY1p6RWthTlB5TUY5YldrZVh3aWRlZGJleVd1YmtoU0VyRVpUTDZWV05jdzNpZ2d0RS9lMlErMWJtN1NPc0J1MUZ3L2hLdGdEajZkdEZpL3NYRTdzV0E3cCtSdUNTeTJLWTFQazZGVURmNkIwUU53ZE5KT2VycnZDbEZ4MGRyUDlEaHN5a3pxUDJXbG9peS9tSkU2NC9IQ1llOUhoNlhXNjNyQlB2TnZONVpaUUVadHpOWnh6NXRWbC0td0hoZzBIWHpCbzU4Q2Q4WkpwM1BCUT09--1cab28eebbf0c902ac9c84244eee661e7e027c2d", domain="jam4.sapjam.com"},
             {name="_ct_sso", value="jamatsap.com", domain="jam4.sapjam.com"}   
           })
           
@@ -70,7 +68,7 @@ class JamSearchSpider(scrapy.Spider):
         # sel : 页面源代码
         result = scrapy.Selector(response)
 
-        # item['id'] = response.meta['id']
+        #item['id'] = response.meta['id']
         item['topics'] = result.xpath('//li[@class="search_result"]/div[@class="title"]/span/a/@href').extract()
         # item['body'] = 'test'
         item['body'] = result.xpath('//div[@class="usr_results"]').extract()

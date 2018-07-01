@@ -14,35 +14,39 @@
                 <option value="circular">Circular</option>
             </select>
         </div>
-        <div class="input-group mb-3 config config-none">
+        <div class="input-group mb-3 config config-n">
+            <input id="cb-fix-location" type="checkbox" class="mr-1">
+            <span>Fix the location of nodes</span>
+        </div>
+        <div class="input-group mb-3 config config-n">
             <div class="input-group-prepend">
                 <span class="input-group-text">width</span>
             </div>
             <input id="tb-canvas-width" type="text" class="form-control" placeholder="1600" disabled>
         </div>
-        <div class="input-group mb-3 config config-none">
+        <div class="input-group mb-3 config config-n">
             <div class="input-group-prepend">
                 <span class="input-group-text">height</span>
             </div>
             <input id="tb-canvas-height" type="text" class="form-control" placeholder="800" disabled>
         </div>
-        <div class="input-group mb-3 config config-force">
+        <div class="input-group mb-3 config config-f">
             <div class="input-group-prepend">
                 <span class="input-group-text">Edge Length</span>
             </div>
-            <input id="tb-force-edgeLength" type="text" class="form-control" placeholder="15" disabled>
+            <input id="tb-force-edgeLength" type="text" class="form-control" placeholder="20" disabled>
         </div>
-        <div class="input-group mb-3 config config-force">
+        <div class="input-group mb-3 config config-f">
             <div class="input-group-prepend">
                 <span class="input-group-text">Repulsion</span>
             </div>
             <input id="tb-force-repulsion" type="text" class="form-control" placeholder="50" disabled>
         </div>
-        <div class="input-group mb-3 config config-force">
+        <div class="input-group mb-3 config config-f">
             <div class="input-group-prepend">
                 <span class="input-group-text">Gravity</span>
             </div>
-            <input id="tb-force-gravity" type="text" class="form-control" placeholder="0.1" disabled>
+            <input id="tb-force-gravity" type="text" class="form-control" placeholder="0.05" disabled>
         </div>
     </div>
     <div class="config-group">
@@ -52,6 +56,8 @@
                 <option value="networktype">Network Type</option>
                 <option value="boardarea">Board Area</option>
                 <option value="functionalarea">Functional Area</option>
+                <option value="region">Region</option>
+                <option value="city">City</option>
                 <option value="costcenter">Coster Center</option>
             </select>
         </div>

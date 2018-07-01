@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../plugins/select2/select2.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini sidebar-collapse">
+<body class="hold-transition sidebar-mini sidebar-collapse control-sidebar-slide-open">
     <div class="wrapper">
         <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
         <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
@@ -41,7 +41,7 @@
         <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
-        <aside id="controlsidebar" class="control-sidebar control-sidebar-dark"></aside>
+        <aside id="controlsidebar" class="control-sidebar control-sidebar-dark" style="top:57px"></aside>
         <!-- Main Footer -->
         <footer id="footer" class="main-footer"></footer>
     </div>
@@ -75,7 +75,6 @@
 
         $(function () {
             DEBUG = true;
-            DOMAIN_TOPIC = "Blockchain"
 
             $("#container").css("height", document.body.clientHeight -
                     $(".main-header").outerHeight() - $(".content-header").outerHeight() - 100)
@@ -83,29 +82,11 @@
                     $('body').removeClass('control-sidebar-slide-open');
                 });
 
-            var $config = $("#panel-config");
-            $config.find(".config-force").hide();
-            $config.find(".config-circular").hide();
-            $config.find("#range-time").ionRangeSlider({
-                min: 0,
-                max: 12,
-                from: 0,
-                type: 'single',
-                step: 3,
-                postfix: ' months ago',
-                prettify: false,
-                hasGrid: true,
-                onFinish: function (obj) {
-                    alert(obj.fromNumber);
-                }
-            });
-
             var dom = document.getElementById("container");
             var chart = echarts.init(dom);
             chart.showLoading();
 
-            init_chart_config();
-            render_chart("../data/jam-people-" + DOMAIN_TOPIC + ".json", chart);
+            init_chart("Blockchain", chart, debug = false);
         });
     </script>
 </body>

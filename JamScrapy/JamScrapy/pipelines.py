@@ -12,8 +12,10 @@ from sqlalchemy import create_engine
 
 class JamScrapyPipeline(object):
     def process_item(self, item, spider):
-        if spider.name == 'JamSearchSpider':
+        if spider.name == 'JamSearchSpider' or spider.name == 'JamSearchPeopleSpider':
             return self.__process_jam_search_spider(item)
+        elif spider.name == 'JamSearchFetchSpider':
+            return self.__process_jam_search_fetch_spider(item)
         elif spider.name == 'JamPostSpider':
             return self.__process_jam_post_spider(item)
         elif spider.name == 'JamProfileSpider':
@@ -51,6 +53,28 @@ class JamScrapyPipeline(object):
 
         return item
 
+    def __process_jam_search_fetch_spider(self, item):
+        urls = []
+        for url in item['topics']:
+            urls.append('http://' + config.DOMAIN + url)
+
+        item['topics'] = urls
+
+        # print(item["url"], item["topics"])
+
+        # Connect to the database
+        db = MySQL()
+
+        para = [db.escape_string(str(item["url"])),
+                db.escape_string(str(item["body"])),
+                db.escape_string(str(item["topics"])),
+                db.escape_string(str(item['id']))]
+
+        sql = f'update spider_jam_search set body="{para[1]}", topics="{para[2]}", createtime=NOW() where id = {para[3]}'
+
+        db.query(sql)
+
+        return item
 
     def __process_jam_post_spider(self, item):
         # Connect to the database

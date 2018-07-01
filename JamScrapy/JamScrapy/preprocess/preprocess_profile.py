@@ -9,7 +9,7 @@ from JamScrapy.preprocess.entity import Profile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute("SELECT * FROM spider_jam_profile where keyword='blockchain' ORDER BY peoplename ")
+    profiles = engine.execute("SELECT * FROM spider_jam_profile ORDER BY peoplename ")
 
     print(profiles.rowcount)
 

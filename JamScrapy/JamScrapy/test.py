@@ -4,26 +4,38 @@ import ast
 
 engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-# category = 'documents'
-# #
-# # results = engine.execute(f"SELECT * FROM spider_jam_post WHERE body IS NOT NULL AND keyword = 'chatbot'"
-# # f" AND baseurl like '%%documents%%'")
-# #
-# # print(results.rowcount)
-# #
-# # p = results.first()
-# # print(p.id)
-# # print(p.url)
-# # print(p.baseurl)
-# # print(p.createtime)
+# 开始URL
+request_urls = []
 
-results = engine.execute(f"SELECT * FROM spider_jam_search WHERE body <> '[]' AND keyword = 'blockchain'")
+engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+results = engine.execute(f"select * from spider_jam_search where body <> '[]' and keyword = '{config.KEYWORD}'")
 
-print(results.rowcount)
-
-start_urls = []
+print('results', results.rowcount)
 
 for r in results:
-    start_urls.extend(ast.literal_eval(r.topics))
+    request_urls.extend(ast.literal_eval(r.topics))
 
-print(len(start_urls))
+# 全部URL
+print(len(request_urls))
+
+set_request_urls = set()
+for r in request_urls:
+    set_request_urls.add(r)
+
+# 全部不重复的URL set
+print(len(set_request_urls))
+
+set_exist_urls = set()
+results = engine.execute(f"select baseurl from spider_jam_post where keyword = '{config.KEYWORD}'")
+
+for r in results:
+    set_exist_urls.add(r.baseurl)
+
+# 全部已存在的URL set
+print(len(set_exist_urls))
+
+request_urls = list(set_request_urls - set_exist_urls)
+
+# 最终需要爬取的URL
+print(len(request_urls))
+
