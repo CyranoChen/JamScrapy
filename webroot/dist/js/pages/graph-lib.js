@@ -1,5 +1,10 @@
 var config = {
-    'THRESHOLD_SHOW_LABEL': 66, // 2 sigma: 66, 3 sigma: 49
+    'COLOR': ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
+    //'COLOR': ['#FFA100','#007FFF','#002040'],
+    //'COLOR': ['#E25141','#F6C244', '#D1DA59', '#D73964', '#48A8EE','#FCEA60', '#97C05B', '#5F41B0','#52BAD1', '#4154AF'], //Google
+    //'COLOR': ['#5AC8FA','#FF2D55', '#FF9500', '#FFCC00', '#4CD964','#20CEC0', '#9FD0F5', '#EB464D','#007AFF', '#5856D6'], //Apple
+    //'COLOR': ['#44A0DE','#F3B944', '#E27638', '#9D338A', '#84BC56','#73B9E2', '#BDD66A', '#B02318','#DC577B'], //SAP
+    'THRESHOLD_SHOW_LABEL': 70, // 2 sigma: 66, 3 sigma: 49
     'THRESHOLD_NODE': 66,
     'THRESHOLD_EDGE': 30,
     'THRESHOLD_DEGREE': 0,
@@ -61,12 +66,14 @@ var config = {
                 'left': 750,
                 'right': 800
             }
-        }
+        },
+        'GEO_CITY': {},
+        'GEO_CITY_DATA': {}
     },
     'DATA_SOURCE': {},
     'DATA_MONTH_AGO': 0,
     'DOMAIN': '',
-    'DEBUG': false
+    'DEBUG': false,
 };
 
 function querystring(search_for) {
@@ -162,12 +169,21 @@ function init_chart(topic, chart, debug) {
         }
     });
 
-    render_chart("../data/jam-people-" + config.DOMAIN + "-" + config.DATA_MONTH_AGO + ".json", chart);
-    bind_buttons(chart);
+
+    $.getJSON("../data/map-city-geo.json", function (data, status) {
+        if (status === "success" && data != null) {
+            config.DICT.GEO_CITY = data.coord;
+            //config.DICT.GEO_CITY_DATA = data.rawdata;
+
+            render_chart("../data/jam-people-" + config.DOMAIN + "-" + config.DATA_MONTH_AGO + ".json", chart);
+            bind_buttons(chart);
+        }
+    });
 }
 
 function get_cate_coordinate(category, cate_res, cate_dict, total_count, rand) {
-    var x, y = 0;
+    var x = 0;
+    var y = 0;
 
     if (!rand) {
         var count_curr = 0;
@@ -195,18 +211,33 @@ function get_cate_coordinate(category, cate_res, cate_dict, total_count, rand) {
     return [x, y];
 }
 
-function get_geo_coordinate(node) {
-    var x, y = 0;
+function get_geo_coordinate(x_radius, y_radius) {
+    var x = 0;
+    var y = 0;
 
-    if (node.region) {
-        var relative_rect = config.DICT.GEO_REGION[node.region];
+    var angle = Math.random() * 360;
+    var radius = [Math.random() * (x_radius - 4) + 4, Math.random() * (y_radius - 2) + 2];
 
-        x = (Math.random() * (relative_rect.right - relative_rect.left) + relative_rect.left).toFixed(0);
-        y = (Math.random() * (relative_rect.bottom - relative_rect.top) + relative_rect.top).toFixed(0);
-    }
+    x = Math.sin(angle / 360 * 2 * Math.PI) * radius[0];
+    y = Math.cos(angle / 360 * 2 * Math.PI) * radius[1];
 
     return [x, y];
 }
+
+// function get_geo_coordinate(node) {
+//     var x = 90;
+//     var y = 90;
+
+//     // located by region
+//     // if (node.region) {
+//     //     var relative_rect = config.DICT.GEO_REGION[node.region];
+
+//     //     x = (Math.random() * (relative_rect.right - relative_rect.left) + relative_rect.left).toFixed(0);
+//     //     y = (Math.random() * (relative_rect.bottom - relative_rect.top) + relative_rect.top).toFixed(0);
+//     // }
+
+//     return [x, y];
+// }
 
 function get_radius(angle, w, h) {
     var max_r = Math.sqrt(Math.pow(w, 2) + Math.pow(h, 2));
@@ -219,59 +250,143 @@ function get_radius(angle, w, h) {
     return r;
 }
 
-function get_tooltips(param) {
-    var tooltips = [];
+function convert_geo_data(nodes) {
+    var res = JSON.parse(JSON.stringify(nodes));
+    config.DICT.GEO_CITY_DATA = {};
 
-    if (param.data.avatar != undefined) {
-        tooltips.push(
-            '<img src="https://jam4.sapjam.com' +
-            param.data.avatar.replace('285', '32') +
-            '" width="32" height="32" style="margin-right: 5px" />'
-        );
+    res.forEach(function (node) {
+        node.symbolSize = node.value / 10 + 1;
+        node.label = {
+            normal: {
+                show: false
+            },
+            emphasis: {
+                show: true
+            }
+        };
+
+        var coord = config.DICT.GEO_CITY[node.city];
+        if (coord) {
+            node.x = coord[0];
+            node.y = coord[1];
+            node.value = [node.x, node.y, node.value];
+
+            // 记录存在的城市列表与所属节点数量
+            if (config.DICT.GEO_CITY_DATA.hasOwnProperty(node.city)) {
+                config.DICT.GEO_CITY_DATA[node.city] += 1;
+            } else {
+                config.DICT.GEO_CITY_DATA[node.city] = 1;
+            }
+        } else {
+            //console.log(node); // 记录没有找到城市的节点
+            node.x = -160;
+            node.y = 80;
+            node.value = [node.x, node.y, node.value];
+        }
+    });
+
+    console.log(config.DICT.GEO_CITY_DATA);
+
+    // 对节点位置的随机偏移
+    res.forEach(function (node) {
+        if (config.DICT.GEO_CITY_DATA[node.city] > 1) {
+            var rate = Math.max(8, config.DICT.GEO_CITY_DATA[node.city] / 10);
+
+            if (node.city == 'None') {
+                rate *= 5;
+            }
+
+            var offset = get_geo_coordinate(rate * 0.4, rate * 0.2);
+            node.x += offset[0];
+            node.y += offset[1];
+            node.value[0] = node.x;
+            node.value[1] = node.y;
+        }
+    });
+
+    return res;
+}
+
+function make_city_map(rawData) {
+    var res = [];
+
+    for (var city in rawData) {
+        var coord = config.DICT.GEO_CITY[city];
+        if (coord) {
+            res.push({
+                name: city,
+                //value: coord.concat(city.slice(1))
+                value: coord
+            });
+        } else {
+            console.log(city);
+        }
     }
 
-    tooltips.push(
-        '<a href="' + param.data.profile +
-        '" target="_blank" style="font-weight:bold;color:#E6AC3B">' +
-        param.name + '</a>' + ': ' + param.value.toFixed(
-            2),
-        '<hr size="1"  style="margin: 3px 0" />',
-        '<ul>',
-        '<li>id: ' + param.data.username + '</li>',
-        '<li>mobile: ' + param.data.mobile +
-        '</li>',
-        '<li>email: ' + param.data.email + '</li>',
-        '<li>boardarea: ' + param.data.boardarea +
-        '</li>',
-        '<li>functionalarea: ' + param.data.functionalarea +
-        '</li>',
-        '<li>costcenter: ' + param.data.costcenter +
-        '</li>',
-        '<li>officelocation: ' + param.data.officelocation +
-        '</li>',
-        '<li>localinfo: ' + param.data.localinfo +
-        '</li>'
-    );
+    //console.log(res);
+    return res;
+}
 
-    if (param.value > 0) {
+function get_tooltips(param) {
+    var tooltips = [];
+    var value = -1;
+
+    if (param.value.length > 0) {
+        value = param.value[param.value.length - 1];
+    } else {
+        value = param.value;
+    }
+
+    if (value >= 0) {
+        if (param.data.avatar != undefined) {
+            tooltips.push(
+                '<img src="https://jam4.sapjam.com' +
+                param.data.avatar.replace('285', '32') +
+                '" width="32" height="32" style="margin-right: 5px" />'
+            );
+        }
+
+        tooltips.push(
+            '<a href="' + param.data.profile +
+            '" target="_blank" style="font-weight:bold;color:#E6AC3B">' +
+            param.name + '</a>' + ': ' + value.toFixed(2),
+            '<hr size="1"  style="margin: 3px 0" />',
+            '<ul>',
+            '<li>id: ' + param.data.username + '</li>',
+            '<li>mobile: ' + param.data.mobile +
+            '</li>',
+            '<li>email: ' + param.data.email + '</li>',
+            '<li>boardarea: ' + param.data.boardarea +
+            '</li>',
+            '<li>functionalarea: ' + param.data.functionalarea +
+            '</li>',
+            '<li>costcenter: ' + param.data.costcenter +
+            '</li>',
+            '<li>officelocation: ' + param.data.officelocation +
+            '</li>',
+            '<li>localinfo: ' + param.data.localinfo +
+            '</li>'
+        );
+
         tooltips.push('<li>posts: ' + param.data.posts +
             ', comments: ' +
             param.data.comments + ', likes: ' +
             param.data.likes + ', views: ' +
             param.data.views + '</li>',
             '</ul>');
-    }
 
-    if (config.DEBUG) {
-        console.log(param);
-        tooltips.push(
-            '<hr size="1"  style="margin: 3px 0" />'
-        );
 
-        tooltips.push('x: ' + param.data.x,
-            ', y: ' + param.data.y,
-            ', category: ' + param.data.category,
-            ', index: ' + param.dataIndex);
+        if (config.DEBUG) {
+            console.log(param);
+            tooltips.push(
+                '<hr size="1"  style="margin: 3px 0" />'
+            );
+
+            tooltips.push('x: ' + param.data.x.toFixed(2),
+                ', y: ' + param.data.y.toFixed(2),
+                ', category: ' + param.data.category,
+                ', index: ' + param.dataIndex);
+        }
     }
 
     return tooltips;
@@ -322,7 +437,8 @@ function generate_dataset(dataset) {
             categories.push({
                 "name": c,
                 "itemStyle": {
-                    "color": "#999999"
+                    //"color": "#D6DADC"
+                    "color": "#999"
                 }
             });
         } else {
@@ -347,14 +463,11 @@ function generate_dataset(dataset) {
                 coord = get_cate_coordinate(node.category, cate_res, cate_dict, nodes.length, false);
                 node.x = coord[0];
                 node.y = coord[1];
-            } else if (config.CHART_TYPE == "geo") {
-                coord = get_geo_coordinate(node);
-                node.x = coord[0];
-                node.y = coord[1];
             }
         }
 
         node.symbolSize = node.value / 6 + 1;
+
         node.label = {
             normal: {
                 show: node.value >= config.THRESHOLD_SHOW_LABEL
@@ -409,6 +522,7 @@ function get_option(dataset) {
     }
 
     var option = {
+        color: config.COLOR,
         legend: [{
             type: 'scroll',
             orient: 'vertical',
@@ -428,6 +542,7 @@ function get_option(dataset) {
             id: 'people',
             type: 'graph',
             layout: chart_type,
+            zlevel: 100,
             force: {
                 initLayout: 'circular',
                 edgeLength: 20, // 边的两个节点之间的距离，这个距离也会受 repulsion。支持设置成数组表达边长的范围，此时不同大小的值会线性映射到不同的长度。值越大则长度越长。
@@ -486,7 +601,7 @@ function get_option(dataset) {
     if (config.CHART_TYPE == "geo") {
         option.geo = {
             map: 'world',
-            silent: false, //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
+            silent: true, //图形是否不响应和触发鼠标事件，默认为 false，即响应和触发鼠标事件。
             itemStyle: {
                 normal: {
                     opacity: 0.5,
@@ -501,10 +616,43 @@ function get_option(dataset) {
             roam: false,
             //regions: coldata
         };
+
+        option.series[0].coordinateSystem = 'geo';
+        option.series[0].data = convert_geo_data(dataset.nodes);
+
+        option.series[1] = {
+            id: 'city',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 10,
+            rippleEffect: {
+                brushType: 'fill',
+                scale: 3
+            },
+            label: {
+                show: true,
+                position: 'left',
+                formatter: '{b}',
+                color: '#2967a6'
+            },
+            symbolSize: 15,
+            showEffectOn: 'render',
+            itemStyle: {
+                normal: {
+                    borderColor: '#fff',
+                    color: '#dfecf7',
+                    opacity: 0.6
+                }
+            },
+            data: make_city_map(config.DICT.GEO_CITY_DATA),
+            tooltip: {
+                show: false
+            }
+        };
     }
 
     if (config.DEBUG) {
-        console.clear();
+        //console.clear();
         console.log(dataset);
         console.log(option);
     }

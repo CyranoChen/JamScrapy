@@ -22,20 +22,16 @@ class PortalProfileSpider(scrapy.Spider):
     #start_urls = engine.execute('SELECT distinct username FROM jam_profile')
     results = engine.execute('select distinct username from jam_profile where username not in (select username from spider_portal_profile)')
 
-    # print(name, results.rowcount)
+    print(name, results.rowcount)
 
     def start_requests(self):
         # 自行初始化设置cookie
         script = """        
         function main(splash)         
           splash:init_cookies({
-            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="people.wdf.sap.corp"},
-            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTZkNzUyY2JhOGVhNGVmOWM3MzMyZjZkMDViZWJjZGEwBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiBi9JIhhhdmFpbGFiaWxpdHlfYmFza2V0BjsARnsGOgl1aWRzWwBJIhBfY3NyZl90b2tlbgY7AEZJIjFrR3ZMelZJb1U1Tit3NTdzRXVraGR6OEhGNWlpSEF4VWhBT0pDTlk4Zm9NPQY7AEY%3D--0cd3b47db8c250ed55447ed8b91932dfcd16d8b0", domain="people.wdf.sap.corp"},
-            {name="_pk_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="079503e80c5ee7da.1520840692.0.1523603567..", domain="people.wdf.sap.corp"},
-            {name="_swa_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="8588e3f8f9e877eb.1520840692.7.1523603567.1523506443.", domain="people.wdf.sap.corp"},
-            {name="_swa_ref.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="%5B%22%22%2C%22%22%2C1523603567%2C%22https%3A%2F%2Fsearch.int.sap%2F%22%5D", domain="people.wdf.sap.corp"},          
-            {name="_swa_ses.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="*", domain="people.wdf.sap.corp"},    
-            {name="shpuvid", value="CmEHO1qmL+9wEAlfBsKNAg==", domain=".sap.corp"}     
+            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a61073bo4000", domain="people.wdf.sap.corp"},
+            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTQwMWE3Njc2YjJiNzljMGMyMGVmNjBiZjk4YTY1N2E0BjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiFi9wcm9maWxlcy9pMzQ1Nzk1SSIYYXZhaWxhYmlsaXR5X2Jhc2tldAY7AEZ7BjoJdWlkc1sASSIQX2NzcmZfdG9rZW4GOwBGSSIxYlUrNFFtWHArTEdsYjRGclNrRkZVajJFOWxObXJKcTJiVXppRnc3bTAxUT0GOwBG--fc2b73abd55d67b4181ad9faa9a9511bbcfed11a", domain="people.wdf.sap.corp"},  
+            {name="shpuvid", value="CmEHO1s55ySNCQm4BNojAg==", domain=".sap.corp"}     
           })
           
           assert(splash:go{

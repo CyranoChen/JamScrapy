@@ -144,7 +144,7 @@ class JamScrapyPipeline(object):
                 db.escape_string(str(item["url"])),
                 db.escape_string(str(item["body"]))]
 
-        sql = f'insert into portal_profile_spider(username,url,body,createtime) values ("{para[0]}","{para[1]}","{para[2]}",NOW())'
+        sql = f'insert into spider_portal_profile (username,url,body,createtime) values ("{para[0]}","{para[1]}","{para[2]}",NOW())'
         result = db.query(sql)
 
         return item
