@@ -1,10 +1,6 @@
 var config = {
     'COLOR': ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-    //'COLOR': ['#FFA100','#007FFF','#002040'],
-    //'COLOR': ['#E25141','#F6C244', '#D1DA59', '#D73964', '#48A8EE','#FCEA60', '#97C05B', '#5F41B0','#52BAD1', '#4154AF'], //Google
-    //'COLOR': ['#5AC8FA','#FF2D55', '#FF9500', '#FFCC00', '#4CD964','#20CEC0', '#9FD0F5', '#EB464D','#007AFF', '#5856D6'], //Apple
-    //'COLOR': ['#44A0DE','#F3B944', '#E27638', '#9D338A', '#84BC56','#73B9E2', '#BDD66A', '#B02318','#DC577B'], //SAP
-    'THRESHOLD_SHOW_LABEL': 70, // 2 sigma: 66, 3 sigma: 49
+    'THRESHOLD_SHOW_LABEL': 78, // 2 sigma: 66, 3 sigma: 49
     'THRESHOLD_NODE': 66,
     'THRESHOLD_EDGE': 30,
     'THRESHOLD_DEGREE': 0,
@@ -22,50 +18,6 @@ var config = {
             'Category Burst': ['boardarea', 'functionalarea', 'costcenter'],
             'Force': ['networktype', 'boardarea', 'functionalarea'],
             'Circular': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter']
-        },
-        'GEO_REGION': {
-            'America': {
-                'top': -300,
-                'bottom': -70,
-                'left': -600,
-                'right': -200
-            },
-            'Asia': {
-                'top': -300,
-                'bottom': 0,
-                'left': 300,
-                'right': 700
-            },
-            'Australia': {
-                'top': 160,
-                'bottom': 280,
-                'left': 500,
-                'right': 650
-            },
-            'Europe': {
-                'top': -400,
-                'bottom': -200,
-                'left': -30,
-                'right': 150
-            },
-            'None': {
-                'top': 300,
-                'bottom': 400,
-                'left': -800,
-                'right': -500
-            },
-            'Africa': {
-                'top': 50,
-                'bottom': 300,
-                'left': 50,
-                'right': 180
-            },
-            'Pacific': {
-                'top': 250,
-                'bottom': 400,
-                'left': 750,
-                'right': 800
-            }
         },
         'GEO_CITY': {},
         'GEO_CITY_DATA': {}
@@ -216,7 +168,7 @@ function get_geo_coordinate(x_radius, y_radius) {
     var y = 0;
 
     var angle = Math.random() * 360;
-    var radius = [Math.random() * (x_radius - 4) + 4, Math.random() * (y_radius - 2) + 2];
+    var radius = [Math.random() * (x_radius - 2) + 2, Math.random() * (y_radius - 1.5) + 1.5];
 
     x = Math.sin(angle / 360 * 2 * Math.PI) * radius[0];
     y = Math.cos(angle / 360 * 2 * Math.PI) * radius[1];
@@ -252,7 +204,7 @@ function get_radius(angle, w, h) {
 
 function convert_geo_data(nodes) {
     var res = JSON.parse(JSON.stringify(nodes));
-    config.DICT.GEO_CITY_DATA = {};
+    config.DATA_SOURCE.GEO_CITY = {};
 
     res.forEach(function (node) {
         node.symbolSize = node.value / 10 + 1;
@@ -272,31 +224,31 @@ function convert_geo_data(nodes) {
             node.value = [node.x, node.y, node.value];
 
             // 记录存在的城市列表与所属节点数量
-            if (config.DICT.GEO_CITY_DATA.hasOwnProperty(node.city)) {
-                config.DICT.GEO_CITY_DATA[node.city] += 1;
+            if (config.DATA_SOURCE.GEO_CITY.hasOwnProperty(node.city)) {
+                config.DATA_SOURCE.GEO_CITY[node.city] += 1;
             } else {
-                config.DICT.GEO_CITY_DATA[node.city] = 1;
+                config.DATA_SOURCE.GEO_CITY[node.city] = 1;
             }
         } else {
-            //console.log(node); // 记录没有找到城市的节点
+            console.log(node); // 记录没有找到城市的节点
             node.x = -160;
             node.y = 80;
             node.value = [node.x, node.y, node.value];
         }
     });
 
-    console.log(config.DICT.GEO_CITY_DATA);
+    //console.log(config.DATA_SOURCE.GEO_CITY);
 
     // 对节点位置的随机偏移
     res.forEach(function (node) {
-        if (config.DICT.GEO_CITY_DATA[node.city] > 1) {
-            var rate = Math.max(8, config.DICT.GEO_CITY_DATA[node.city] / 10);
+        if (config.DATA_SOURCE.GEO_CITY[node.city] > 1) {
+            var rate = Math.max(8, config.DATA_SOURCE.GEO_CITY[node.city] / 10);
 
             if (node.city == 'None') {
                 rate *= 5;
             }
 
-            var offset = get_geo_coordinate(rate * 0.4, rate * 0.2);
+            var offset = get_geo_coordinate(rate * 0.5, rate * 0.3);
             node.x += offset[0];
             node.y += offset[1];
             node.value[0] = node.x;
@@ -349,7 +301,7 @@ function get_tooltips(param) {
         tooltips.push(
             '<a href="' + param.data.profile +
             '" target="_blank" style="font-weight:bold;color:#E6AC3B">' +
-            param.name + '</a>' + ': ' + value.toFixed(2),
+            param.data.displayname + '</a>' + ': ' + value.toFixed(2),
             '<hr size="1"  style="margin: 3px 0" />',
             '<ul>',
             '<li>id: ' + param.data.username + '</li>',
@@ -372,9 +324,13 @@ function get_tooltips(param) {
             ', comments: ' +
             param.data.comments + ', likes: ' +
             param.data.likes + ', views: ' +
-            param.data.views + '</li>',
-            '</ul>');
+            param.data.views + '</li>');
 
+        tooltips.push('<li>degree: ' + param.data.degree +
+            ', closeness: ' +
+            param.data.closeness + ', betweenness: ' +
+            param.data.betweenness + '</li>',
+            '</ul>');
 
         if (config.DEBUG) {
             console.log(param);
@@ -382,9 +338,8 @@ function get_tooltips(param) {
                 '<hr size="1"  style="margin: 3px 0" />'
             );
 
-            tooltips.push('x: ' + param.data.x.toFixed(2),
-                ', y: ' + param.data.y.toFixed(2),
-                ', category: ' + param.data.category,
+
+            tooltips.push('category: ' + param.data.category,
                 ', index: ' + param.dataIndex);
         }
     }
@@ -395,7 +350,7 @@ function get_tooltips(param) {
 function bind_select2(dataset, select2, domain) {
     select2.empty();
     for (var i = 0; i < dataset.nodes.length; i++) {
-        select2.append('<option value="' + i + '">[' + dataset.nodes[i].category + '] ' + dataset.nodes[i].name + ' (' + dataset.nodes[i].username + ')</option>');
+        select2.append('<option value="' + i + '">[' + dataset.nodes[i].category + '] ' + dataset.nodes[i].displayname + ' (' + dataset.nodes[i].username + ')</option>');
     }
 
     select2.val("").select2();
@@ -406,7 +361,7 @@ function generate_dataset(dataset) {
     // 设置筛选节点(node)
     var nodes = [];
     dataset.nodes.forEach(function (node) {
-        if ((node.value >= config.THRESHOLD_NODE) && (node.networkdegree >= config.THRESHOLD_DEGREE)) {
+        if (node.value >= config.THRESHOLD_NODE) {
             nodes.push(node);
         }
     });
@@ -562,7 +517,7 @@ function get_option(dataset) {
                 normal: {
                     position: 'right',
                     formatter: function (param) {
-                        return param.name;
+                        return param.data.displayname;
                     }
                 }
             },
@@ -644,7 +599,7 @@ function get_option(dataset) {
                     opacity: 0.6
                 }
             },
-            data: make_city_map(config.DICT.GEO_CITY_DATA),
+            data: make_city_map(config.DATA_SOURCE.GEO_CITY),
             tooltip: {
                 show: false
             }
@@ -902,16 +857,20 @@ function render_chart(filepath, chart) {
 
             $("button#btn-download").click(function () {
                 var dataset = {
+                    "categories": [],
                     "nodes": [],
                     "links": []
                 };
 
                 var ds = generate_dataset(config.DATA_SOURCE);
 
+                dataset.categories = ds.categories;
+
                 ds.nodes.forEach(function (n) {
                     dataset.nodes.push({
                         "name": n.name,
-                        "username": n.username,
+                        "displayname": n.displayname,
+                        "category": n.category,
                         "value": n.value
                     });
                 });

@@ -1,76 +1,134 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html style="height: 100%">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Domain Nexus | Template</title>
+  <title>Domain Nexus | Home</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="../dist/css/fonts.css" rel="stylesheet">
+  <link href="../dist/css/index.css" rel="stylesheet">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
   <div class="wrapper">
-    <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
     <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">Home Page</h1>
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-6" style="display: none">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item">
-                  <a href="#">Home</a>
-                </li>
-                <li class="breadcrumb-item active">Starter Page</li>
-              </ol>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
       <!-- Main content -->
-      <div class="content">
+      <div id="pnl-context">
+        <div class="col-md-12 active">
+          <h2>The Domain Nexus</h2>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Explore your knowledge network like never before.</h3>
+            </div>
+            <div class="card-body">
+              <ul>
+                <li class="active">
+                  <a href="javascript:">
+                    <i class="fa fa-user"></i> PEOPLE</a>
+                </li>
+                <li>
+                  <a href="javascript:">
+                    <i class="fa fa-users"></i> GROUPS</a>
+                </li>
+                <li>
+                  <a href="javascript:">
+                    <i class="fa fa-handshake-o"></i> COLABORATION</li>
+                </a>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <h2>Explore the Nexus</h2>
+          <div class="card" style="display: none">
+            <div class="card-body">
+              <ul>
+                <li>
+                  <a href="javascript:">AVAILABLE DOMAINS</a>
+                </li>
+                <li>
+                  <a href="javascript:">BOOKMARKS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <h2>About</h2>
+          <div class="card" style="display: none">
+            <div class="card-body">
+              <ul>
+                <li>
+                  <a href="javascript:">DATAS</a>
+                </li>
+                <li>
+                  <a href="javascript:">Q&amp;A</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+      <div id="pnl-logo">
+        <img src="../dist/img/nexus-brand.png" />
+      </div>
+      <div id="pnl-detail">
+        <div class="col-md-12">
+          <div class="card describe">
+            <div class="card-header text-center">
+              <h3 class="card-title"></h3>
+            </div>
+            <div class="card-body"></div>
+            <div class="card-footer text-right">
+              <a class="btn-more" href="javascript:">MORE</a>
+            </div>
+          </div>
+          <div class="card more" style="display: none">
+            <div class="card-header text-center">
+              <h3 class="card-title"></h3>
+            </div>
+            <div class="card-body"></div>
+            <div class="card-footer text-right">
+              <a class="btn-back" href="javascript:">BACK</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="container"></div>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
+    <!-- Main Footer -->
     <footer id="footer" class="main-footer"></footer>
   </div>
   <!-- ./wrapper -->
 
   <!-- REQUIRED SCRIPTS -->
-
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="../dist/js/adminlte.min.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="../dist/js/gtag.js"></script>
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="../plugins/echarts/echarts.min.js"></script>
+
+  <script src="../dist/js/pages/index.js"></script>
 
   <script type="text/javascript">
-    $("#navbar").load("../shared/navbar.html");
     $("#sidebar").load("../shared/sidebar.html");
     $("#footer").load("../shared/footer.html");
   </script>

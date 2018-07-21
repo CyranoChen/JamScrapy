@@ -1,0 +1,55 @@
+{
+    "PEOPLE": {
+        "chart": "force",
+        "describe": [
+            "Find and connect with domain experts",
+            "Unearth network brokers and bridges",
+            "Target repeaters and broadcasters"
+        ],
+        "detail": {
+            "title": "Understanding People",
+            "content": "The Domain Nexus de-prioritizes job titles, org structures and private content. We follow one key tenet. Quite simply: we are defined by what we create and how we interact around it.",
+            "points": [
+                "Soloists. Content creators and holders who are building individual knowledge.",
+                "Connectors. Producers with a high degree of network connections.",
+                "Influencers. Closely connected with other influencers to form a knowledge group.",
+                "Brokers. Bridge and repeat information across otherwise disconnected networks."
+            ]
+        }
+    },
+    "GROUPS": {
+        "chart": "none",
+        "describe": [
+            "See where teams interact across a domain",
+            "Cross-reference global and functional network flows",
+            "Identify information blocks and weak-spots"
+        ],
+        "detail": {
+            "title": "Identifying Groups",
+            "content": "The Domain Nexus unlocks a truly unique perspective of people's connections around content. With this it is possible to visualize new definitions of groups based on location, function and beyond.",
+            "points": [
+                "Geographic.",
+                "Burst. Identifies individuals and their dimensions",
+                "Force. Bubbles-up group connections",
+                "Circular. Focuses on connection strengths"
+            ]
+        }
+    },
+    "COLABORATION": {
+        "chart": "circular",
+        "describe": [
+            "Grasp the organic flow of insight across key domains",
+            "Visualize how an organizational unit builds a knowledge network",
+            "Track back across timeless to see how domain experience has developed"
+        ],
+        "detail": {
+            "title": "Visualizing Collaboration",
+            "content": "Seeing a whole domain encapsulated on a single screen provides a very powerful snapshot of an organization's intrinsic value and how it develops over time.",
+            "points": [
+                "Noise filter. See the big picture or focus down on the strongest connections.",
+                "Time explorer. Drag back over quarters to see how the Nexus changes through time.",
+                "Board Area. Recognize the matrix-impact across a whole company around shared topics."
+            ]
+        }
+    }
+}

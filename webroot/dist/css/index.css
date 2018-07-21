@@ -1,0 +1,114 @@
+#pnl-context {
+    position: absolute;
+    z-index: 100;
+    left: 80px;
+    bottom: 80px;
+    width: 280px;
+}
+
+.col-md-12 {
+    margin: 10px;
+    margin-bottom: 50px;
+}
+
+.card {
+    opacity: 0.8;
+}
+
+.card .card-header {
+    border-bottom: 1px solid #000;
+}
+
+.card .card-title {
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.card .card-body {
+    padding: 5px;
+}
+
+.card .card-body ul {
+    padding: 0;
+}
+
+.card i {
+    width: 30px;
+    text-align: center;
+}
+
+#pnl-context .col-md-12 h2 {
+    font-size: 24px;
+    font-weight: bolder;
+    border-bottom: 5px solid #000;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+#pnl-context .card .card-body ul li {
+    list-style: none;
+    margin: 15px;
+}
+
+#pnl-context .card .card-body ul li a {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #999;
+}
+
+#pnl-context .card .card-body ul li a:hover {
+    color: #666;
+}
+
+#pnl-context .card .card-body ul li.active a {
+    color: #000;
+    cursor: default;
+}
+
+#pnl-detail {
+    position: absolute;
+    z-index: 100;
+    right: 30px;
+    bottom: 80px;
+    width: 280px;
+}
+
+#pnl-detail  .card .card-title {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#pnl-detail div.describe .card-body ul li {
+    font-size: 14px;
+    font-weight: bold;
+    list-style: none;
+    margin: 25px;
+}
+
+#pnl-detail div.more .card-body p {
+    font-size: 12px;
+    padding: 15px;
+}
+
+#pnl-detail div.more .card-body ul {
+    padding-left: 25px;
+}
+
+#pnl-detail div.more .card-body ul li {
+    margin: 15px 5px;
+    font-size: 12px;
+}
+
+#pnl-logo {
+    position: absolute;
+    z-index: 110;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 150px;
+    margin: auto;
+    width: 480px;
+    height: 180px;
+}
