@@ -18,7 +18,7 @@ def process_groups_overview():
     print(results.rowcount)
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
         group_name = html.xpath('//div[@class="group-name"]/span/span/text()').extract()

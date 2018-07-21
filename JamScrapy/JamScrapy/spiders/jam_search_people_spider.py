@@ -21,7 +21,7 @@ class JamSearchPeopleSpider(scrapy.Spider):
     for i in range(1, 6322, 1):
         request_urls.append('https://' + config.DOMAIN + url.format(i))
 
-    #print(name, len(request_urls))
+    # print(name, len(request_urls))
 
     def start_requests(self):
         script = """        

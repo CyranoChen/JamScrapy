@@ -19,26 +19,24 @@ class JamProfileFollowSpider(scrapy.Spider):
     # 开始URL
     start_urls = []
 
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    results = engine.execute('SELECT * FROM jam_profile order by id')
-
-    # print(name, results.rowcount)
-
-    for item in results:
-        uid = item.profileurl.split("/")[-1]
-        start_urls.append({'id': item.id, 'display_name': item.displayname, 'url': '/profile/social_graph/' + uid})
-
     def start_requests(self):
+        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+        results = engine.execute('SELECT * FROM jam_profile where followers is null and following is null and id > 190000 order by id')
+
+        for item in results:
+            uid = item.profileurl.split("/")[-1]
+            self.start_urls.append({'id': item.id, 'username': item.username, 'display_name': item.displayname,
+                               'url': '/profile/social_graph/' + uid})
+
+        print(self.name, results.rowcount)
+
         # 自行初始化设置cookie
         script = """        
         function main(splash)         
           splash:init_cookies({
             {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
             {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"},
-            {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_pk_id#", domain="jam4.sapjam.com"},
-            {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_swa_id#", domain="jam4.sapjam.com"},          
-            {name="_swa_ses.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="*", domain="jam4.sapjam.com"}     
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}   
           })
           
           assert(splash:go{
@@ -64,10 +62,6 @@ class JamProfileFollowSpider(scrapy.Spider):
         script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
         script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
         script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
-        script = script.replace('#_pk_id#', config.JAM_COOKIE['_pk_id'])
-        script = script.replace('#_swa_id#', config.JAM_COOKIE['_swa_id'])
-
-        # print(script)
 
         for item in self.start_urls:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)
@@ -76,13 +70,16 @@ class JamProfileFollowSpider(scrapy.Spider):
             yield SplashRequest('https://' + config.DOMAIN + item['url'], callback=self.parse, endpoint='execute',
                                 cache_args=['lua_source'],
                                 args={'lua_source': script, 'timeout': 3600}, headers={'X-My-Header': 'value'},
-                                meta={'id': item['id'], 'peoplename': item['display_name'], 'url': item['url']})
+                                meta={'id': item['id'], 'username': item['username'],
+                                      'peoplename': item['display_name'],
+                                      'url': item['url']})
 
     def parse(self, response):
         item = JamScrapyProfileFollowItem()
 
         # 当前URL
         item['id'] = response.meta['id']
+        item['username'] = response.meta['username']
         item['peoplename'] = response.meta['peoplename']
         item['url'] = response.url
         # item['body'] = response.body_as_unicode()
@@ -94,11 +91,11 @@ class JamProfileFollowSpider(scrapy.Spider):
         followers = result.xpath('//a[@name="followers"]/following-sibling::div[@class="profile_content"][1]'
                                  '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/text()').extract()
         follower_profiles = result.xpath('//a[@name="followers"]/following-sibling::div[@class="profile_content"][1]'
-                                 '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/@href').extract()
+                                         '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/@href').extract()
         followings = result.xpath('//a[@name="following"]/following-sibling::div[@class="profile_content"][1]'
-                                 '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/text()').extract()
+                                  '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/text()').extract()
         following_profiles = result.xpath('//a[@name="following"]/following-sibling::div[@class="profile_content"][1]'
-                                 '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/@href').extract()
+                                          '//li[@class="teaser_list_item"]//div[@class="badgeDetails"]//a/@href').extract()
 
         if followers and follower_profiles and len(followers) == len(follower_profiles):
             json_followers = []

@@ -9,7 +9,7 @@ from JamScrapy.preprocess.entity import PortalProfile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" ORDER BY username')
+    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" and createtime > "2018-07-17 0:00:00" ORDER BY username')
 
     print(profiles.rowcount)
 
@@ -54,8 +54,8 @@ def process_profiles():
 
         if profile is None and user_name and display_name:
             profile = PortalProfile(profileurl=p.url,
-                                    username=user_name[0].replace('\\n', ''),
-                                    displayname=display_name[0].replace('\\n', ''),
+                                    username=user_name[0].replace('\\n', '').strip(),
+                                    displayname=display_name[0].replace('\\n', '').strip(),
                                     # boardarea = board_area[0],
                                     # functional_area = functional_area[0],
                                     # costcenter=cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', ''),
@@ -69,34 +69,34 @@ def process_profiles():
                                     )
 
             if board_area:
-                profile.boardarea = board_area[0].replace('\\n', '')
+                profile.boardarea = board_area[0].replace('\\n', '').strip()
 
             if functional_area:
-                profile.functionalarea = functional_area[0].replace('\\n', '')
+                profile.functionalarea = functional_area[0].replace('\\n', '').strip()
 
             if cost_center:
-                profile.costcenter = cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', '')
+                profile.costcenter = cost_center[0].replace('\\n', '').replace('\\xa0\\xa0', '').strip()
 
             if office_location:
-                profile.officelocation = office_location[0].replace('\\n', '').replace('\\xa0\\xa0', '')
+                profile.officelocation = office_location[0].replace('\\n', '').replace('\\xa0\\xa0', '').strip()
 
             if manager:
-                profile.manager = manager[0].replace('\\n', '')
+                profile.manager = manager[0].replace('\\n', '').strip()
 
             if local_time:
-                profile.localinfo = local_time[0].replace('\\n', '')
+                profile.localinfo = local_time[0].replace('\\n', '').strip()
 
             if phone:
-                profile.phone = phone[0].replace('\\n', '')
+                profile.phone = phone[0].replace('\\n', '').strip()
 
             if mobile:
-                profile.mobile = mobile[0].replace('\\n', '')
+                profile.mobile = mobile[0].replace('\\n', '').strip()
 
             if address:
-                profile.address = address[0].replace('\\n', '')
+                profile.address = address[0].replace('\\n', '').strip()
 
             if assistant:
-                profile.assistant = assistant[0].replace('\\n', '')
+                profile.assistant = assistant[0].replace('\\n', '').strip()
 
             if profile:
                 session.merge(profile)
@@ -104,7 +104,14 @@ def process_profiles():
     session.commit()
     session.close()
 
-    return count;
+    return count
+
+
+def fill_displayname_portal_profile():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    engine.execute("update portal_profile set displayname = (select displayname from jam_profile "
+                   "where jam_profile.username = portal_profile.username) "
+                   "where portal_profile.displayname is null or portal_profile.displayname = ''")
 
 
 if __name__ == '__main__':

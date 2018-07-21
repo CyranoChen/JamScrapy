@@ -8,18 +8,37 @@ from JamScrapy import config
 from JamScrapy.preprocess.entity import Post
 
 KEYWORD = config.KEYWORD
-
-PROFILES = dict()
-
-def init_profiles():
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+SET_EXISTURLS = set()
 
 
 def query_posts_by_category(category):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-    return engine.execute(f"SELECT * FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'"
-                          f" AND baseurl like '%%{category}%%' AND url not like '%%deleted%%'")
+    result = engine.execute(f"SELECT distinct baseurl, body FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'" 
+                          f" AND baseurl like '%%{category}%%' AND url not like '%%deleted%%'" )
+
+    # 过滤掉已存在的url
+    filter_result = []
+    for r in result:
+        if r.baseurl.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '') in SET_EXISTURLS:
+            continue
+
+        filter_result.append(r)
+
+    print(category, result.rowcount, len(filter_result))
+
+    return filter_result
+
+
+def initial_exist_urls():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+
+    results = engine.execute(f"select distinct url from jam_post where keyword = '{KEYWORD}'")
+
+    for r in results:
+        SET_EXISTURLS.add(r.url.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', ''))
+
+    print('SET_EXISTURLS', len(SET_EXISTURLS))
 
 
 def init_post(url, category, keyword, title=None, author=None, recency=None, tags=None,
@@ -87,7 +106,7 @@ def process_questions():
     results = query_posts_by_category('questions')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -132,7 +151,7 @@ def process_blogs():
     results = query_posts_by_category('blogs')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -176,7 +195,7 @@ def process_discussions():
     results = query_posts_by_category('discussions')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -222,7 +241,51 @@ def process_wiki():
     results = query_posts_by_category('wiki')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
+
+        html = scrapy.Selector(text=r.body)
+
+        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+        session = sessionmaker(bind=engine)()
+
+        title = html.xpath('//div[@id="content_title"]/text()').extract()
+        author = html.xpath('//span[@class="jam-item-creator"]/a/text()').extract()
+        recency = html.xpath('//span[@class="jam-item-last-updated"]/span[@class="time"]/@timestamp').extract()
+        tags = html.xpath(
+            '//div[@class="content-meta-container jam-flex wrap"]//span[@class="tag-token"]/a/@title').extract()
+        content = html.xpath('//div[@class="wiki_content"]').extract()
+
+        # shares
+
+        post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
+        feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
+                                    'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
+
+        # rates
+
+        post_likes = html.xpath(
+            '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
+        feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
+
+        views = html.xpath('//span[@class="jam-item-views"]//a[@class="metadata_value "]/@data-count').extract()
+
+        p = init_post(url=r.baseurl, category='wiki', keyword=KEYWORD, title=title, author=author, recency=recency,
+                      tags=tags, content=content, comments=count_comments(post_comments, feeds_comments),
+                      likes=count_likes(post_likes, feeds_likes), views=views)
+
+        session.add(p)
+
+        for item in p.__dict__.items():
+            print(item)
+
+        session.commit()
+
+
+def process_articles():
+    results = query_posts_by_category('articles')
+
+    for r in results:
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -266,7 +329,7 @@ def process_poll():
     results = query_posts_by_category('poll')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -301,7 +364,7 @@ def process_ideas():
     results = query_posts_by_category('ideas')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -346,7 +409,7 @@ def process_groups_events():
     results = query_posts_by_category('events')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -401,7 +464,7 @@ def process_groups_documents():
         # if 'https://jam4.sapjam.com/groups/ASPWHl2eS9sxTDDlPEj2ma/documents/5elZs949otQPFloq9F8bgh/detail' in r.url:
         #     continue
 
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -445,7 +508,7 @@ def process_groups_sw_items():
     results = query_posts_by_category('sw_items')
 
     for r in results:
-        print(r.url)
+        print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -485,15 +548,46 @@ def process_groups_sw_items():
         session.commit()
 
 
+def fill_username_jam_people_post():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    people = engine.execute(f"select username, posturl from jam_people_from_post where "
+                            f"username is not null and username <> '' and roletype='creator'")
+    post = engine.execute(f"select * from jam_post where (username is null or username = '') and author <> 'Alumni'")
+
+    DICT_PEOPLE = dict()
+    for item in people:
+        DICT_PEOPLE[item.posturl] = item.username.strip()
+
+    for p in post:
+        if p.url in DICT_PEOPLE.keys():
+            print(DICT_PEOPLE[p.url])
+            engine.execute(f"update jam_post set username = '{DICT_PEOPLE[p.url]}' where id = {p.id}")
+        else:
+            print(p.url, p.id, p.author)
+
+
+def clear_duplicated_posts():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    engine.execute(f"delete from jam_post where keyword = '{KEYWORD}' and "
+                   f"url in (select url from (select url from jam_post where keyword = '{KEYWORD}' group by url having count(url) > 1) as a) and "
+                   f"id not in (select min(id) from (select min(id) as id from jam_post where keyword = '{KEYWORD}' group by url having count(url) > 1) as b)")
+
+
 if __name__ == '__main__':
-    process_questions()
-    process_blogs()
-    process_discussions()
-    process_wiki()
-    process_poll()
-    process_ideas()
-    process_groups_events()
-    process_groups_documents()
-    process_groups_sw_items()
+    # initial_exist_urls()
+    #
+    # process_questions()
+    # process_blogs()
+    # process_discussions()
+    # process_wiki()
+    # process_poll()
+    # process_ideas()
+    # process_groups_events()
+    # process_groups_documents()
+    # process_groups_sw_items()
+    # process_articles()
+
+    fill_username_jam_people_post()
+    # clear_duplicated_posts()
 
     print("All Done")

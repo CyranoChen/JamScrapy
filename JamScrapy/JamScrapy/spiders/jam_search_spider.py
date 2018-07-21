@@ -16,22 +16,23 @@ class JamSearchSpider(scrapy.Spider):
     allowed_domains = [config.DOMAIN]
 
     request_urls = []
-    url = '/universal_search/search?page={1}&query={0}'
-
-    total_pages = 328
-
-    for i in range(1, total_pages + 1, 1):
-        request_urls.append('https://' + config.DOMAIN + url.format('"intelligent+enterprise"', i))
-
-    #print(name, len(request_urls))
+    total_pages = 237
 
     def start_requests(self):
+        url = '/universal_search/search?page={1}&query={0}'
+
+        for i in range(1, self.total_pages + 1, 1):
+            self.request_urls.append('https://' + config.DOMAIN + url.format(config.KEYWORD, i))
+
+        print(self.name, len(self.request_urls))
+
+        # 自行初始化设置cookie
         script = """        
         function main(splash)
           splash:init_cookies({
-            {name="_ct_remember", value="1ac7b1a816057bee", domain="jam4.sapjam.com"},
-            {name="_ct_session", value="Yk82eVZ5enlIcUp3c3Q2VDNhandnL1I0dFlQOURtcmVjZWdZdWxrMzgzekFlQ3MyU29oVTZpU2RhWFN2ZmRCTjd1VHlkQ1A4OFVtVE9hai8xemNWOWIvU3BNbERMbDg2QkMrRzM1bkhqLzRZV0Z5NGNmbFp0SGVYMEl2NGE0Mk1yOFMzeGNXZmxWV2k2ZHh1bUNIRldYcnRCVXBUb1hpb3BNYzRxdzc2RzgwNTNZZkR6MGVrSXhESlJaRXgvc010bG04MWl1dWk0d05zWGt2QTZuNkxjVWtMalF4SDBQdmtyTWcrMG40M0VpVEc5b3MwcXZNUVJlZ0JjL0ZBbzFwWTkyRUt1L2NqUHJKOEZzTXpUSmtDbG14UFIzV3RRZk15RThmaGdUeDNXUXFkNmdySEk4cXJxRDVjdHJ5aFlnZnB1dTE4bi9FZ2tSUjVDc0dPaE5zdFc0Q2NEeHFFMk1nR3o1UW1ReVVwdlNiOThiY1ErZWZ1Z2NzMHJRcWxoSFEwWElnSTJiamVGQ2pZem92VHU3UmtZQjZ6OHQ1NmFwWnBSMnFBWEhvdXo0SkZQbXJhdkNxS2N3M2kzUXFEVGNsa3JJVnNRRDhnd2NCc3g4TXdKc0VEclZNN3NMMHRiL0Z2TGozaHBWVk5TYjlLS0sxdWdxY1FIWjJZcTZJVUlITXJVNFA3OFVub3FKUkVhczlFaHR5SmxJVEpKVjZkRi9oTGViei8zdVFEVjRnSHEwbm5NR1Z5eWxvYVlHc2h4cWY5b29ZdEN2NHpZVmdQQzhxd2szUFIyWVdsT0NnQm9halhIME5PV1F2ZGtGNVhGbU1PYUhBZ2UvZXU0UU5DeXF4Uy0talJIZDAvTlpBMUhvQjRsUlBGaVMzdz09--ac23fc93f1d0baf132e68dc4c5844767a02f6e5b", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="jamatsap.com", domain="jam4.sapjam.com"}   
+            {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}    
           })
           
           assert(splash:go{
@@ -53,6 +54,10 @@ class JamSearchSpider(scrapy.Spider):
           }
         end
         """
+
+        script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
+        script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
+        script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
 
         for url in self.request_urls:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)

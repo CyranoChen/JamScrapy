@@ -11,5 +11,24 @@
       <user-name>root</user-name>
       <introspection-schemas>*:*</introspection-schemas>
     </data-source>
+    <data-source name="root@10.58.78.253" uuid="6632bb82-7efd-429d-9ad4-92a1553cad2c">
+      <database-info product="MySQL" version="5.7.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:*</introspection-schemas>
+    </data-source>
+    <data-source name="postgres@localhost" uuid="7026d28f-42bb-43db-8b99-089a2315b1bb">
+      <database-info product="PostgreSQL" version="10.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>i345795</user-name>
+      <introspection-schemas>fabricexplorer:*|i345795:|postgres:*</introspection-schemas>
+    </data-source>
   </component>
 </project>

@@ -19,53 +19,48 @@ class JamProfileGroupSpider(scrapy.Spider):
     # 开始URL
     start_urls = []
 
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    results = engine.execute('SELECT * FROM jam_profile order by id')
-
-    # print(name, results.rowcount)
-
-    for item in results:
-        uid = item.profileurl.split("/")[-1]
-        start_urls.append({'id': item.id, 'display_name': item.displayname, 'url': '/groups/view/' + uid})
-
     def start_requests(self):
+        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+        results = engine.execute('SELECT * FROM jam_profile where groups is null or groups = "" order by id')
+
+        for item in results:
+            uid = item.profileurl.split("/")[-1]
+            self.start_urls.append({'id': item.id, 'username': item.username, 'url': '/groups/view/' + uid})
+
+        print(self.name, results.rowcount)
+
         # 自行初始化设置cookie
         script = """        
-                function main(splash)         
-                  splash:init_cookies({
-                    {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
-                    {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
-                    {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"},
-                    {name="_pk_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_pk_id#", domain="jam4.sapjam.com"},
-                    {name="_swa_id.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="#_swa_id#", domain="jam4.sapjam.com"},          
-                    {name="_swa_ses.2bcdec4d-0cbd-440f-9602-6bdee004700f.89e4", value="*", domain="jam4.sapjam.com"}     
-                  })
+        function main(splash)         
+          splash:init_cookies({
+            {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}   
+          })
 
-                  assert(splash:go{
-                    splash.args.url,
-                    headers=splash.args.headers,
-                    http_method=splash.args.http_method,
-                    body=splash.args.body,
-                    })
-                  assert(splash:wait(5))
+          assert(splash:go{
+            splash.args.url,
+            headers=splash.args.headers,
+            http_method=splash.args.http_method,
+            body=splash.args.body,
+            })
+          assert(splash:wait(5))
 
-                  local entries = splash:history()
-                  local last_response = entries[#entries].response
-                  return {
-                    url = splash:url(),
-                    headers = last_response.headers,
-                    http_status = last_response.status,
-                    cookies = splash:get_cookies(),
-                    html = splash:html(),
-                  }
-                end
-                """
+          local entries = splash:history()
+          local last_response = entries[#entries].response
+          return {
+            url = splash:url(),
+            headers = last_response.headers,
+            http_status = last_response.status,
+            cookies = splash:get_cookies(),
+            html = splash:html(),
+          }
+        end
+        """
 
         script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
         script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
         script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
-        script = script.replace('#_pk_id#', config.JAM_COOKIE['_pk_id'])
-        script = script.replace('#_swa_id#', config.JAM_COOKIE['_swa_id'])
 
         # print(script)
 
@@ -76,14 +71,14 @@ class JamProfileGroupSpider(scrapy.Spider):
             yield SplashRequest('https://' + config.DOMAIN + item['url'], callback=self.parse, endpoint='execute',
                                 cache_args=['lua_source'],
                                 args={'lua_source': script, 'timeout': 3600}, headers={'X-My-Header': 'value'},
-                                meta={'id': item['id'], 'peoplename': item['display_name'], 'url': item['url']})
+                                meta={'id': item['id'], 'username': item['username'], 'url': item['url']})
 
     def parse(self, response):
         item = JamScrapyProfileGroupItem()
 
         # 当前URL
         item['id'] = response.meta['id']
-        item['peoplename'] = response.meta['peoplename']
+        item['username'] = response.meta['username']
         item['url'] = response.url
         # item['body'] = response.body_as_unicode()
         # unicode_body = response.body_as_unicode()  # 返回的html unicode编码

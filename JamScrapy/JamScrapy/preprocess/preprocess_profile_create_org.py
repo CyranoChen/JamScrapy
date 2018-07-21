@@ -9,7 +9,7 @@ from JamScrapy.preprocess.entity import Profile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute("SELECT * FROM spider_jam_profile ORDER BY peoplename ")
+    profiles = engine.execute("SELECT * FROM spider_jam_profile where id > 189000 ORDER BY peoplename ")
 
     print(profiles.rowcount)
 
@@ -27,8 +27,8 @@ def process_profiles():
             count += 1
 
         html = scrapy.Selector(text=p.body)
-        #user_name = html.xpath('//div[@class="viewJobInfo"]/text()').extract()
-        #display_name = html.xpath('//span[@class="member_name"]/text()').extract()
+        # user_name = html.xpath('//div[@class="viewJobInfo"]/text()').extract()
+        # display_name = html.xpath('//span[@class="member_name"]/text()').extract()
         mobile = html.xpath('//div[@class="member_more_info"]/table/tbody/tr/td[label="Mobile: "]/text()').extract()
         email = html.xpath(
             '//div[@class="member_more_info"]/table/tbody/tr/td[label="Primary Email: "]/a/text()').extract()
@@ -74,7 +74,26 @@ def process_profiles():
 
     return count
 
+
+def fill_username_spider_jam_profile():
+    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+    profiles = engine.execute("select * from spider_jam_profile where username is null or username = ''")
+
+    print('profile without username:', profiles.rowcount)
+
+    for p in profiles:
+        print(p.peoplename, p.url)
+        html = scrapy.Selector(text=p.body)
+
+        user_name = html.xpath('//div[@class="viewJobInfo"]/text()').extract()
+
+        if len(user_name) > 0:
+            engine.execute(f"update spider_jam_profile set username = '{user_name[0].strip()}' where id = {p.id}")
+
+
 if __name__ == '__main__':
+    # fill_username_spider_jam_profile()
     count = process_profiles()
+
     print('Duplicate:', count)
     print("All Done")

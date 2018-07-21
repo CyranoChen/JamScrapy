@@ -15,22 +15,19 @@ class PortalProfileSpider(scrapy.Spider):
     download_delay = 1
     # 允许域名
     allowed_domains = ['people.wdf.sap.corp']
-    # 开始URL
-    start_urls = []
-
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    #start_urls = engine.execute('SELECT distinct username FROM jam_profile')
-    results = engine.execute('select distinct username from jam_profile where username not in (select username from spider_portal_profile)')
-
-    print(name, results.rowcount)
 
     def start_requests(self):
+        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+        results = engine.execute('select distinct username from jam_profile where username not in (select username from spider_portal_profile)')
+
+        print(self.name, results.rowcount)
+
         # 自行初始化设置cookie
         script = """        
         function main(splash)         
           splash:init_cookies({
-            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a61073bo4000", domain="people.wdf.sap.corp"},
-            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTQwMWE3Njc2YjJiNzljMGMyMGVmNjBiZjk4YTY1N2E0BjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiFi9wcm9maWxlcy9pMzQ1Nzk1SSIYYXZhaWxhYmlsaXR5X2Jhc2tldAY7AEZ7BjoJdWlkc1sASSIQX2NzcmZfdG9rZW4GOwBGSSIxYlUrNFFtWHArTEdsYjRGclNrRkZVajJFOWxObXJKcTJiVXppRnc3bTAxUT0GOwBG--fc2b73abd55d67b4181ad9faa9a9511bbcfed11a", domain="people.wdf.sap.corp"},  
+            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="people.wdf.sap.corp"},
+            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTY3N2I2NTIzMjA4MWQ0M2Q4YzQzM2QyNmRlY2QyYjk0BjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiBi9JIhhhdmFpbGFiaWxpdHlfYmFza2V0BjsARnsGOgl1aWRzWwBJIhBfY3NyZl90b2tlbgY7AEZJIjFRaU1HeFBpMjNnVWwyazhWdGdZNDIzMzhpNEYxNGh3a2lycHpvRkcrRU5NPQY7AEY%3D--9025d3e3dfacb42920061b7eb1048ea98802fec4", domain="people.wdf.sap.corp"},  
             {name="shpuvid", value="CmEHO1s55ySNCQm4BNojAg==", domain=".sap.corp"}     
           })
           
@@ -54,7 +51,7 @@ class PortalProfileSpider(scrapy.Spider):
         end
         """
 
-        for item in self.results:
+        for item in results:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)
             # 使用lua脚本，设置网关超时时间抓取网盘文件页面，设置meta传递id和抓取url
             # docker run -p 8050:8050 --name splash scrapinghub/splash --max-timeout 3600

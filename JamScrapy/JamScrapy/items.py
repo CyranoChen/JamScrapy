@@ -47,7 +47,7 @@ class JamScrapyProfileGroupItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     id = scrapy.Field()
-    peoplename = scrapy.Field()
+    username = scrapy.Field()
     url = scrapy.Field()
     groups = scrapy.Field()
 
@@ -56,6 +56,7 @@ class JamScrapyProfileFollowItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     id = scrapy.Field()
+    username = scrapy.Field()
     peoplename = scrapy.Field()
     url = scrapy.Field()
     followers = scrapy.Field()

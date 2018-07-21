@@ -25,6 +25,7 @@ class Post(Base):
 class People(Base):
     __tablename__ = 'jam_people_from_post'
     id = Column(Integer, primary_key=True)
+    username = Column(String(16))
     displayname = Column(String(16))
     postid = Column(Integer)
     posturl = Column(String(16))
