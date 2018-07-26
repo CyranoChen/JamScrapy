@@ -870,8 +870,11 @@ function render_chart(filepath, chart) {
                     dataset.nodes.push({
                         "name": n.name,
                         "displayname": n.displayname,
+                        "categoryid": n.categoryid,
                         "category": n.category,
-                        "value": n.value
+                        "value": n.value,
+                        "x": n.x,
+                        "y": n.y
                     });
                 });
 
