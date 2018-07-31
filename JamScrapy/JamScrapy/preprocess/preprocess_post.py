@@ -574,20 +574,21 @@ def clear_duplicated_posts():
 
 
 if __name__ == '__main__':
-    # initial_exist_urls()
-    #
-    # process_questions()
-    # process_blogs()
-    # process_discussions()
-    # process_wiki()
-    # process_poll()
-    # process_ideas()
-    # process_groups_events()
-    # process_groups_documents()
-    # process_groups_sw_items()
-    # process_articles()
+    initial_exist_urls()
 
-    fill_username_jam_people_post()
-    # clear_duplicated_posts()
+    process_questions()
+    process_blogs()
+    process_discussions()
+    process_wiki()
+    process_poll()
+    process_ideas()
+    process_groups_events()
+    process_groups_documents()
+    process_groups_sw_items()
+    process_articles()
+
+    clear_duplicated_posts()
+
+    #fill_username_jam_people_post()
 
     print("All Done")

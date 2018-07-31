@@ -3,7 +3,7 @@ DB_CONNECT_STRING = 'mysql+pymysql://root:Initial0@127.0.0.1:3306/nexus?charset=
 
 # 爬取域名
 DOMAIN = 'jam4.sapjam.com'
-KEYWORD = 'blockchain'
+KEYWORD = 'innovation'
 
 JAM_COOKIE = {
     '_ct_remember': '3f67d1650575d22c',

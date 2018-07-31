@@ -1,5 +1,75 @@
-import matplotlib.pyplot as plt
+def max_min_normalize(x):  
+    x = (x - x.min()) / (x.max() - x.min());  
+    return x;
 
+def build_profileurl_dict(profiles):
+    profileurl_dict = dict()
+
+    for p in profiles:
+        if p.profileurl:
+            url = p.profileurl.split('/')[-1]
+            profileurl_dict[url] = p.username.strip()
+        else:
+            print(p)
+    
+    return profileurl_dict
+
+def get_people_username(profileurl):
+    url = profileurl.split('/')[-1]
+
+    if len(PROFILE_URL)>0 and url in PROFILE_URL.keys():
+        return PROFILE_URL[url]
+    else:
+        return ''
+
+def generate_relation(list, filters, str, source=None, target=None, role=None, ban=False):
+    if str:
+        jsons = json.loads(str)
+        if not ban or ban and (len(jsons) <= LINKS_THRESHOLD):
+            for item in jsons:
+                url = item['url']
+                name = get_people_username(url)
+                if (name in filters) and (name not in BLACK_LIST) and name != '':
+                    if source is not None:
+                        list.append({"source": source, "target": name, "role": role})
+                    elif target is not None:
+                        list.append({"source": name, "target": target, "role": role})
+                        
+def get_people_contribution(username):
+    item = df[df['username']==username]    
+    if item.size > 0:
+        return float(item['contribution']);
+    else:
+        return 0;
+
+def get_people_indicators(username, key):    
+    item = df[df['username']==username]     
+    if item.size > 0 and key in item.keys():      
+        return int(item[key])
+    else:
+        return 0;
+
+def get_people_network_degree(username):
+    if username in nodes_degree.keys():
+        return int(nodes_degree[username])
+    else:
+        return 0;
+
+def get_people_network_type(username):
+    item = df[df['username']==username]
+    #print(item, item.betweenness)
+    if float(item.betweenness) >= betweenness_threshold:
+        return 'Brokers'
+    elif float(item.closeness) >= closeness_threshold:
+        return 'Influencers'
+    elif float(item.degree) >= degree_threshold:
+        return 'Connectors'
+    else:
+        return 'Soloists'
+
+    return 'Soloists'
+
+import matplotlib.pyplot as plt
 
 def plt_pie(values, labels):
     # 设置绘图的主题风格（不妨使用R中的ggplot分隔）  

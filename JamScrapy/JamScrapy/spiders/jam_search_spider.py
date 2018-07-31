@@ -16,10 +16,10 @@ class JamSearchSpider(scrapy.Spider):
     allowed_domains = [config.DOMAIN]
 
     request_urls = []
-    total_pages = 237
+    total_pages = 11488
 
     def start_requests(self):
-        url = '/universal_search/search?page={1}&query={0}'
+        url = '/universal_search/search?page={1}&query="{0}"'
 
         for i in range(1, self.total_pages + 1, 1):
             self.request_urls.append('https://' + config.DOMAIN + url.format(config.KEYWORD, i))
