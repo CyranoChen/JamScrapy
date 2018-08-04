@@ -11,9 +11,9 @@ def build_profile_dict(profiles):
     profile_dict = dict()
 
     for p in profiles:
-        if p.profileurl:
-            url = p.profileurl.split('/')[-1]
-            profile_dict[url] = p.username.strip()
+        if p["profileurl"]:
+            url = p["profileurl"].split('/')[-1]
+            profile_dict[url] = p["username"].strip()
         else:
             print(p)
 
@@ -46,27 +46,19 @@ def generate_relation(filters, str_relations, black_list=[], source=None, target
     return relations
 
 
-# def get_people_contribution(username):
-#     item = df[df['username'] == username]
-#     if item.size > 0:
-#         return float(item['contribution']);
-#     else:
-#         return 0;
-#
-#
-# def get_people_indicators(username, key):
-#     item = df[df['username'] == username]
-#     if item.size > 0 and key in item.keys():
-#         return int(item[key])
-#     else:
-#         return 0;
-#
-#
-# def get_people_network_degree(username):
-#     if username in nodes_degree.keys():
-#         return int(nodes_degree[username])
-#     else:
-#         return 0;
+def generate_profiles(usernames, cache_profiles):
+    profiles = []
+
+    if len(usernames) > 0:
+        filters = [item.username for item in usernames]
+
+        for p in cache_profiles:
+            if p["username"] in filters:
+                profiles.append(p)
+
+        config.DICT_PROFILES = build_profile_dict(profiles)
+
+    return profiles
 
 
 def get_people_network_type(item, threshold):

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import json
 
 import config
-from utils import max_min_normalize, build_profile_dict, generate_relation, get_people_network_type
+from utils import max_min_normalize, generate_relation, generate_profiles, get_people_network_type
 
 
 class DomainDataSet:
@@ -23,21 +23,21 @@ class DomainDataSet:
     def set_profiles(self, min_posts=0):
         engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-        sql = f'''select profile.username, profile.displayname, profile.avatar, profile.profileurl,
-            profile.boardarea, profile.functionalarea, profile.costcenter, profile.officelocation, profile.localinfo,
-            profile.email, profile.mobile, profile.managers, profile.reports from
-            (select username from
+        sql = f'''select distinct username from
             (select p.username, postid from jam_people_from_post as p left outer join jam_post as post on p.postid = post.id
             where p.keyword='{self.keyword}' and p.roletype='Creator' and p.displayname <> 'Alumni'
             and post.keyword='{self.keyword}' and post.recency < '{self.timestamp}') as view_people
-            group by view_people.username having count(postid) >= {min_posts}) as people
-            left outer join people_profile as profile on people.username = profile.username'''
+            group by view_people.username having count(postid) >= {min_posts}
+            '''
 
-        self.profiles = engine.execute(sql).fetchall()
+        usernames = engine.execute(sql).fetchall()
+        print('usernames:', len(usernames))
+
+        with open(config.CACHE_PROFILES_PATH) as json_file:
+            cache_profiles = json.load(json_file)
+
+        self.profiles = generate_profiles(usernames, cache_profiles)
         print('profiles:', len(self.profiles))
-
-        # load as cache while server starts
-        config.DICT_PROFILES = build_profile_dict(self.profiles)
 
     # Calculate Contributions #
     def set_contributions(self):
@@ -82,19 +82,19 @@ class DomainDataSet:
 
     # Generate Links #
     def set_links(self, follow=False, max_relations=99):
-        filters = [p.username for p in self.profiles]
+        filters = [p["username"] for p in self.profiles]
 
         relations = []
         for p in self.profiles:
             relations.extend(
-                generate_relation(filters, p.managers, config.RELA_BLACK_LIST, target=p.username, role='managers', ))
+                generate_relation(filters, p["managers"], config.RELA_BLACK_LIST, target=p["username"], role='managers', ))
             relations.extend(
-                generate_relation(filters, p.reports, config.RELA_BLACK_LIST, source=p.username, role='reports'))
+                generate_relation(filters, p["reports"], config.RELA_BLACK_LIST, source=p["username"], role='reports'))
             if follow:
-                generate_relation(relations, filters, p.followers, config.RELA_BLACK_LIST, target=p.username,
+                generate_relation(relations, filters, p["followers"], config.RELA_BLACK_LIST, target=p["username"],
                                   role='followers',
                                   ban=True, max_relations=max_relations)
-                generate_relation(relations, filters, p.following, config.RELA_BLACK_LIST, source=p.username,
+                generate_relation(relations, filters, p["following"], config.RELA_BLACK_LIST, source=p["username"],
                                   role='following',
                                   ban=True, max_relations=max_relations)
 
@@ -210,32 +210,32 @@ class DomainDataSet:
         df = self.contributions
 
         for p in self.profiles:
-            if p.username is None:
+            if p["username"] is None:
                 print(p)
                 continue
 
-            item = df[df['username'] == p.username]
+            item = df[df['username'] == p["username"]]
 
             if len(item) > 0:
                 node = dict()
-                node['name'] = p.username
-                node['username'] = p.username
-                node['displayname'] = p.displayname
-                node['avatar'] = p.avatar
-                node['boardarea'] = p.boardarea
-                node['functionalarea'] = p.functionalarea
-                node['costcenter'] = p.costcenter
-                node['officelocation'] = p.officelocation
-                node['localinfo'] = p.localinfo
-                if p.localinfo:
-                    node['region'] = str.split(p.localinfo, '/')[0]
-                    node['city'] = str.split(p.localinfo, '/')[1]
+                node['name'] = p["username"]
+                node['username'] = p["username"]
+                node['displayname'] = p["displayname"]
+                node['avatar'] = p["avatar"]
+                node['boardarea'] = p["boardarea"]
+                node['functionalarea'] = p["functionalarea"]
+                node['costcenter'] = p["costcenter"]
+                node['officelocation'] = p["officelocation"]
+                node['localinfo'] = p["localinfo"]
+                if p["localinfo"]:
+                    node['region'] = str.split(p["localinfo"], '/')[0]
+                    node['city'] = str.split(p["localinfo"], '/')[1]
                 else:
                     node['region'] = 'None'
                     node['city'] = 'None'
-                node['profile'] = p.profileurl
-                node['email'] = p.email
-                node['mobile'] = p.mobile
+                node['profile'] = p["profileurl"]
+                node['email'] = p["email"]
+                node['mobile'] = p["mobile"]
 
                 node['value'] = round(float(item.contribution), 2)
                 node['posts'] = int(item.posts)
@@ -248,6 +248,8 @@ class DomainDataSet:
                 node['closeness'] = round(float(item.closeness), 2)
 
                 node['networktype'] = get_people_network_type(item, self.thresholds)
+
+                #node['category'] = 'None'
 
                 nodes.append(node)
 

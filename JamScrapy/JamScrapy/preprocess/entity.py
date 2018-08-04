@@ -80,6 +80,30 @@ class PortalProfile(Base):
     assistant = Column(String(16))
 
 
+class PeoplePorfile(Base):
+    __tablename__ = 'people_profile'
+    id = Column(Integer, primary_key=True)
+    profileurl = Column(String(16))
+    username = Column(String(16))
+    displayname = Column(String(16))
+    displaynameformatted = Column(String(16))
+    avatar = Column(String(16))
+    mobile = Column(String(16))
+    email = Column(String(16))
+    phone = Column(String(16))
+    address = Column(String(16))
+    managers = Column(String(16))
+    reports = Column(String(16))
+    groups = Column(String(16))
+    followers = Column(String(16))
+    following = Column(String(16))
+    boardarea = Column(String(16))
+    functionalarea = Column(String(16))
+    costcenter = Column(String(16))
+    officelocation = Column(String(16))
+    localinfo = Column(String(16))
+    assistant = Column(String(16))
+
 class Knowledge(Base):
     __tablename__ = 'jam_knowledge'
     id = Column(Integer, primary_key=True)

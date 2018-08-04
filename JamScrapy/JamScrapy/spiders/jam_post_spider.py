@@ -22,7 +22,7 @@ class JamPostSpider(scrapy.Spider):
 
     def start_requests(self):
         engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        results = engine.execute(f"select * from spider_jam_search where body <> '[]' and keyword = '{config.KEYWORD}'")
+        results = engine.execute(f"select topics from spider_jam_search where body <> '[]' and keyword = '{config.KEYWORD}'")
 
         print('total search pages', results.rowcount)
 

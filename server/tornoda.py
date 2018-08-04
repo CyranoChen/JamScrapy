@@ -11,8 +11,9 @@ from tornado.options import define, options
 from timeit import default_timer as timer
 
 from entity import DomainDataSet
+from generate import generate_people_cache
 
-define("port", default=8001, help="run on the given port", type=int)
+define("port", default=8001, help="nexus backend server", type=int)
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -50,6 +51,8 @@ class MainHandler(tornado.web.RequestHandler):
             now = datetime.datetime.now()
             time_spot = int(time.mktime(time.strptime(now.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
 
+        print('time_spot', time_spot)
+
         time_records = dict()
         start = timer()
 
@@ -58,6 +61,10 @@ class MainHandler(tornado.web.RequestHandler):
         ds.set_profiles()
         phase1 = timer()
         time_records["profiles"] = phase1 - start
+
+        if len(ds.profiles) == 0:
+            self.write(json.dumps({"state": "success", "time": time_records, "data": []}))
+            return
 
         ds.set_contributions()
         phase2 = timer()
@@ -79,7 +86,8 @@ class MainHandler(tornado.web.RequestHandler):
         phase6 = timer()
         time_records["export"] = phase6 - phase5
 
-        resp = {"time": time_records,
+        resp = {"state": "success",
+                "time": time_records,
                 "describe": {
                     "profiles": len(ds.profiles),
                     "contributions": len(ds.contributions),
@@ -96,8 +104,13 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 if __name__ == "__main__":
+    generate_people_cache()
+    print('Server Started')
+
     tornado.options.parse_command_line()  # 解析命令行
     app = tornado.web.Application(handlers=[(r'/api/([^\?]*)', MainHandler)])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
+
+

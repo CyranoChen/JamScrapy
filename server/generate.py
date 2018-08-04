@@ -7,12 +7,12 @@ import config
 def generate_people_cache():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-    sql = f'''select username, displayname, avatar, profileurl, boardarea, functionalarea, costcenter, 
-            officelocation, localinfo, email, mobile, managers, reports
+    sql = f'''select username, displaynameformatted as displayname, avatar, profileurl, boardarea, functionalarea, 
+            costcenter, officelocation, localinfo, email, mobile, managers, reports
             from people_profile where username in (select distinct jam_post.username from jam_post)'''
 
     people = engine.execute(sql).fetchall()
-    print(len(people))
+    print('build cache of people:', len(people))
 
     results = []
 
