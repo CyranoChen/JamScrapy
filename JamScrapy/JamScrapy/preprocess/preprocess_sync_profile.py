@@ -9,7 +9,7 @@ Insert into people_profile(profileurl,username,displayname,avatar,mobile,email,p
   select j.profileurl, j.username, j.displayname, j.avatar, p.mobile, p.email, p.phone, p.address, j.managers, j.reports, j.groups, j.followers, j.following,
     p.boardarea, p.functionalarea, p.costcenter, p.officelocation, p.localinfo, p.address 
 from jam_profile j left outer join portal_profile p 
-    on j.username = p.username where j.id >= 190456  
+    on j.username = p.username where j.username not in (select username from people_profile)  
 
 '''
 

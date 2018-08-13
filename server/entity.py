@@ -26,8 +26,8 @@ class DomainDataSet:
         sql = f'''select distinct username from
             (select p.username, postid from jam_people_from_post as p left outer join jam_post as post on p.postid = post.id
             where p.keyword='{self.keyword}' and p.roletype='Creator' and p.displayname <> 'Alumni'
-            and post.keyword='{self.keyword}' and post.recency < '{self.timestamp}') as view_people
-            group by view_people.username having count(postid) >= {min_posts}
+            and post.keyword='{self.keyword}' and post.recency <= '{self.timestamp}') as view_people
+            group by view_people.username having count(postid) >= {min_posts} and (username is not null or username <> '')    
             '''
 
         usernames = engine.execute(sql).fetchall()
@@ -45,7 +45,8 @@ class DomainDataSet:
 
         sql = f'''select username, count(id) as posts, sum(ifnull(comments,0)) as comments, 
                   sum(ifnull(likes,0)) as likes, sum(ifnull(likes,0)) as views from jam_post 
-                  where keyword = '{self.keyword}' and author <> 'Alumni' and recency < '{self.timestamp}' group by username
+                  where keyword = '{self.keyword}' and author <> 'Alumni' and recency <= '{self.timestamp}' 
+                  group by username having (username is not null or username <> '')
                   order by posts desc, comments desc, likes desc, views desc'''
 
         query = engine.execute(sql)
@@ -102,10 +103,17 @@ class DomainDataSet:
 
         engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-        sql = f'''select * from (select commenters.postid, commenters.position, creators.username as source, commenters.username as target from
-            (select * from jam_people_from_post where keyword = '{self.keyword}' and roletype = 'participator' and position >= 0) AS commenters
-            inner join (select * from jam_people_from_post where keyword = '{self.keyword}' and roletype = 'creator' and position = 0) AS creators
-            ON commenters.postid = creators.postid ) as t where source <> 'Alumni' or target <> 'Alumni' order by postid, position'''
+        sql = f'''select creators.username as source, commenters.username as target from
+  (select postid, username from jam_people_from_post
+ where keyword = '{self.keyword}' and roletype = 'participator' and position >= 0 and (username is not null or username <> '')
+  ) AS commenters
+inner join
+  (select postid, username from jam_people_from_post
+ where keyword = '{self.keyword}' and roletype = 'creator' and position = 0 and (username is not null or username <> '')
+  ) AS creators ON commenters.postid = creators.postid
+  inner join jam_post as post on commenters.postid = post.id and creators.postid = post.id
+where post.recency <= '{self.timestamp}'
+                    '''
 
         comments = engine.execute(sql).fetchall()
 

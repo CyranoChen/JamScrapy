@@ -14,18 +14,21 @@ var config = {
     'DICT': {
         'TYPE': ['g', 'n', 'f', 'c'],
         'FIELD': {
-            'Geographic': ['networktype', 'boardarea', 'functionalarea', 'costcenter'],
-            'Category Burst': ['boardarea', 'functionalarea', 'costcenter'],
-            'Force': ['networktype', 'boardarea', 'functionalarea'],
+            'Geographic': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter'],
+            'Category Burst': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter'],
+            'Force': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter'],
             'Circular': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter']
         },
         'GEO_CITY': {},
         'GEO_CITY_DATA': {}
     },
     'DATA_SOURCE': {},
+    'DATA_SOURCE_META': {},
     'DATA_MONTH_AGO': 0,
+    'DATA_TIMESTAMP': null,
     'DOMAIN': '',
     'DEBUG': false,
+    'API_SERVER_PATH': 'http://127.0.0.1:8001/api/'
 };
 
 function querystring(search_for) {
@@ -93,6 +96,11 @@ function init_chart(topic, chart, debug) {
         }
     }
 
+    if (querystring('date') != undefined) {
+        config.DATA_TIMESTAMP = querystring('date');
+        $("#panel-config #tb-timestamp").val(config.DATA_TIMESTAMP);
+    }
+
     if (querystring('nocates') != undefined) {
         var arr = querystring('nocates').split(',');
         if (arr.length > 0) {
@@ -105,32 +113,44 @@ function init_chart(topic, chart, debug) {
 
     $("#panel-config .config-graph div.config").hide();
     $("#panel-config .config-graph div.config-" + config.CHART_TYPE.substring(0, 1)).show();
-    $("#panel-config #range-time").ionRangeSlider({
-        min: -12,
-        max: 0,
-        from: -config.DATA_MONTH_AGO,
-        type: 'single',
-        step: 3,
-        postfix: ' months ago',
-        prettify: false,
-        hasGrid: true,
-        onFinish: function (obj) {
-            config.DATA_MONTH_AGO = (-obj.fromNumber);
-            render_chart("../data/jam-people-" + config.DOMAIN + "-" + (-obj.fromNumber) +
-                ".json", chart);
-        }
-    });
+    $("#panel-config #range-time").hide();
+    // $("#panel-config #range-time").ionRangeSlider({
+    //     min: -12,
+    //     max: 0,
+    //     from: -config.DATA_MONTH_AGO,
+    //     type: 'single',
+    //     step: 3,
+    //     postfix: ' months ago',
+    //     prettify: false,
+    //     hasGrid: true,
+    //     onFinish: function (obj) {
+    //         config.DATA_MONTH_AGO = (-obj.fromNumber);
+    //         render_chart(config.API_SERVER_PATH+config.DOMAIN, chart);
+    //     }
+    // });
 
+    $.when($.getJSON("../data/map-city-geo.json"), $.getJSON("../data/cache-meta-data.json"))
+        .done(function (map, meta) {
+            if (map[1] === "success" && meta[1] === "success") {
+                config.DICT.GEO_CITY = map[0].coord;
+                config.DATA_SOURCE_META = meta[0];
 
-    $.getJSON("../data/map-city-geo.json", function (data, status) {
-        if (status === "success" && data != null) {
-            config.DICT.GEO_CITY = data.coord;
-            //config.DICT.GEO_CITY_DATA = data.rawdata;
+                var filepath = config.API_SERVER_PATH + config.DOMAIN;
+                if (config.DATA_TIMESTAMP != null) {
+                    filepath += ("?date=" + config.DATA_TIMESTAMP);
+                }
 
-            render_chart("../data/jam-people-" + config.DOMAIN + "-" + config.DATA_MONTH_AGO + ".json", chart);
-            bind_buttons(chart);
-        }
-    });
+                if (config.DEBUG) {
+                    console.log(filepath);
+                    console.log(config);
+                }
+
+                render_chart(filepath, chart);
+                bind_buttons(chart);
+            } else {
+                alert("initial configuration error");
+            }
+        });
 }
 
 function get_cate_coordinate(category, cate_res, cate_dict, total_count, rand) {
@@ -670,9 +690,14 @@ function bind_buttons(chart) {
 }
 
 function render_chart(filepath, chart) {
-    $.get(filepath, function (data, status) {
-        if (status === "success" && data != null) {
-            config.DATA_SOURCE = data;
+    $.get(filepath, function (d, status) {
+        if (status === "success" && d != null && (d.state === "success" || d.state === "cache")) {
+            if (config.DEBUG) {
+                console.log(d.state);
+                console.log(d.time);
+                console.log(d.describe);
+            }
+            config.DATA_SOURCE = d.data;
             config.CHART_FIX_LOCATION = false;
             $("input#cb-fix-location").prop('checked', config.CHART_FIX_LOCATION);
 
@@ -899,6 +924,8 @@ function render_chart(filepath, chart) {
                         $(this).remove();
                     })[0].click();
             });
+        } else if (status === "success" && d != null && d.state === "exception") {
+            alert(d.message);
         }
     });
 }

@@ -6,11 +6,12 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from JamScrapy import config
 from JamScrapy.mysql import MySQL
-from JamScrapy.entity import SpiderSearch, SpiderPost
+from JamScrapy.entity import SpiderSearch, SpiderPost, SpiderProfile, SpiderPortalProfile
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+import scrapy
 import datetime
 import pymysql
 
@@ -84,26 +85,32 @@ class JamScrapyPipeline(object):
         return item
 
     def __process_jam_profile_spider(self, item):
-        # engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        #
-        # engine.execute(f'insert into spider_jam_profile(peoplename, url, body, createtime, keyword) '
-        #                f'values ("{str(item["peoplename"])}", "{str(item["url"])}", "{str(item["body"])}", NOW(), "people")')
+        p = SpiderProfile()
 
-        # Connect to the database
-        db = MySQL()
+        html = scrapy.Selector(text=str(item['body']))
 
-        para = [db.escape_string(str(item["peoplename"])),
-                db.escape_string(str(item["url"])),
-                db.escape_string(str(item["body"]))]
+        username = html.xpath(
+            '//div[@class="viewJobInfo"]/span[@class="profileLabel" and text()="User Name:"]/../text()').extract()
+        peoplename = html.xpath('//span[@class="member_name"]/text()').extract()
 
-        sql = f'insert into spider_jam_profile (peoplename, url, body, createtime, keyword) ' \
-              f'values ("{para[0]}", "{para[1]}", "{para[2]}", NOW(), "{config.KEYWORD}")'
+        if len(username) > 0:
+            p.username = username[0].strip()
+        else:
+            p.username = None
 
-        # sql = f'update spider_jam_post set body="{para[2]}", createtime=NOW() where id = {para[3]}'
+        if len(peoplename) > 0:
+            p.peoplename = peoplename[0].strip()
+        else:
+            p.peoplename = None
 
-        # print(item["url"])
+        p.url = str(item['url'])
+        p.body = str(item['body'])
+        p.createtime = datetime.datetime.now()
 
-        result = db.query(sql)
+        session = sessionmaker(bind=self.engine)()
+        session.add(p)
+        session.commit()
+        session.close()
 
         return item
 
@@ -153,14 +160,16 @@ class JamScrapyPipeline(object):
         return item
 
     def __process_portal_profile_spider(self, item):
-        # Connect to the database
-        db = MySQL()
+        p = SpiderPortalProfile()
 
-        para = [db.escape_string(str(item["username"])),
-                db.escape_string(str(item["url"])),
-                db.escape_string(str(item["body"]))]
+        p.username = str(item['username'])
+        p.url = str(item['url'])
+        p.body = str(item['body'])
+        p.createtime = datetime.datetime.now()
 
-        sql = f'insert into spider_portal_profile (username,url,body,createtime) values ("{para[0]}","{para[1]}","{para[2]}",NOW())'
-        result = db.query(sql)
+        session = sessionmaker(bind=self.engine)()
+        session.add(p)
+        session.commit()
+        session.close()
 
         return item

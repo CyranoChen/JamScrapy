@@ -9,7 +9,7 @@ from JamScrapy.preprocess.entity import PortalProfile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" and createtime > "2018-07-17 0:00:00" ORDER BY username')
+    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" and id >= 99486 ORDER BY username')
 
     print(profiles.rowcount)
 
@@ -117,4 +117,8 @@ def fill_displayname_portal_profile():
 if __name__ == '__main__':
     count = process_profiles()
     print('Duplicate:', count)
+
+    fill_displayname_portal_profile()
+
+
     print("All Done")

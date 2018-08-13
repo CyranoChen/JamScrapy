@@ -1,6 +1,6 @@
 import json
 import time
-import datetime
+import os
 
 import tornado.httpserver
 import tornado.ioloop
@@ -11,7 +11,7 @@ from tornado.options import define, options
 from timeit import default_timer as timer
 
 from entity import DomainDataSet
-from generate import generate_people_cache
+from generate import generate_people_cache, get_last_timespot_by_domain
 
 define("port", default=8001, help="nexus backend server", type=int)
 
@@ -44,15 +44,40 @@ class MainHandler(tornado.web.RequestHandler):
 
     def get(self, domain):
         paras = self.request.query_arguments
+        if domain is None or domain == "":
+            self.write(json.dumps({"state": "exception", "message": "parameter domain is empty"}))
+            return
+
+        end_time_spot = get_last_timespot_by_domain(domain)
+
+        if end_time_spot is None:
+            self.write(json.dumps({"state": "success", "data": []}))
+            return
+
         if 'date' in paras:
             str_data = paras['date'][0].decode("utf-8")
             time_spot = int(time.mktime(time.strptime(str_data, '%Y-%m-%d')))
+            if time_spot >= end_time_spot:
+                time_spot = end_time_spot
         else:
-            now = datetime.datetime.now()
-            time_spot = int(time.mktime(time.strptime(now.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
+            time_spot = end_time_spot
 
         print('time_spot', time_spot)
 
+        if time_spot is None:
+            self.write(json.dumps({"state": "success", "data": []}))
+            return
+
+        # get from cache json file
+        if 'nocache' in paras and paras['nocache'][0].decode("utf-8").upper() != 'TRUE' \
+                or 'nocache' not in paras:
+            json_file_path = f"./cache/dataset-{domain.lower()}-{str(time_spot)}.json"
+            if os.path.exists(json_file_path):
+                with open(json_file_path) as json_file:
+                    self.write(json.dumps({"state": "cache", "data": json.load(json_file)}))
+                    return
+
+        # generate dataset from database
         time_records = dict()
         start = timer()
 
@@ -95,9 +120,8 @@ class MainHandler(tornado.web.RequestHandler):
                     "graph": ds.thresholds,
                     "nodes": len(ds.nodes)
                 }, "data": final_result}
-        resp = json.dumps(resp)
 
-        self.write(resp)
+        self.write(json.dumps(resp))
 
     def data_received(self, chunk):
         pass

@@ -1,6 +1,7 @@
+from tqdm import tqdm
 import scrapy
 from sqlalchemy import and_
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 from JamScrapy import config
@@ -15,7 +16,7 @@ def query_posts_by_category(category):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
     result = engine.execute(
-        f"SELECT distinct baseurl, id, body FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'"
+        f"SELECT distinct baseurl, id, body FROM spider_jam_post WHERE keyword = '{KEYWORD}'"
         f" AND baseurl like '%%{category}%%' AND url not like '%%deleted%%'")
 
     # 过滤掉已存在的url
@@ -34,7 +35,7 @@ def query_posts_by_category(category):
 def initial_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-    results = engine.execute(f"select profileurl, username from jam_profile")
+    results = engine.execute(f"select profileurl, username from people_profile")
 
     for r in results:
         url = r.profileurl.split('/')[-1]
@@ -519,29 +520,30 @@ def clean_up_participators():
         # print('postid:', c.postid, 'creator:', c.displayname, 'clean up:', len(results))
 
 
-def fill_username_people():
-    initial_profiles()
-
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    results = engine.execute(
-        f"select id,displayname,profileurl from jam_people_from_post where (username ='' or username is null) and displayname <> 'Alumni'")
-
-    print(results.rowcount)
-
-    for r in results:
-        print(r.id, r.displayname, r.profileurl)
-        username = get_people_username(r.profileurl)
-
-        if username != '':
-            engine.execute(f"update jam_people_from_post set username = '{username}' where id = {r.id}")
-        else:
-            print('not found', r.profileurl)
-
-
 def fill_postid():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    engine.execute(
-        f"update jam_people_from_post a inner join jam_post b on a.posturl=b.url set a.postid=b.id where a.keyword='{KEYWORD}' and b.keyword='{KEYWORD}'")
+    results = engine.execute(f"select id, url from jam_post where keyword = '{KEYWORD}'").fetchall()
+
+    print('jam_posts:', len(results))
+
+    post_dict = dict()
+    for r in results:
+        url = r.url.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '')
+        post_dict[url] = r.id
+
+    results = engine.execute(
+        f"select id, posturl, postid from jam_people_from_post where keyword = '{KEYWORD}'").fetchall()
+
+    print('jam_people_from_posts:', len(results))
+
+    if len(results) > 0:
+        for r in tqdm(results):
+            url = r.posturl.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '')
+            if url in post_dict:
+                postid = post_dict[url]
+                if postid != r.postid:
+                    engine.execute(text("update jam_people_from_post set postid=:postid where id = :id"),
+                                   {"postid": postid, "id": r.id})
 
 
 if __name__ == '__main__':
@@ -564,6 +566,5 @@ if __name__ == '__main__':
     # clean_up_participators()
 
     fill_postid()
-    fill_username_people()
 
     print("All Done")

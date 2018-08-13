@@ -14,7 +14,7 @@ SET_EXISTURLS = set()
 def query_posts_by_category(category):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-    result = engine.execute(f"SELECT distinct baseurl, body FROM spider_jam_post WHERE body <> '[]' AND keyword = '{KEYWORD}'" 
+    result = engine.execute(f"SELECT distinct baseurl, body FROM spider_jam_post WHERE keyword = '{KEYWORD}'" 
                           f" AND baseurl like '%%{category}%%' AND url not like '%%deleted%%'" )
 
     # 过滤掉已存在的url
@@ -70,7 +70,7 @@ def init_post(url, category, keyword, title=None, author=None, recency=None, tag
         p.likes = int(likes)
 
     if views:
-        p.views = int(views[0])
+        p.views = int(views[0].replace(',', ''))
 
     return p
 
@@ -347,10 +347,10 @@ def process_poll():
         polls = 0
 
         if views:
-            polls = views[0].replace(' Responses.', '')
+            polls = views[0].replace(' Response.', '').replace(' Responses.', '')
 
         p = init_post(url=r.baseurl, category='poll', keyword=KEYWORD, title=title, author=author, recency=recency,
-                      content=content, views=[polls])
+                      content=content, views=[str(polls)])
 
         session.add(p)
 
@@ -548,24 +548,6 @@ def process_groups_sw_items():
         session.commit()
 
 
-def fill_username_jam_people_post():
-    engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    people = engine.execute(f"select username, posturl from jam_people_from_post where "
-                            f"username is not null and username <> '' and roletype='creator'")
-    post = engine.execute(f"select * from jam_post where (username is null or username = '') and author <> 'Alumni'")
-
-    DICT_PEOPLE = dict()
-    for item in people:
-        DICT_PEOPLE[item.posturl] = item.username.strip()
-
-    for p in post:
-        if p.url in DICT_PEOPLE.keys():
-            print(DICT_PEOPLE[p.url])
-            engine.execute(f"update jam_post set username = '{DICT_PEOPLE[p.url]}' where id = {p.id}")
-        else:
-            print(p.url, p.id, p.author)
-
-
 def clear_duplicated_posts():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
     engine.execute(f"delete from jam_post where keyword = '{KEYWORD}' and "
@@ -588,7 +570,5 @@ if __name__ == '__main__':
     process_articles()
 
     clear_duplicated_posts()
-
-    #fill_username_jam_people_post()
 
     print("All Done")
