@@ -5,22 +5,21 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from JamScrapy import config
-from JamScrapy.mysql import MySQL
-from JamScrapy.entity import SpiderSearch, SpiderPost, SpiderProfile, SpiderPortalProfile
+from JamScrapy.entity import SpiderSearch, SpiderPost, SpiderProfile, SpiderPortalProfile, SpiderGroup
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 import scrapy
 import datetime
-import pymysql
 
 
 class JamScrapyPipeline(object):
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
     def process_item(self, item, spider):
-        if spider.name == 'JamSearchSpider' or spider.name == 'JamSearchPeopleSpider':
+        if spider.name == 'JamSearchSpider' or spider.name == 'JamSearchPeopleSpider' \
+                or spider.name == 'JamGroupContentSpider':
             return self.__process_jam_search_spider(item)
         elif spider.name == 'JamSearchFetchSpider':
             return self.__process_jam_search_fetch_spider(item)
@@ -34,19 +33,63 @@ class JamScrapyPipeline(object):
             return self.__process_jam_profile_follow_spider(item)
         elif spider.name == 'PortalProfileSpider':
             return self.__process_portal_profile_spider(item)
+        elif spider.name == 'JamGroupSpider':
+            return self.__process_jam_group_spider(item)
 
     def __process_jam_search_spider(self, item):
-        s = SpiderSearch()
-        s.url = str(item['url'])
-        s.body = str(item['body'])
-        s.topics = str(item['topics'])
-        s.createtime = datetime.datetime.now()
-        s.keyword = config.KEYWORD
+        if 'request_access' not in str(item['url']) and len(item['topics']) > 0:
+            s = SpiderSearch()
+            s.url = str(item['url'])
+            s.body = str(item['body'])
+            s.topics = str(item['topics'])
+            s.createtime = datetime.datetime.now()
+            s.keyword = config.KEYWORD
 
-        session = sessionmaker(bind=self.engine)()
-        session.add(s)
-        session.commit()
-        session.close()
+            session = sessionmaker(bind=self.engine)()
+            session.add(s)
+            session.commit()
+            session.close()
+
+        return item
+
+    def __process_jam_group_spider(self, item):
+        groups = item['groups']
+
+        if len(groups) > 0:
+            session = sessionmaker(bind=self.engine)()
+
+            for group in groups:
+                html = scrapy.Selector(text=str(group))
+
+                g = SpiderGroup()
+
+                url = html.xpath('//div[@class="title"]/span/a/@href').extract()
+                name = html.xpath('//div[@class="title"]/span/a/text()').extract()
+                creator = html.xpath('//div[@class="meta"]/div[last()]/a/@href').extract()
+
+                # print('name:', name)
+                # print('creator', creator)
+
+                if len(url) > 0:
+                    g.groupurl = url[0].strip()
+                else:
+                    continue
+
+                if len(name) > 0:
+                    g.groupname = name[0].strip()
+                else:
+                    g.groupname = None
+
+                if len(creator) > 0:
+                    g.creatorprofileurl = creator[0].strip()
+                else:
+                    g.creatorprofileurl = None
+
+                g.keyword = config.KEYWORD
+                session.add(g)
+
+            session.commit()
+            session.close()
 
         return item
 
@@ -90,11 +133,13 @@ class JamScrapyPipeline(object):
         html = scrapy.Selector(text=str(item['body']))
 
         username = html.xpath(
-            '//div[@class="viewJobInfo"]/span[@class="profileLabel" and text()="User Name:"]/../text()').extract()
+            '//div[@class="viewJobInfo"]/span[@class="profileLabel" and @aria-label="User Name:"]/../text()').extract()
         peoplename = html.xpath('//span[@class="member_name"]/text()').extract()
 
+        print(username)
+
         if len(username) > 0:
-            p.username = username[0].strip()
+            p.username = username[1].replace('\\n', '').strip()
         else:
             p.username = None
 
@@ -107,55 +152,38 @@ class JamScrapyPipeline(object):
         p.body = str(item['body'])
         p.createtime = datetime.datetime.now()
 
-        session = sessionmaker(bind=self.engine)()
-        session.add(p)
-        session.commit()
-        session.close()
+        if p.username and p.peoplename:
+            session = sessionmaker(bind=self.engine)()
+            session.add(p)
+            session.commit()
+            session.close()
 
         return item
 
     def __process_jam_profile_group_spider(self, item):
         if 'groups' in item.keys() and item['groups'] is not None:
             engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-            engine.execute(f'update jam_profile set groups="{pymysql.escape_string(str(item["groups"]))}" where id = {item["id"]}')
+            sql = "update jam_profile set groups = :groups where id = :id"
+            para = {"groups": str(item["groups"]), "id": int(item["id"])}
+            engine.execute(text(sql), para)
+            # engine.execute(f'update jam_profile set groups="{pymysql.escape_string(str(item["groups"]))}" where id = {item["id"]}')
         else:
             print('no groups:', item['username'])
-
-        # db = MySQL()
-        #
-        # if 'groups' in item.keys():
-        #     para = [str(item["id"]), db.escape_string(str(item["groups"]))]
-        #
-        #     sql = f'update jam_profile set groups="{para[1]}" where id = {para[0]}'
-        #
-        #     result = db.query(sql)
 
         return item
 
     def __process_jam_profile_follow_spider(self, item):
-        db = MySQL()
+        engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
         if 'followers' in item.keys():
-            para = [db.escape_string(str(item["followers"])), db.escape_string(str(item["id"]))]
-            sql = f'update jam_profile set followers="{para[0]}" where id = {para[1]}'
-            db.query(sql)
+            sql = "update jam_profile set followers=:followers where id = :id"
+            para = {"followers": str(item['followers']), "id": int(item['id'])}
+            engine.execute(text(sql), para)
 
         if 'following' in item.keys():
-            para = [db.escape_string(str(item["following"])), db.escape_string(str(item["id"]))]
-            sql = f'update jam_profile set following="{para[0]}" where id = {para[1]}'
-            db.query(sql)
-
-        # engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        #
-        # if 'followers' in item.keys():
-        #     sql = "update jam_profile set followers=:followers where id = :id"
-        #     para = {"followers": str(item['followers']), "id": int(item['id'])}
-        #     engine.execute(sql, para)
-        #
-        # if 'following' in item.keys():
-        #     sql = "update jam_profile set following=:following where id = :id"
-        #     para = {"following": str(item['following']), "id": int(item['id'])}
-        #     engine.execute(sql, para)
+            sql = "update jam_profile set following=:following where id = :id"
+            para = {"following": str(item['following']), "id": int(item['id'])}
+            engine.execute(text(sql), para)
 
         return item
 
@@ -167,9 +195,10 @@ class JamScrapyPipeline(object):
         p.body = str(item['body'])
         p.createtime = datetime.datetime.now()
 
-        session = sessionmaker(bind=self.engine)()
-        session.add(p)
-        session.commit()
-        session.close()
+        if p.username and p.body != '[]':
+            session = sessionmaker(bind=self.engine)()
+            session.add(p)
+            session.commit()
+            session.close()
 
         return item

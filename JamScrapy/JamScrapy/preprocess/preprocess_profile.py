@@ -9,11 +9,10 @@ from sqlalchemy.orm import sessionmaker
 from JamScrapy import config
 from JamScrapy.preprocess.entity import Profile
 
-LATEST_PROFILE_SPIDER_ID = 189733
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute(f"SELECT * FROM spider_jam_profile where id >= {LATEST_PROFILE_SPIDER_ID} "
+    profiles = engine.execute(f"SELECT * FROM spider_jam_profile where id >= {config.LATEST_JAM_PROFILE_SPIDER_ID} "
                               f"and username is not null ORDER BY peoplename ").fetchall()
 
     print(len(profiles))
@@ -46,6 +45,8 @@ def process_profiles():
             //div[@class="badgeDetails"]/ul/li/a/text()''').extract()
         report_profiles = html.xpath('''//div[@class="clearfix org-chart-sections" and @aria-label="Direct Reports"] 
             //div[@class="badgeDetails"]/ul/li/a/@href''').extract()
+
+        print(mobile, email, avatar, managers, reports)
 
         if profile is None:
             profile = Profile(profileurl=p.url.strip(), username=p.username.strip(), displayname=p.peoplename.strip())
@@ -80,24 +81,7 @@ def process_profiles():
     return count
 
 
-# def fill_username_spider_jam_profile():
-#     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-#     profiles = engine.execute("select * from spider_jam_profile where username is null or username = ''")
-#
-#     print('profile without username:', profiles.rowcount)
-#
-#     for p in profiles:
-#         print(p.peoplename, p.url)
-#         html = scrapy.Selector(text=p.body)
-#
-#         user_name = html.xpath('//div[@class="viewJobInfo"]/text()').extract()
-#
-#         if len(user_name) > 0:
-#             engine.execute(f"update spider_jam_profile set username = '{user_name[0].strip()}' where id = {p.id}")
-
-
 if __name__ == '__main__':
-    # fill_username_spider_jam_profile()
     count = process_profiles()
 
     print('Duplicate:', count)

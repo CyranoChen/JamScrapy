@@ -8,6 +8,15 @@
 import scrapy
 
 
+class JamScrapyGroupItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    id = scrapy.Field()
+    url = scrapy.Field()
+    body = scrapy.Field()
+    groups = scrapy.Field()
+
+
 class JamScrapySearchItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()

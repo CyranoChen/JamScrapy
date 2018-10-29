@@ -21,7 +21,7 @@ class JamProfileGroupSpider(scrapy.Spider):
 
     def start_requests(self):
         engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        results = engine.execute('SELECT * FROM jam_profile where (groups is null or groups = "") order by id')
+        results = engine.execute('SELECT * FROM jam_profile where (groups is null or groups = "") order by RAND()')
 
         for item in results:
             uid = item.profileurl.split("/")[-1]

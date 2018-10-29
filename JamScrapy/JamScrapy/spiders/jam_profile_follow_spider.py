@@ -21,7 +21,7 @@ class JamProfileFollowSpider(scrapy.Spider):
 
     def start_requests(self):
         engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-        results = engine.execute('SELECT * FROM jam_profile where followers is null and following is null and id > 190000 order by id')
+        results = engine.execute('SELECT * FROM jam_profile where followers is null and following is null order by RAND()')
 
         for item in results:
             uid = item.profileurl.split("/")[-1]

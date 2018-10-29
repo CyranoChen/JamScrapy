@@ -1,6 +1,7 @@
 import scrapy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from tqdm import tqdm
 
 import json
 
@@ -105,8 +106,8 @@ def count_comments(post_comments, feeds_comments):
 def process_questions():
     results = query_posts_by_category('questions')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -141,8 +142,8 @@ def process_questions():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -150,8 +151,8 @@ def process_questions():
 def process_blogs():
     results = query_posts_by_category('blogs')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -166,13 +167,11 @@ def process_blogs():
         content = html.xpath('//div[@class="content"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -185,8 +184,8 @@ def process_blogs():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -194,8 +193,8 @@ def process_blogs():
 def process_discussions():
     results = query_posts_by_category('discussions')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -231,8 +230,8 @@ def process_discussions():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -240,8 +239,8 @@ def process_discussions():
 def process_wiki():
     results = query_posts_by_category('wiki')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -256,13 +255,11 @@ def process_wiki():
         content = html.xpath('//div[@class="wiki_content"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -275,8 +272,8 @@ def process_wiki():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -284,8 +281,8 @@ def process_wiki():
 def process_articles():
     results = query_posts_by_category('articles')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -300,13 +297,11 @@ def process_articles():
         content = html.xpath('//div[@class="wiki_content"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -319,8 +314,8 @@ def process_articles():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -328,8 +323,8 @@ def process_articles():
 def process_poll():
     results = query_posts_by_category('poll')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -354,8 +349,8 @@ def process_poll():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -363,7 +358,7 @@ def process_poll():
 def process_ideas():
     results = query_posts_by_category('ideas')
 
-    for r in results:
+    for r in tqdm(results):
         print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
@@ -378,14 +373,12 @@ def process_ideas():
         content = html.xpath('//div[@class="wiki_content"]').extract()
 
         # shares
-
         post_comments = html.xpath('//div[@id="feed-list-container"]//'
                                    'div[@class="feed-action-container"]/span/a/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath('//td[@class="metadata_label content-like-total"]/'
                                 'following-sibling::td[@class="metadata_value"]/a/span/text()').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -399,8 +392,8 @@ def process_ideas():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -408,8 +401,8 @@ def process_ideas():
 def process_groups_events():
     results = query_posts_by_category('events')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -424,13 +417,11 @@ def process_groups_events():
         content = html.xpath('//div[@class="content"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -448,8 +439,8 @@ def process_groups_events():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -457,14 +448,8 @@ def process_groups_events():
 def process_groups_documents():
     results = query_posts_by_category('documents')
 
-    for r in results:
-        # if 'deleted' in r.url:
-        #     continue
-        #
-        # if 'https://jam4.sapjam.com/groups/ASPWHl2eS9sxTDDlPEj2ma/documents/5elZs949otQPFloq9F8bgh/detail' in r.url:
-        #     continue
-
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -479,13 +464,11 @@ def process_groups_documents():
         content = html.xpath('//div[@id="siv-item-container"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -498,8 +481,8 @@ def process_groups_documents():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 
@@ -507,8 +490,8 @@ def process_groups_documents():
 def process_groups_sw_items():
     results = query_posts_by_category('sw_items')
 
-    for r in results:
-        print(r.baseurl)
+    for r in tqdm(results):
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 
@@ -523,13 +506,11 @@ def process_groups_sw_items():
         content = html.xpath('//div[@id="sw_item_container"]').extract()
 
         # shares
-
         post_comments = html.xpath('//span[@class="sap-icon icon-comment"]/span/text()').extract()
         feeds_comments = html.xpath('//div[@id="feed-list-container"]//'
                                     'span[@class="feed-comments-count-container feed-meta"]/@data-count').extract()
 
         # rates
-
         post_likes = html.xpath(
             '//span[@class="jam-item-likes"]//a[@class="metadata_value jam-clickable"]/@data-count').extract()
         feeds_likes = html.xpath('//code[@class="feed-likes"]/@data-count').extract()
@@ -542,8 +523,8 @@ def process_groups_sw_items():
 
         session.add(p)
 
-        for item in p.__dict__.items():
-            print(item)
+        # for item in p.__dict__.items():
+        #     print(item)
 
         session.commit()
 

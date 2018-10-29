@@ -27,7 +27,7 @@ class JamProfileSpider(scrapy.Spider):
         for r in results:
             set_profile_urls.add(r.profileurl.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', ''))
 
-        print('distinct post (processed) url', len(set_profile_urls), '/', results.rowcount)
+        print('distinct profile (processed) url', len(set_profile_urls), '/', results.rowcount)
 
         # 获取未处理的urls
         set_exist_profile_urls_spider = set()

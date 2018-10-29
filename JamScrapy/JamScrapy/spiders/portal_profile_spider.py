@@ -46,8 +46,8 @@ class PortalProfileSpider(scrapy.Spider):
         function main(splash)         
           splash:init_cookies({
             {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="people.wdf.sap.corp"},
-            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJWZlYzU2ZjUzOWJmZjA0MDc3YzM4NDA5OTk4OGMyZmQzBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiFi9wcm9maWxlcy9JMzQ1Nzk1SSIYYXZhaWxhYmlsaXR5X2Jhc2tldAY7AEZ7BjoJdWlkc1sASSIQX2NzcmZfdG9rZW4GOwBGSSIxRStHd2NkVnpaZXBMdGJYcEJQNmdCcVZoS29hc1RMRTRVd2hsQ2VLTEVRcz0GOwBG--33631de8d445224cc9be98a50d7e69b996a0b0f9", domain="people.wdf.sap.corp"},  
-            {name="shpuvid", value="CmEHO1s55ySNCQm4BNojAg==", domain=".sap.corp"}     
+            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTM3NTY1YzI2ZjVkOWEyZTZkYTBiNDU2ZDY5NzVlYzdkBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiBi9JIhhhdmFpbGFiaWxpdHlfYmFza2V0BjsARnsGOgl1aWRzWwBJIhBfY3NyZl90b2tlbgY7AEZJIjFvTmRXUmZoaldqbnd2THU2Rk45WUkwYzZjVEU2SmV3M2ladFdGenVUaitRPQY7AEY%3D--3bdc1aba71abe19bdf0d8742f3f53d2f56bae862", domain="people.wdf.sap.corp"},  
+            {name="shpuvid", value="CmEGNFvGBaYBMwlWBaY1Ag==", domain=".sap.corp"}     
           })
           
           assert(splash:go{

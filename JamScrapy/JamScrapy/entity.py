@@ -17,6 +17,18 @@ class SpiderSearch(Base):
     keyword = Column(String(16))
 
 
+class SpiderGroup(Base):
+    __tablename__ = 'jam_group'
+
+    id = Column(Integer, primary_key=True)
+    groupname = Column(String(16))
+    membercount = Column(Integer)
+    memberinfourl = Column(String(16))
+    groupurl = Column(String(16))
+    creatorprofileurl = Column(String(16))
+    keyword = Column(String(16))
+
+
 class SpiderPost(Base):
     __tablename__ = 'spider_jam_post'
 

@@ -512,12 +512,13 @@ def clean_up_participators():
     session = sessionmaker(bind=engine)()
     creators = session.query(People).filter(and_(People.roletype == 'creator', People.keyword == KEYWORD)).all()
 
-    print(len(creators))
+    print("creators", len(creators))
 
-    for c in creators:
-        engine.execute(f'''update jam_people_from_post set position = -1  
-        where postid = {c.postid} and username = \'{c.username}\' and roletype = \'participator\' ''')
-        # print('postid:', c.postid, 'creator:', c.displayname, 'clean up:', len(results))
+    if len(creators) > 0:
+        for c in tqdm(creators):
+            engine.execute(f'''update jam_people_from_post set position = -1  
+                        where postid = {c.postid} and username = \'{c.username}\' and roletype = \'participator\' ''')
+            # print('postid:', c.postid, 'creator:', c.displayname, 'clean up:', len(results))
 
 
 def fill_postid():
@@ -547,23 +548,23 @@ def fill_postid():
 
 
 if __name__ == '__main__':
-    # initial_profiles()
-    # initial_exist_urls()
-    #
-    # process_questions()
-    # process_blogs()
-    # process_discussions()
-    # process_wiki()
-    # process_articles()
-    # process_poll()
-    # process_profile()
-    # process_feed()
-    # process_ideas()
-    # process_groups_events()
-    # process_groups_documents()
-    # process_groups_sw_items()
-    #
-    # clean_up_participators()
+    initial_profiles()
+    initial_exist_urls()
+
+    process_questions()
+    process_blogs()
+    process_discussions()
+    process_wiki()
+    process_articles()
+    process_poll()
+    process_profile()
+    process_feed()
+    process_ideas()
+    process_groups_events()
+    process_groups_documents()
+    process_groups_sw_items()
+
+    clean_up_participators()
 
     fill_postid()
 

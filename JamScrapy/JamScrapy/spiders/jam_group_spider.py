@@ -3,12 +3,12 @@
 import scrapy
 from scrapy_splash import SplashRequest
 from JamScrapy import config
-from JamScrapy.items import JamScrapySearchItem
+from JamScrapy.items import JamScrapyGroupItem
 
 
-class JamSearchSpider(scrapy.Spider):
+class JamGroupSpider(scrapy.Spider):
     # 爬虫名称
-    name = "JamSearchSpider"
+    name = "JamGroupSpider"
     # 设置下载延时, 避免被BAN
     download_delay = 1
     # 允许域名
@@ -16,10 +16,10 @@ class JamSearchSpider(scrapy.Spider):
 
     request_urls = []
     start_page = 1
-    total_pages = config.SEARCH_SPIDER_PAGES
+    total_pages = config.GROUP_SPIDER_PAGES
 
     def start_requests(self):
-        url = '/universal_search/search?page={1}&query="{0}"'
+        url = '/universal_search/search?category=groups&page={1}&query="{0}"'
 
         for i in range(self.start_page, self.total_pages + 1, 1):
             self.request_urls.append('https://' + config.DOMAIN + url.format(config.KEYWORD, i))
@@ -65,7 +65,7 @@ class JamSearchSpider(scrapy.Spider):
                                 args={'lua_source': script}, headers={'X-My-Header': 'value'})
 
     def parse(self, response):
-        item = JamScrapySearchItem()
+        item = JamScrapyGroupItem()
 
         # 当前URL
         item['url'] = response.url
@@ -76,8 +76,8 @@ class JamSearchSpider(scrapy.Spider):
         result = scrapy.Selector(response)
 
         # item['id'] = response.meta['id']
-        item['topics'] = result.xpath('//li[@class="search_result"]/div[@class="title"]/span/a/@href').extract()
+        item['groups'] = result.xpath('//li[@class="search_result"]').extract()
         # item['body'] = 'test'
-        item['body'] = result.xpath('//div[@class="usr_results"]').extract()
+        # item['body'] = result.xpath('//div[@class="usr_results"]').extract()
 
         yield item

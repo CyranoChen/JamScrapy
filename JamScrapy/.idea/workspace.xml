@@ -2,167 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Create profile spider and crawl the profile of people">
-      <change afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7331fb95-07b4-420b-ab71-b4fb22430c69.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/mysql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/mysql.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/clean_people_profile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile_create_org.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JamScrapy/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-Chatbot-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Chatbot-Generate.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-Chatbot-Report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Chatbot-Report.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-Dataset-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Dataset-Generate.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Generate.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Report.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus-meta-generate.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/contributes-blockchain-0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/contributes-blockchain-0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/contributes-blockchain-3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/contributes-blockchain-3.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/contributes-intelligent+enterprise-0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/contributes-intelligent+enterprise-0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/domain-meta-data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/links.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/links.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/nodes.json" beforeDir="false" afterPath="$PROJECT_DIR$/output/nodes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Blockchain-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Blockchain-Generate.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Blockchain-Report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Blockchain-Report.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Dataset-Generate-Cyrano-MacBook-Pro-15.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/cache-meta-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../server/cache/cache-meta-data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/cache/cache-people.json" beforeDir="false" afterPath="$PROJECT_DIR$/../server/cache/cache-people.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-blockchain-1525104000.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-blockchain-1527782400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-blockchain-1533052800.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1483200000.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1527782400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1527868800.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1533052800.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-intelligent+enterprise-1527868800.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-blockchain-1519833600.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-blockchain-1531497358.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1525104000.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-chatbot-1531394516.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-innovation-1533587377.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-intelligent+enterprise-1519833600.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/dataset-intelligent+enterprise-1533556285.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/generate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/tornoda.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/tornoda.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/data/map-city-geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/data/map-city-geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/css/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/css/adminlte.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/css/adminlte.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/css/adminlte.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/css/adminlte.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/css/adminlte.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/img/nexus-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/img/nexus-logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/adminlte.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/adminlte.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/adminlte.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/adminlte.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/adminlte.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/adminlte.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/adminlte.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/adminlte.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/pages/graph-blockchain.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/graph-blockchain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/pages/graph-chatbot.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/graph-chatbot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/pages/graph-intelligent+enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/graph-intelligent+enterprise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/cache-meta-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/data/cache-meta-data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/dataset-blockchain-t0-n60-l80.json" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/data/dataset-blockchain-t0-n60-l80.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-Blockchain-0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-Blockchain-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-Blockchain-3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-Blockchain-6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-Blockchain-9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-chatbot-0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-chatbot-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-chatbot-3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-chatbot-6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-chatbot-9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-intelligent+enterprise-0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-intelligent+enterprise-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-intelligent+enterprise-3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-intelligent+enterprise-6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/data/jam-people-intelligent+enterprise-9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/dist/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/domain-viewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/domain-viewer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../webroot/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/bootstrap/js/bootstrap.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/FontAwesome.otf" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/FontAwesome.otf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.eot" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/img/sprite-skin-flat.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/img/sprite-skin-flat.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/img/sprite-skin-nice.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/img/sprite-skin-nice.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.skinFlat.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.skinFlat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.skinNice.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/ionslider/ion.rangeSlider.skinNice.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.min.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/jquery/jquery.slim.min.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/az.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/az.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ca.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/cs.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/cs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/da.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/da.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/de.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/es.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/es.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/et.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/et.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/eu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/eu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fa.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/fr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/gl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/gl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/he.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/he.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/hu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/id.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/id.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/is.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/is.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/it.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/it.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ko.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ko.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/lt.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/lt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/lv.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/lv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/mk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/mk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/nb.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/nb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/nl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/nl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pt-BR.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pt-BR.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pt.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/pt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ro.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ru.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/ru.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sv.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/sv.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/th.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/th.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/tr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/tr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/uk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/uk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/vi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/vi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/zh-CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/zh-CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/zh-TW.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/i18n/zh-TW.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.full.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.full.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.full.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.full.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/plugins/select2/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/select2/select2.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/starter.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/starter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/echarts/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/echarts/echarts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/echarts/echarts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/echarts/echarts.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/shared/contentheader.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/contentheader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/shared/controlsidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/controlsidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/shared/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/shared/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/shared/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/sidebar.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -177,16 +89,18 @@
     <SUITE FILE_PATH="coverage/AcnScrapy$acn_url_spider.coverage" NAME="acn_url_spider Coverage Results" MODIFIED="1520321980659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy/spiders" />
     <SUITE FILE_PATH="coverage/JamScrapy$process_spider_people.coverage" NAME="process_spider_people Coverage Results" MODIFIED="1530161799935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_knowledge.coverage" NAME="preprocess_knowledge Coverage Results" MODIFIED="1525841607517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$gender.coverage" NAME="gender Coverage Results" MODIFIED="1539852284101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people.coverage" NAME="preprocess_people Coverage Results" MODIFIED="1522824082906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_clean_people.coverage" NAME="preprocess_clean_people Coverage Results" MODIFIED="1533875830033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_clean_people.coverage" NAME="preprocess_clean_people Coverage Results" MODIFIED="1539964066568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/AcnScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1520328461577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1522732091774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_profile.coverage" NAME="preprocess_profile Coverage Results" MODIFIED="1533716953259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_portal_profile.coverage" NAME="preprocess_portal_profile Coverage Results" MODIFIED="1533872163809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_profile.coverage" NAME="preprocess_profile Coverage Results" MODIFIED="1539950159429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_portal_profile.coverage" NAME="preprocess_portal_profile Coverage Results" MODIFIED="1539962898410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$py_test_in_test_gender_py.coverage" NAME="py.test in test_gender.py Coverage Results" MODIFIED="1539852068914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$jam_profile_group_spider.coverage" NAME="jam_profile_group_spider Coverage Results" MODIFIED="1531912769909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/spiders" />
-    <SUITE FILE_PATH="coverage/JamScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1533710669491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
+    <SUITE FILE_PATH="coverage/JamScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1539852988250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_group.coverage" NAME="preprocess_group Coverage Results" MODIFIED="1522821636146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_post.coverage" NAME="preprocess_post Coverage Results" MODIFIED="1533893132089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_post.coverage" NAME="preprocess_post Coverage Results" MODIFIED="1539604005567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -199,42 +113,19 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="root@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="JamScrapy" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="336">
+              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -242,59 +133,8 @@
       <file leaf-file-name="preprocess_portal_profile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preprocess_sync_profile.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="6" selection-start-line="6" selection-end-line="11" selection-end-column="94" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jam_profile_spider.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" selection-start-line="85" selection-end-line="85" />
-              <folding>
-                <element signature="e#45#58#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preprocess_profile.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="30" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="portal_profile_spider.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preprocess_post.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9469">
-              <caret line="564" column="18" selection-start-line="564" selection-start-column="18" selection-end-line="564" selection-end-column="18" />
+            <state relative-caret-position="147">
+              <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -302,8 +142,21 @@
       <file leaf-file-name="preprocess_clean_people.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+            <state relative-caret-position="-4097">
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -344,13 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/AcnScrapy/spiders/acn_list_spider.py" />
-        <option value="$PROJECT_DIR$/AcnScrapy/pipelines.py" />
-        <option value="$PROJECT_DIR$/AcnScrapy/spiders/jam_search_spider.py" />
-        <option value="$PROJECT_DIR$/scrapy.cfg" />
-        <option value="$PROJECT_DIR$/JamScrapy/middlewares.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/search2post.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/topic2post.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/post.py" />
         <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile_spider.sql" />
         <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile.sql" />
@@ -370,31 +216,38 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_3.sql" />
         <option value="7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_profile.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_4.sql" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_1.sql" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_fill_username.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/items.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/test.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile_create_org.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/entity.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/pipelines.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
         <option value="$PROJECT_DIR$/JamScrapy/settings.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/41d7c54a-f0a5-495c-8c77-33feb217252f/console.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console_2.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/items.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/entity.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_group_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/pipelines.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/test_gender.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/gender.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/test.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console.sql" />
         <option value="$PROJECT_DIR$/JamScrapy/config.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
       </list>
     </option>
   </component>
@@ -407,9 +260,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="52" />
+    <option name="y" value="23" />
+    <option name="width" value="1628" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -438,6 +293,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Default">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="JamScrapy" type="cbb8eebc:String" user="JamScrapy" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -456,25 +322,6 @@
               <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
               <item name="preprocess" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Default">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="JamScrapy" type="cbb8eebc:String" user="JamScrapy" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -484,18 +331,18 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="AcnScrapy&#9;FILE&#9;file:///Users/i345795/OneDrive - SAP SE/projects/JamScrapy/.idea/AcnScrapy.iml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL&#10;SQL Server (Microsoft)" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="SQL Updates" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/JamScrapy" />
-      <recent name="$PROJECT_DIR$/JamScrapy/preprocess" />
       <recent name="$PROJECT_DIR$/JamScrapy/spiders" />
+      <recent name="$PROJECT_DIR$/JamScrapy/preprocess" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -510,7 +357,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.preprocess_post">
+  <component name="RunManager" selected="Python.preprocess_clean_people">
+    <configuration name="gender" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/gender.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="preprocess_clean_people" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AcnScrapy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -530,25 +396,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="preprocess_people_from_post" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AcnScrapy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="preprocess_portal_profile" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AcnScrapy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -563,25 +410,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="preprocess_post" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AcnScrapy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -625,21 +453,36 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="py.test in /Users/i345795/OneDrive - SAP SE/projects/Nexus/JamScrapy/JamScrapy/test_gender.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/JamScrapy/test_gender.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
     <list>
       <item itemvalue="Python.preprocess_profile" />
       <item itemvalue="Python.test" />
-      <item itemvalue="Python.preprocess_people_from_post" />
       <item itemvalue="Python.preprocess_clean_people" />
       <item itemvalue="Python.preprocess_portal_profile" />
-      <item itemvalue="Python.preprocess_post" />
+      <item itemvalue="Python tests.py.test in /Users/i345795/OneDrive - SAP SE/projects/Nexus/JamScrapy/JamScrapy/test_gender.py" />
+      <item itemvalue="Python.gender" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.preprocess_post" />
         <item itemvalue="Python.preprocess_clean_people" />
         <item itemvalue="Python.preprocess_portal_profile" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.preprocess_people_from_post" />
+        <item itemvalue="Python.gender" />
+        <item itemvalue="Python tests.py.test in /Users/i345795/OneDrive - SAP SE/projects/Nexus/JamScrapy/JamScrapy/test_gender.py" />
       </list>
     </recent_temporary>
   </component>
@@ -678,6 +521,11 @@
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="py_test_in_test_gender_py - 2018.10.18 at 10h 41m 16s.xml">
+      <configuration name="py.test in test_gender.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -688,32 +536,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
-    <editor active="true" />
+    <frame x="52" y="23" width="1628" height="1027" extended-state="0" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32690826" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" x="0" y="0" width="590" height="1240" id="Documentation" order="5" sideWeight="0.72462404" side_tool="true" visible="true" weight="0.1604448" />
-      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32935917" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21162444" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32786885" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32637855" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2071535" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.22676727" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32615384" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50252205" side_tool="true" weight="0.25913978" />
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32922128" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3271795" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32580644" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35913977" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49979568" weight="0.2580645" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.22887768" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" sideWeight="0.27537593" visible="true" weight="0.1604448" />
+      <window_info active="true" anchor="right" id="Database" order="3" sideWeight="0.71924883" visible="true" weight="0.2370744" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32962668" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24980143" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993832" />
       <window_info id="Favorites" order="2" sideWeight="0.50388455" side_tool="true" weight="0.25416997" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39865872" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="590" height="1240" id="Documentation" order="5" sideWeight="0.28075117" side_tool="true" visible="true" weight="0.10405084" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.54545456" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3296131" />
+      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49747792" weight="0.40215054" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32923076" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,13 +581,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url />
-          <line>1</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -748,110 +588,161 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/nexus_jam_people_from_post.sql" />
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/scrapy/table/jam_post" />
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/scrapy/table/jam_profile" />
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="66" selection-start-line="66" selection-end-line="79" selection-end-column="34" />
+        <state relative-caret-position="546">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_group_from_post">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="23" lean-forward="true" selection-end-line="183" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/entity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_2.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="1" lean-forward="true" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_3.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_4.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_group">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Nexus-Dataset-Generate.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_3.sql" />
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_jam_post.sql">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        <state relative-caret-position="357">
+          <caret line="105" column="50" lean-forward="true" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_portal_profile.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/portal_profile.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_5.sql" />
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_jam_profile.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_profile.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="33" lean-forward="true" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_4.sql" />
-    <entry file="das://table:/6555df22/7331fb95-07b4-420b-ab71-b4fb22430c69/nexus.jam_post" />
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_jam_post">
+    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_jam_search">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_portal_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_1.sql">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="56" selection-start-column="56" selection-end-column="56" />
+        <state relative-caret-position="210">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql" />
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_group_from_post">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-674">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_group_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_group">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/portal_profile">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_people_from_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/people_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_jam_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/spider_portal_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/people_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_portal_profile">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -865,198 +756,184 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_profile">
+    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_post">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/6555df22/7331fb95-07b4-420b-ab71-b4fb22430c69/nexus.spider_jam_search" />
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py">
+    <entry file="file://$USER_HOME$/Downloads/jam_post_shanghai.csv" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="891">
-          <caret line="61" selection-start-line="61" selection-end-line="63" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/portal_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_people_from_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="36" column="98" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="98" />
+        <state relative-caret-position="420">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="530" column="96" selection-start-line="530" selection-start-column="19" selection-end-line="530" selection-end-column="96" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="11655">
+          <caret line="562" column="27" selection-start-line="562" selection-start-column="27" selection-end-line="562" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/test_gender.py" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/gender.py" />
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="483">
+          <caret line="26" selection-start-line="26" selection-end-line="34" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/mysql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/people_profile">
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_people_from_post">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/entity.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_jam_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="212" column="62" lean-forward="true" selection-start-line="212" selection-start-column="62" selection-end-line="212" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="107" column="18" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2771">
-          <caret line="172" column="23" selection-start-line="172" selection-start-column="23" selection-end-line="172" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" selection-start-line="85" selection-end-line="85" />
-          <folding>
-            <element signature="e#45#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="2765">
+          <caret line="156" column="24" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="252">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="12" lean-forward="true" selection-start-line="6" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_group">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/config-Cyrano-MacBook-Pro-15.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile-Cyrano-MacBook-Pro-15.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6" selection-start-line="6" selection-end-line="11" selection-end-column="94" />
+        <state relative-caret-position="336">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="15" column="52" lean-forward="true" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="64" lean-forward="true" selection-start-column="64" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9469">
-          <caret line="564" column="18" selection-start-line="564" selection-start-column="18" selection-end-line="564" selection-end-column="18" />
+        <state relative-caret-position="-4097">
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="420">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/settings.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

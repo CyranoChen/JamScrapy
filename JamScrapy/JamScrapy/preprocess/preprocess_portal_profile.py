@@ -1,5 +1,7 @@
 import scrapy
-import json
+
+from tqdm import tqdm
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -9,16 +11,18 @@ from JamScrapy.preprocess.entity import PortalProfile
 
 def process_profiles():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    profiles = engine.execute('SELECT * FROM spider_portal_profile where body <> "[]" and id >= 99486 ORDER BY username')
+    profiles = engine.execute(
+        f'SELECT * FROM spider_portal_profile where body <> "[]" and id >= {config.LATEST_PORTAL_PROFILE_SPIDER_ID} '
+        f'and username is not null ORDER BY username').fetchall()
 
-    print(profiles.rowcount)
+    print(len(profiles))
 
     session = sessionmaker(bind=engine)()
 
     count = 0
 
-    for p in profiles:
-        print(p.id, p.username, p.url, p.createtime)
+    for p in tqdm(profiles):
+        # print(p.id, p.username, p.url, p.createtime)
 
         profile = session.query(PortalProfile).filter(PortalProfile.username == p.username).first()
         print(p.username, profile)
@@ -27,30 +31,35 @@ def process_profiles():
             count += 1
 
         html = scrapy.Selector(text=p.body)
-        user_name = html.xpath('//li[@class="uid"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        display_name = html.xpath('//div[@class="profile-header"]//header[@class="full_name"]/text()').extract()
-        board_area = html.xpath(
-            '//li[@class="organisation_board_area"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        functional_area = html.xpath(
-            '//li[@class="functional_area"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        cost_center = html.xpath(
-            '//li[@class="cost_center"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        office_location = html.xpath(
-            '//li[@class="office_location"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        manager = html.xpath(
-            '//li[@class="manager_link"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
-        local_time = html.xpath(
-            '//li[@class="local_time"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        email = html.xpath(
-            '//li[@class="email_link"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
-        phone = html.xpath(
-            '//li[@class="work_phone"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
-        mobile = html.xpath(
-            '//li[@class="mobile_phone"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
-        address = html.xpath(
-            '//li[@class="office_address"]//div[@class="table-cell"]/span[@class="value"]/text()').extract()
-        assistant = html.xpath(
-            '//li[@class="assistant_link"]//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        email = html.xpath('//div[@class="member_more_info"]/table/tbody/tr/td[label="Primary Email: "]/a/text()').extract()
+        user_name = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize uid"]'
+                               '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        display_name = html.xpath('//header[@class="full_name"]/text()').extract()
+        board_area = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize organisation_board_area"]'
+                                '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        functional_area = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize functional_area"]'
+                                     '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        cost_center = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize cost_center"]'
+                                 '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        office_location = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize office_location"]'
+                                     '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        manager = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize manager_link"]'
+                             '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        local_time = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize local_time"]'
+                                '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        email = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize email_link"]'
+                           '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        phone = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize work_phone"]'
+                           '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        mobile = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize mobile_phone"]'
+                            '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        address = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize office_address"]'
+                             '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
+        assistant = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize assistant_link"]'
+                               '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+
+        print(user_name, display_name, board_area, functional_area, cost_center, office_location, manager, local_time,
+              email, phone, mobile, address, assistant)
 
         if profile is None and user_name and display_name:
             profile = PortalProfile(profileurl=p.url,
@@ -119,6 +128,5 @@ if __name__ == '__main__':
     print('Duplicate:', count)
 
     fill_displayname_portal_profile()
-
 
     print("All Done")
