@@ -4,3 +4,5 @@
 __pycache__
 .ipynb_checkpoints
 .idea
+JamScrapy/data/*.csv
+server/cache/dataset-*.json
