@@ -1,0 +1,1 @@
+nohup python tornoda.py  > ./log/tornoda.log &

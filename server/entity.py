@@ -1,23 +1,102 @@
+import os
+import json
 import numpy as np
 from pandas import DataFrame, merge
 from sqlalchemy import create_engine
+
+import community
 import networkx as nx
+
+import matplotlib
+
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
-import json
 
 import config
 from utils import max_min_normalize, generate_relation, generate_profiles, get_people_network_type
 
 
+class CommunityStructure:
+    def __init__(self, keyword, timestamp, nonorg=False):
+        self.nodes = []
+        self.links = []
+        self.graph = nx.Graph(name='community-network')
+        self.partition = []
+        self.community_size = dict()
+        self.keyword = keyword
+        self.timestamp = timestamp
+        self.nonorg = nonorg
+        if nonorg:
+            self.source_file_path = f"./cache/dataset-{keyword.lower()}-{str(timestamp)}-nonorg.json"
+        else:
+            self.source_file_path = f"./cache/dataset-{keyword.lower()}-{str(timestamp)}.json"
+
+    def set_nodes_with_links(self):
+        if not os.path.exists(self.source_file_path):
+            return
+
+        with open(self.source_file_path) as json_file:
+            ds = json.load(json_file)
+            self.nodes = ds['nodes']
+            self.links = ds['links']
+
+        print('nodes:', len(self.nodes), 'links:', len(self.links))
+
+    def community_analysis(self):
+        if len(self.nodes) == 0 or len(self.links) == 0:
+            return
+
+        # g = nx.Graph(name='community-network')
+        for item in self.links:
+            self.graph.add_edge(item['source'], item['target'])
+
+        self.partition = community.best_partition(self.graph)
+
+        print('partition:', len(self.partition))
+
+        if len(self.partition) > 0:
+            for k, v in self.partition.items():
+                # v -> ###### string
+                str_v = str(v).zfill(6)
+                if str_v in self.community_size:
+                    self.community_size[str_v] += 1
+                else:
+                    self.community_size[str_v] = 1
+
+        print('community:', len(self.community_size))
+
+    def set_node_community_attr(self):
+        if len(self.nodes) == 0 or len(self.links) == 0 or len(self.partition) == 0:
+            return
+
+        for node in self.nodes:
+            if node['name'] in self.partition:
+                node['community'] = str(self.partition[node['name']]).zfill(6)
+                node['community_size'] = self.community_size[node['community']]
+
+    def export_dataset(self):
+        result = {"nodes": self.nodes, "links": self.links}
+        if self.nonorg:
+            json_file_path = f"./cache/dataset-{self.keyword.lower()}-{str(self.timestamp)}-nonorg.json"
+        else:
+            json_file_path = f"./cache/dataset-{self.keyword.lower()}-{str(self.timestamp)}.json"
+        with open(json_file_path, 'w',
+                  encoding='utf-8') as json_file:
+            json.dump(result, json_file, ensure_ascii=False)
+
+        return result
+
+
 class DomainDataSet:
-    def __init__(self, keyword, timestamp):
+    def __init__(self, keyword, timestamp, nonorg=False):
         self.profiles = []
         self.contributions = DataFrame()
         self.links = []
         self.nodes = []
-        self.thresholds = {"degree": 0, "closeness": 0, "betweenness": 0}
+        self.thresholds = {"degree": 5, "closeness": 5, "betweenness": 20}
         self.keyword = keyword
         self.timestamp = timestamp
+        self.nonorg = nonorg
 
     # Query Profiles #
     def set_profiles(self, min_posts=0):
@@ -71,15 +150,17 @@ class DomainDataSet:
             if key in weights:
                 df['contribution'] += df[key + '_trans'] * weights[key]
 
-        contribution = df['contribution']
-        contribution_perc = max_min_normalize(contribution) * 100
-        contribution_perc = np.sqrt(contribution_perc) * 10.0
-        contribution_perc[contribution_perc > 100] = 100
+        # 10个人以上才执行变量变换操作
+        if len(df) >= 10:
+            contribution = df['contribution']
+            contribution_perc = max_min_normalize(contribution) * 100
+            contribution_perc = np.sqrt(contribution_perc) * 10.0
+            contribution_perc[contribution_perc > 100] = 100
 
-        df['contribution'] = contribution_perc
+            df['contribution'] = contribution_perc
 
         self.contributions = df.sort_values(['contribution'], ascending=[False])
-        #self.contributions.describe(exclude=[np.object]).astype(np.int64).T
+        # self.contributions.describe(exclude=[np.object]).astype(np.int64).T
 
     # Generate Links #
     def set_links(self, follow=False, max_relations=99):
@@ -87,17 +168,20 @@ class DomainDataSet:
 
         relations = []
         for p in self.profiles:
-            relations.extend(
-                generate_relation(filters, p["managers"], config.RELA_BLACK_LIST, target=p["username"], role='managers', ))
-            relations.extend(
-                generate_relation(filters, p["reports"], config.RELA_BLACK_LIST, source=p["username"], role='reports'))
+            if not self.nonorg:
+                relations.extend(generate_relation(filters, p["managers"], config.RELA_BLACK_LIST, target=p["username"],
+                                                   role='managers', ))
+                relations.extend(generate_relation(filters, p["reports"], config.RELA_BLACK_LIST, source=p["username"],
+                                                   role='reports'))
             if follow:
-                generate_relation(relations, filters, p["followers"], config.RELA_BLACK_LIST, target=p["username"],
-                                  role='followers',
-                                  ban=True, max_relations=max_relations)
-                generate_relation(relations, filters, p["following"], config.RELA_BLACK_LIST, source=p["username"],
-                                  role='following',
-                                  ban=True, max_relations=max_relations)
+                relations.extend(
+                    generate_relation(relations, filters, p["followers"], config.RELA_BLACK_LIST, target=p["username"],
+                                      role='followers',
+                                      ban=True, max_relations=max_relations))
+                relations.extend(
+                    generate_relation(relations, filters, p["following"], config.RELA_BLACK_LIST, source=p["username"],
+                                      role='following',
+                                      ban=True, max_relations=max_relations))
 
         print('relations:', len(relations))
 
@@ -168,49 +252,60 @@ where post.recency <= '{self.timestamp}'
 
     # Analyze Social Network #
     def social_analysis(self):
-        g = nx.Graph(name='social-network')
-        for item in self.links:
-            g.add_edge(item['source'], item['target'])
+        if len(self.links) > 0:
+            g = nx.Graph(name='social-network')
+            for item in self.links:
+                g.add_edge(item['source'], item['target'])
 
-        degree = nx.degree_centrality(g)
-        closeness = nx.closeness_centrality(g)
-        betweenness = nx.betweenness_centrality(g)
+            degree = nx.degree_centrality(g)
+            closeness = nx.closeness_centrality(g)
+            betweenness = nx.betweenness_centrality(g)
 
-        print('social graph nodes:', len(g.nodes))
+            print('social graph nodes:', len(g.nodes))
 
-        nx_list = []
-        num_nodes = len(g.nodes)
+            nx_list = []
+            num_nodes = len(g.nodes)
 
-        for name in g.nodes:
-            node = dict()
-            node['username'] = name
-            node['degree'] = degree[name] * num_nodes
-            node['closeness'] = closeness[name] * num_nodes
-            node['betweenness'] = betweenness[name] * num_nodes
-            nx_list.append(node)
+            for name in g.nodes:
+                node = dict()
+                node['username'] = name
+                node['degree'] = degree[name] * num_nodes
+                node['closeness'] = closeness[name] * num_nodes
+                node['betweenness'] = betweenness[name] * num_nodes
+                nx_list.append(node)
 
-        df_links = DataFrame(nx_list)
-        df = self.contributions
-        df = merge(df, df_links, on='username', how='left')
-        df = df.where(df.notnull(), 0)
-        self.contributions = df
+            df_links = DataFrame(nx_list)
+            df = self.contributions
+            df = merge(df, df_links, on='username', how='left')
+            df = df.where(df.notnull(), 0)
+            self.contributions = df
 
-        box = plt.boxplot(df['closeness'][df['closeness'] > 0])
-        closeness_min = box['whiskers'][0].get_ydata().min()
-        closeness_max = box['whiskers'][1].get_ydata().max()
-        closeness = df['closeness'][(df['closeness'] >= closeness_min) & (df['closeness'] <= closeness_max)]
-        self.thresholds["closeness"] = closeness.max() - 1. * closeness.std()
-        print("closeness threshold:", self.thresholds["closeness"])
+            box = plt.boxplot(df['closeness'][df['closeness'] > 0])
+            closeness_min = box['whiskers'][0].get_ydata().min()
+            closeness_max = box['whiskers'][1].get_ydata().max()
+            closeness = df['closeness'][(df['closeness'] >= closeness_min) & (df['closeness'] <= closeness_max)]
+            self.thresholds["closeness"] = max(self.thresholds["closeness"], closeness.max() - 2. * closeness.std())
+            print("closeness threshold:", self.thresholds["closeness"])
 
-        betweenness = df['betweenness'][df['betweenness'] > 0]
-        box = plt.boxplot(betweenness)
-        self.thresholds["betweenness"] = box['fliers'][0].get_ydata().min()
-        print("betweenness threshold:", self.thresholds["betweenness"])
+            betweenness = df['betweenness'][df['betweenness'] > 0]
+            box = plt.boxplot(betweenness)
+            if box['fliers'][0].get_ydata().any():
+                self.thresholds["betweenness"] = max(self.thresholds["betweenness"], box['fliers'][0].get_ydata().min())
+            else:
+                self.thresholds["betweenness"] = max(self.thresholds["betweenness"],
+                                                     box['whiskers'][1].get_ydata().max())
+            print("betweenness threshold:", self.thresholds["betweenness"])
 
-        degree = df['degree'][df['degree'] > 0]
-        box = plt.boxplot(degree)
-        self.thresholds["degree"] = box['fliers'][0].get_ydata().min()
-        print("degree threshold:", self.thresholds["degree"])
+            degree = df['degree'][df['degree'] > 0]
+            box = plt.boxplot(degree)
+            self.thresholds["degree"] = max(self.thresholds["degree"], box['whiskers'][1].get_ydata().max())
+            print("degree threshold:", self.thresholds["degree"])
+        else:
+            df = self.contributions
+            df["degree"] = 0
+            df["closeness"] = 0
+            df["betweenness"] = 0
+            self.contributions = df
 
     # Generate Nodes #
     def set_nodes(self):
@@ -229,13 +324,14 @@ where post.recency <= '{self.timestamp}'
                 node['name'] = p["username"]
                 node['username'] = p["username"]
                 node['displayname'] = p["displayname"]
+                node['gender'] = p["gender"]
                 node['avatar'] = p["avatar"]
                 node['boardarea'] = p["boardarea"]
                 node['functionalarea'] = p["functionalarea"]
                 node['costcenter'] = p["costcenter"]
                 node['officelocation'] = p["officelocation"]
                 node['localinfo'] = p["localinfo"]
-                if p["localinfo"]:
+                if p["localinfo"] and len(str.split(p["localinfo"], '/')) > 1:
                     node['region'] = str.split(p["localinfo"], '/')[0]
                     node['city'] = str.split(p["localinfo"], '/')[1]
                 else:
@@ -257,7 +353,7 @@ where post.recency <= '{self.timestamp}'
 
                 node['networktype'] = get_people_network_type(item, self.thresholds)
 
-                #node['category'] = 'None'
+                # node['category'] = 'None'
 
                 nodes.append(node)
 
@@ -269,7 +365,12 @@ where post.recency <= '{self.timestamp}'
     # Export DataSet #
     def export_dataset(self):
         result = {"nodes": self.nodes, "links": self.links}
-        with open(f"./cache/dataset-{self.keyword}-{self.timestamp}.json", 'w',
+        if self.nonorg:
+            json_file_path = f"./cache/dataset-{self.keyword.lower()}-{str(self.timestamp)}-nonorg.json"
+        else:
+            json_file_path = f"./cache/dataset-{self.keyword.lower()}-{str(self.timestamp)}.json"
+
+        with open(json_file_path, 'w',
                   encoding='utf-8') as json_file:
             json.dump(result, json_file, ensure_ascii=False)
 

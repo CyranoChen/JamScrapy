@@ -1,16 +1,19 @@
 import json
 import ast
 import datetime
+import config
+import time
+import pandas as pd
 
 from sqlalchemy import create_engine, text
-
-import config
+from utils import month_get
+from entity import DomainDataSet, CommunityStructure
 
 
 def generate_people_cache():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-    sql = f'''select username, displaynameformatted as displayname, avatar, profileurl, boardarea, functionalarea, 
+    sql = f'''select username, displaynameformatted as displayname, gender, avatar, profileurl, boardarea, functionalarea, 
             costcenter, officelocation, localinfo, email, mobile, managers, reports
             from people_profile where username in (select distinct jam_post.username from jam_post)'''
 
@@ -24,6 +27,7 @@ def generate_people_cache():
             node = dict()
             node["username"] = p.username
             node["displayname"] = p.displayname
+            node["gender"] = p.gender
             node["avatar"] = p.avatar
             node["profileurl"] = p.profileurl
             node["boardarea"] = p.boardarea
@@ -32,7 +36,7 @@ def generate_people_cache():
             node["officelocation"] = p.officelocation
             node["localinfo"] = p.localinfo
             node["email"] = p.email
-            node["mobile"]  = p.mobile
+            node["mobile"] = p.mobile
             node["managers"] = p.managers
             node["reports"] = p.reports
 
@@ -106,7 +110,9 @@ def get_meta_data(domain):
     meta_data['jam_posts'] = int(jam_posts)
     print('jam_posts:', jam_posts)
 
-    sql = "select recency from jam_post where keyword = :domain and recency is not null order by recency desc limit 1"
+    sql = '''select post.recency from jam_people_from_post people inner join jam_post post on people.postid = post.id 
+             where people.keyword = :domain and post.keyword= :domain and post.recency is not null 
+             order by post.recency desc limit 1'''
     result = engine.execute(text(sql), domain=domain).fetchall()
     if len(result) > 0:
         recency = result[0][0]
@@ -121,7 +127,9 @@ def get_meta_data(domain):
         meta_data['jam_posts_end_recency'] = None
     print('jam_posts_end_date:', meta_data['jam_posts_end_date'], meta_data['jam_posts_end_recency'])
 
-    sql = "select recency from jam_post where keyword = :domain and recency is not null order by recency limit 1"
+    sql = '''select post.recency from jam_people_from_post people inner join jam_post post on people.postid = post.id 
+             where people.keyword = :domain and post.keyword= :domain and post.recency is not null 
+             order by post.recency limit 1'''
     result = engine.execute(text(sql), domain=domain).fetchall()
     if len(result) > 0:
         recency = result[0][0]
@@ -174,14 +182,101 @@ def get_last_timespot_by_domain(domain):
 
     domain_meta = cache_meta_data[domain]
 
-    if domain_meta:
+    if domain_meta and domain_meta["jam_posts_end_recency"]:
         return int(domain_meta["jam_posts_end_recency"])
     else:
         return None
 
 
+def get_datetime_by_domain(domain):
+    with open(config.CACHE_META_DATA) as json_file:
+        cache_meta_data = json.load(json_file)
+
+    domain_meta = cache_meta_data[domain]
+
+    if domain_meta:
+        return str(domain_meta["jam_posts_start_date"]), str(domain_meta["jam_posts_end_date"])
+    else:
+        return None, None
+
+
+def generate_all_cache():
+    for domain in config.DOMAINS:
+        print(f"generating cache of {domain}")
+        counts_list = []
+        last_timespot = get_last_timespot_by_domain(domain)
+        start_date, end_date = get_datetime_by_domain(domain)
+
+        if start_date is not None and end_date is not None and last_timespot is not None:
+            start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+            end_date = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+
+            print(last_timespot)
+            nodes_count, links_count, posts_count = generate_cache(domain, last_timespot)
+            counts_list.append({"month": datetime.datetime.fromtimestamp(int(last_timespot)).strftime('%Y-%m'),
+                                "nodes": int(nodes_count),
+                                "links": int(links_count),
+                                "posts": int(posts_count)})
+
+            end_date_first_day = datetime.datetime(end_date.year, end_date.month, 1)
+            date = end_date_first_day
+            while date >= start_date:
+                timespot = int(time.mktime(time.strptime(date.strftime("%Y-%m-%d"), '%Y-%m-%d')))
+
+                print(date.strftime("%Y-%m-%d"), timespot)
+                nodes_count, links_count, posts_count = generate_cache(domain, timespot)
+
+                date = month_get(date)  # 上个月
+                counts_list[-1]['posts'] -= posts_count # 去除累计数，只记录增量
+                counts_list.append(
+                    {"month": date.strftime("%Y-%m"),
+                     "nodes": int(nodes_count),
+                     "links": int(links_count),
+                     "posts": int(posts_count)})
+                print(counts_list[-1])
+
+                df = pd.DataFrame(counts_list)
+                df = df.set_index("month")
+                df.to_csv("./cache/dataset-{}-statistic.csv".format(domain), encoding='utf-8')
+
+
+def generate_cache(domain, timespot):
+    # Domain Dataset Generate
+    ds = DomainDataSet(domain, timespot)
+
+    ds.set_profiles()
+
+    if len(ds.profiles) == 0:
+        return 0, 0, 0
+
+    ds.set_contributions()
+    ds.set_links()
+    ds.social_analysis()
+    ds.set_nodes()
+    ds.export_dataset()
+
+    # Community Structure
+    ds = CommunityStructure(domain, timespot)
+    ds.set_nodes_with_links()
+    ds.community_analysis()
+    ds.set_node_community_attr()
+
+    final_result = ds.export_dataset()
+
+    posts_count = 0
+
+    if len(ds.nodes) > 0:
+        for node in ds.nodes:
+            posts_count += int(node["posts"])
+
+    print("nodes", len(final_result["nodes"]), "links", len(final_result["links"]))
+
+    return len(final_result["nodes"]), len(final_result["links"]), posts_count
+
+
 if __name__ == '__main__':
     generate_people_cache()
     generate_meta_data()
+    #generate_all_cache()
 
     print("done")
