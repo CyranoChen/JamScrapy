@@ -1,0 +1,23 @@
+.control-sidebar-custom {
+    display: none;
+    background: #343a40;
+    color: #000000;
+    width: 440px;
+    position: absolute;
+    top: 57px;
+    z-index: 800;
+    right: 0;
+    overflow: scroll;
+}
+
+.pnl-api-describe {
+    cursor: pointer;
+}
+
+.pnl-api-debug {
+    display: none;
+}
+
+.pnl-api-debug .comment-text {
+    margin-left: 10px;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus | Dashboard</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+    <link href="../dist/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"><i class="fa fa-tachometer"></i> <b>Anlyzer Implementation</b>
+                                (Research)</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="./project.html">Projects</a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Info boxes -->
+                    <div class="row" id="pnl-kpi">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-info elevation-1"><i class="fa fa-eercast"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">SCALE</span>
+                                    <span class="info-box-number">
+                                        45
+                                        <small>%</small>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-success elevation-1"><i class="fa fa-medkit"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">HEALTH</span>
+                                    <span class="info-box-number">85 <small>%</small></span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-ravelry"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">DEGREE</span>
+                                    <span class="info-box-number"><small>0.</small>65</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix hidden-md-up"></div>
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-link"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">BETWEENNESS</span>
+                                    <span class="info-box-number"><small>0.</small>76</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-crosshairs"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">CLOSENESS</span>
+                                    <span class="info-box-number"><small>0.</small>42</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <div class="info-box mb-3">
+                                <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-connectdevelop"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">DENSITY</span>
+                                    <span class="info-box-number"><small>0.</small>89</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-6">
+                            <!-- MAP & BOX PANE -->
+                            <div class="card">
+                                <div class="card-header  d-flex p-0">
+                                    <h3 class="card-title p-3"><i class="fa fa-area-chart"></i> KPI Comparision</h3>
+
+                                    <ul class="nav nav-pills ml-auto p-2">
+                                        <li class="nav-item"><a class="nav-link" href="#tab_1" data-toggle="tab">Line</a></li>
+                                        <li class="nav-item"><a class="nav-link active" href="#tab_2" data-toggle="tab">Radar</a></li>
+                                    </ul>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div id="container-radar" style="height: 300px"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fa fa-handshake-o"></i> Collaboration Pattern</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div id="container-pattern" style="height: 100px"></div>
+                                    <div class="row">
+                                        <div class="col-md-3 text-center">
+                                            13
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-3 text-center">
+                                            13
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-3 text-center">
+                                            13
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-md-3 text-center">
+                                            13
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <!-- PRODUCT LIST -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fa fa-list-ol"></i> Counts</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-widget="remove">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h6>Total Engageged Members</h6>
+                                            <ul>
+                                                <li>Broker</li>
+                                                <li>Connectors</li>
+                                                <li>Influencer</li>
+                                                <li>Soloists</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6>Key People</h6>
+                                            <ul>
+                                                <li>People 1</li>
+                                                <li>People 1</li>
+                                                <li>People 1</li>
+                                                <li>People 1</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <h6>2 Way Relationships</h6>
+                                            <input type="text" class="knob" value="50" data-width="90" data-height="90"
+                                                data-fgColor="#39CCCC">
+                                            <div class="knob-label hide">CPU</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title"><i class="fa fa-life-ring"></i> Risk Indicator and Recommendations</h5>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fa fa-wrench"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                                <a href="#" class="dropdown-item">Action</a>
+                                                <a href="#" class="dropdown-item">Another action</a>
+                                                <a href="#" class="dropdown-item">Something else here</a>
+                                                <a class="dropdown-divider"></a>
+                                                <a href="#" class="dropdown-item">Separated link</a>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-tool" data-widget="remove">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="info-box bg-gray">
+                                                        <span class="info-box-icon"><i class="fa fa-link"></i></span>
+
+                                                        <div class="info-box-content">
+                                                            <span class="info-box-text">Number of connections</span>
+                                                            <span class="info-box-number text-center">41</span>
+                                                        </div>
+                                                        <!-- /.info-box-content -->
+                                                    </div>
+                                                    <!-- /.info-box -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="info-box bg-gray">
+                                                        <span class="info-box-icon"><i class="fa fa-users"></i></span>
+
+                                                        <div class="info-box-content">
+                                                            <span class="info-box-text">Average number of connections
+                                                                per person</span>
+                                                            <span class="info-box-number text-center">6</span>
+                                                        </div>
+                                                        <!-- /.info-box-content -->
+                                                    </div>
+                                                    <!-- /.info-box -->
+                                                </div>
+                                            </div>
+                                            <div id="container-heatmap" style="height: 300px"></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="container-cross-group" style="height: 350px"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+
+                                </div>
+                                <!-- ./card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="../plugins/echarts/echarts.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="../plugins/knob/jquery.knob.js"></script>
+    <!-- ionicons -->
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+
+    <script src="../dist/js/pages/dashboard.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#footer").load("../shared/footer.html");
+
+        $(function () {
+
+            $("#sidebar").load("../shared/sidebar.html", function () {
+                $(".sidebar li.project-page>a").addClass("active");
+                $(".sidebar li.domain-list").removeClass("menu-open").find("a").removeClass("active");
+            });
+
+
+            /* jQueryKnob */
+            $('.knob').knob();
+
+        });
+    </script>
+</body>
+
+</html>

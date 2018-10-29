@@ -18,74 +18,74 @@
             <input id="cb-fix-location" type="checkbox" class="mr-1">
             <span>Fix the location of nodes</span>
         </div>
-        <div class="input-group mb-3 config config-n">
+        <!-- <div class="input-group mb-3 config config-n" style="display:none">
             <div class="input-group-prepend">
                 <span class="input-group-text">width</span>
             </div>
             <input id="tb-canvas-width" type="text" class="form-control" placeholder="1600" disabled>
         </div>
-        <div class="input-group mb-3 config config-n">
+        <div class="input-group mb-3 config config-n" style="display:none">
             <div class="input-group-prepend">
                 <span class="input-group-text">height</span>
             </div>
             <input id="tb-canvas-height" type="text" class="form-control" placeholder="800" disabled>
         </div>
-        <div class="input-group mb-3 config config-f">
+        <div class="input-group mb-3 config config-f" style="display:none">
             <div class="input-group-prepend">
                 <span class="input-group-text">Edge Length</span>
             </div>
             <input id="tb-force-edgeLength" type="text" class="form-control" placeholder="20" disabled>
         </div>
-        <div class="input-group mb-3 config config-f">
+        <div class="input-group mb-3 config config-f" style="display:none">
             <div class="input-group-prepend">
                 <span class="input-group-text">Repulsion</span>
             </div>
             <input id="tb-force-repulsion" type="text" class="form-control" placeholder="50" disabled>
         </div>
-        <div class="input-group mb-3 config config-f">
+        <div class="input-group mb-3 config config-f" style="display:none">
             <div class="input-group-prepend">
                 <span class="input-group-text">Gravity</span>
             </div>
             <input id="tb-force-gravity" type="text" class="form-control" placeholder="0.05" disabled>
-        </div>
+        </div> -->
     </div>
     <div class="config-group">
         <h6>Group By</h6>
         <div class="form-group mb-3">
             <select class="form-control" id="ddl-groupby">
-                <option value="networktype">Network Type</option>
-                <option value="boardarea">Board Area</option>
-                <option value="functionalarea">Functional Area</option>
-                <option value="region">Region</option>
-                <option value="city">City</option>
-                <option value="costcenter">Coster Center</option>
+                <option value="networktype">networktype</option>
+                <option value="boardarea">boardarea</option>
+                <option value="functionalarea">functionalarea</option>
+                <option value="region">region</option>
+                <option value="city">city</option>
+                <option value="costcenter">costcenter</option>
+                <option value="gender">gender</option>
+                <option value="community">community</option>
             </select>
         </div>
     </div>
     <div class="config-dataset">
-        <h6>People Density</h6>
+        <h6>Modularity Filter</h6>
         <div class="mb-3">
-            <input id="range-node" type="text" name="range-node" value="">
+            <input id="range-community" type="text" name="range-community" value="" />
         </div>
-        <h6>Connection Density</h6>
+        <h6>Contribution Filter</h6>
         <div class="mb-3">
-            <input id="range-edge" type="text" name="range-edge" value="">
+            <input id="range-node" type="text" name="range-node" value="" />
         </div>
-        <h6>Time Explorer</h6>
+        <h6>Relational Density</h6>
         <div class="mb-3">
-            <input id="range-time" type="text" name="range-time" value="">
+            <input id="range-edge" type="text" name="range-edge" value="" />
         </div>
         <h6>Data Range</h6>
         <div class="mb-3 input-group">
-            <div class="input-group-prepend">
+            <div id="btn-time-travel" class="input-group-prepend" style="cursor: pointer">
                 <span class="input-group-text">
                     <i class="fa fa-calendar"></i>
                 </span>
             </div>
-            <input id="tb-timestamp" type="text" name="tb-timestamp" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask
-            />
+            <input id="tb-timestamp" type="text" name="tb-timestamp" class="form-control" />
         </div>
     </div>
 </div>
-
 <!-- /.control-sidebar -->

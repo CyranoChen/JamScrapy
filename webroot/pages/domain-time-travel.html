@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div id="contentheader" class="content-header"></div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div id="container"></div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="../plugins/echarts/echarts.min.js"></script>
+
+    <script src="../dist/js/pages/bar-lib.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#navbar").load("../shared/navbar.html");
+            $("#footer").load("../shared/footer.html");
+
+            $("#container").css("height", document.body.clientHeight -
+                    $(".main-header").outerHeight() - $(".content-header").outerHeight() - 100)
+                .click(function () {
+                    $('body').removeClass('control-sidebar-slide-open');
+                });
+
+            if (querystring('domain') != undefined) {
+                var keyword = querystring('domain').replace("+", "-");
+                $("#sidebar").load("../shared/sidebar.html", function () {
+                    $(".sidebar li.domain-" + keyword + ">a").addClass("active");
+                });
+
+                var dom = document.getElementById("container");
+                var chart = echarts.init(dom);
+                chart.showLoading();
+
+                $("#contentheader").load("../shared/contentheader.html");
+
+                init_chart(keyword, chart, debug = true);
+            }
+        });
+    </script>
+</body>
+
+</html>

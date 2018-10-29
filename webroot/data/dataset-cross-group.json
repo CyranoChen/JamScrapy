@@ -1,0 +1,92 @@
+{
+    "categories": [{
+        "name": "Marketing",
+        "itemStyle": {
+            "color": "#6e7074"
+        }
+    }, {
+        "name": "Sales",
+        "itemStyle": {
+            "color": "#b9a39b"
+        }
+    }, {
+        "name": "Communication",
+        "itemStyle": {
+            "color": "#78bac2"
+        }
+    }, {
+        "name": "Service",
+        "itemStyle": {
+            "color": "#c13531"
+        }
+    }, {
+        "name": "Development",
+        "itemStyle": {
+            "color": "#2e4554"
+        }
+    }],
+    "nodes": [{
+        "name": "Marketing",
+        "value": 15,
+        "x": 70,
+        "y": 200,
+        "category": "Marketing"
+    }, {
+        "name": "Sales",
+        "value": 5,
+        "x": 110,
+        "y": 200,
+        "category": "Sales"
+    }, {
+        "name": "Communication",
+        "value": 12,
+        "x": 160,
+        "y": 200,
+        "category": "Communication"
+    }, {
+        "name": "Service",
+        "value": 10,
+        "x": 210,
+        "y": 200,
+        "category": "Service"
+    }, {
+        "name": "Development",
+        "value": 12,
+        "x": 250,
+        "y": 200,
+        "category": "Development"
+    }],
+    "links": [{
+        "source": "Marketing",
+        "target": "Sales",
+        "weight": 10
+    }, {
+        "source": "Development",
+        "target": "Marketing",
+        "weight": 7
+    }, {
+        "source": "Marketing",
+        "target": "Service",
+        "weight": 2
+    }, {
+        "source": "Communication",
+        "target": "Marketing",
+        "weight": 8
+    }, {
+        "source": "Sales",
+        "target": "Communication",
+        "weight": 1
+    }, {
+        "source": "Service",
+        "target": "Sales",
+        "weight": 2
+    }, {
+        "source": "Service",
+        "target": "Communication",
+        "weight": 1
+    }, {
+        "source": "Communication",
+        "target": "Development",
+        "weight": 9
+    }]
+}

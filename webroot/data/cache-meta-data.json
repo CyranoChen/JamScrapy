@@ -1,1 +1,134 @@
-{"blockchain": {"spider_search_pages": 1149, "spider_posts": 24445, "spider_fetch_posts": 22, "jam_posts": 19823, "jam_posts_end_date": "2018-07-13", "jam_posts_end_recency": 1531497358, "jam_posts_start_date": "2014-03-10", "jam_posts_start_recency": 1394447966, "people_creators": 4621, "people_participators": 5238}, "chatbot": {"spider_search_pages": 237, "spider_posts": 4470, "spider_fetch_posts": 4, "jam_posts": 4175, "jam_posts_end_date": "2018-07-12", "jam_posts_end_recency": 1531394516, "jam_posts_start_date": "2013-04-25", "jam_posts_start_recency": 1366880559, "people_creators": 1769, "people_participators": 1999}, "innovation": {"spider_search_pages": 11488, "spider_posts": 152535, "spider_fetch_posts": 213, "jam_posts": 145284, "jam_posts_end_date": "2018-08-07", "jam_posts_end_recency": 1533587377, "jam_posts_start_date": "2010-07-08", "jam_posts_start_recency": 1278541613, "people_creators": 15005, "people_participators": 17253}, "intelligent+enterprise": {"spider_search_pages": 451, "spider_posts": 8828, "spider_fetch_posts": 0, "jam_posts": 8364, "jam_posts_end_date": "2018-08-06", "jam_posts_end_recency": 1533556285, "jam_posts_start_date": "2013-02-08", "jam_posts_start_recency": 1360289519, "people_creators": 2545, "people_participators": 2944}, "cloud": {"spider_search_pages": 22247, "spider_posts": 0, "spider_fetch_posts": 286588, "jam_posts": 0, "jam_posts_end_date": null, "jam_posts_end_recency": null, "jam_posts_start_date": null, "jam_posts_start_recency": null, "people_creators": 0, "people_participators": 0}, "crm": {"spider_search_pages": 8954, "spider_posts": 115843, "spider_fetch_posts": 74, "jam_posts": 0, "jam_posts_end_date": null, "jam_posts_end_recency": null, "jam_posts_start_date": null, "jam_posts_start_recency": null, "people_creators": 0, "people_participators": 0}}
+{
+    "sap.io": {
+        "spider_search_pages": 328,
+        "spider_posts": 3637,
+        "spider_fetch_posts": 1,
+        "jam_posts": 3365,
+        "jam_posts_end_date": "2018-10-11",
+        "jam_posts_end_recency": 1539268604,
+        "jam_posts_start_date": "2015-01-22",
+        "jam_posts_start_recency": 1421924840,
+        "people_creators": 630,
+        "people_participators": 934
+    },
+    "gdpr": {
+        "spider_search_pages": 1219,
+        "spider_posts": 15350,
+        "spider_fetch_posts": 1,
+        "jam_posts": 14003,
+        "jam_posts_end_date": "2018-10-14",
+        "jam_posts_end_recency": 1539517757,
+        "jam_posts_start_date": "2014-06-20",
+        "jam_posts_start_recency": 1403285374,
+        "people_creators": 3653,
+        "people_participators": 4527
+    },
+    "healthcare": {
+        "spider_search_pages": 2684,
+        "spider_posts": 34089,
+        "spider_fetch_posts": 13,
+        "jam_posts": 32669,
+        "jam_posts_end_date": "2018-10-13",
+        "jam_posts_end_recency": 1539448164,
+        "jam_posts_start_date": "2010-07-08",
+        "jam_posts_start_recency": 1278541613,
+        "people_creators": 6022,
+        "people_participators": 6419
+    },
+    "chatbot": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 4175,
+        "jam_posts_end_date": "2018-07-12",
+        "jam_posts_end_recency": 1531394516,
+        "jam_posts_start_date": "2013-04-25",
+        "jam_posts_start_recency": 1366880559,
+        "people_creators": 1769,
+        "people_participators": 1999
+    },
+    "business+one": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 11065,
+        "jam_posts_end_date": "2018-08-31",
+        "jam_posts_end_recency": 1535739931,
+        "jam_posts_start_date": "2012-01-26",
+        "jam_posts_start_recency": 1327588626,
+        "people_creators": 2921,
+        "people_participators": 2999
+    },
+    "bydesign": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 20877,
+        "jam_posts_end_date": "2018-08-30",
+        "jam_posts_end_recency": 1535659623,
+        "jam_posts_start_date": "2011-12-05",
+        "jam_posts_start_recency": 1323069048,
+        "people_creators": 4788,
+        "people_participators": 4812
+    },
+    "blockchain": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 19823,
+        "jam_posts_end_date": "2018-07-13",
+        "jam_posts_end_recency": 1531497358,
+        "jam_posts_start_date": "2014-03-10",
+        "jam_posts_start_recency": 1394447966,
+        "people_creators": 4621,
+        "people_participators": 5238
+    },
+    "intelligent+enterprise": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 8364,
+        "jam_posts_end_date": "2018-08-06",
+        "jam_posts_end_recency": 1533556285,
+        "jam_posts_start_date": "2013-02-08",
+        "jam_posts_start_recency": 1360289519,
+        "people_creators": 2545,
+        "people_participators": 2944
+    },
+    "cloud": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 0,
+        "jam_posts_end_date": null,
+        "jam_posts_end_recency": null,
+        "jam_posts_start_date": null,
+        "jam_posts_start_recency": null,
+        "people_creators": 0,
+        "people_participators": 0
+    },
+    "crm": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 106447,
+        "jam_posts_end_date": "2018-06-14",
+        "jam_posts_end_recency": 1528982270,
+        "jam_posts_start_date": "2010-04-27",
+        "jam_posts_start_recency": 1272387436,
+        "people_creators": 12752,
+        "people_participators": 14257
+    },
+    "innovation": {
+        "spider_search_pages": 0,
+        "spider_posts": 0,
+        "spider_fetch_posts": 0,
+        "jam_posts": 145284,
+        "jam_posts_end_date": "2018-08-06",
+        "jam_posts_end_recency": 1533587377,
+        "jam_posts_start_date": "2010-07-08",
+        "jam_posts_start_recency": 1278541613,
+        "people_creators": 15006,
+        "people_participators": 17254
+    }
+}

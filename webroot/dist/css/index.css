@@ -1,114 +1,227 @@
-#pnl-context {
-    position: absolute;
-    z-index: 100;
-    left: 80px;
-    bottom: 80px;
-    width: 280px;
-}
-
-.col-md-12 {
-    margin: 10px;
-    margin-bottom: 50px;
-}
-
-.card {
-    opacity: 0.8;
-}
-
-.card .card-header {
-    border-bottom: 1px solid #000;
-}
-
-.card .card-title {
-    margin: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1.5;
-}
-
-.card .card-body {
-    padding: 5px;
-}
-
-.card .card-body ul {
-    padding: 0;
-}
-
-.card i {
-    width: 30px;
-    text-align: center;
-}
-
-#pnl-context .col-md-12 h2 {
-    font-size: 24px;
-    font-weight: bolder;
-    border-bottom: 5px solid #000;
-    margin-bottom: 0;
-    cursor: pointer;
-}
-
-#pnl-context .card .card-body ul li {
-    list-style: none;
-    margin: 15px;
-}
-
-#pnl-context .card .card-body ul li a {
-    font-size: 20px;
-    font-weight: bolder;
-    color: #999;
-}
-
-#pnl-context .card .card-body ul li a:hover {
-    color: #666;
-}
-
-#pnl-context .card .card-body ul li.active a {
-    color: #000;
-    cursor: default;
-}
-
-#pnl-detail {
-    position: absolute;
-    z-index: 100;
-    right: 30px;
-    bottom: 80px;
-    width: 280px;
-}
-
-#pnl-detail  .card .card-title {
-    font-size: 18px;
-    font-weight: bolder;
-}
-
-#pnl-detail div.describe .card-body ul li {
-    font-size: 14px;
-    font-weight: bold;
-    list-style: none;
-    margin: 25px;
-}
-
-#pnl-detail div.more .card-body p {
-    font-size: 12px;
-    padding: 15px;
-}
-
-#pnl-detail div.more .card-body ul {
-    padding-left: 25px;
-}
-
-#pnl-detail div.more .card-body ul li {
-    margin: 15px 5px;
-    font-size: 12px;
-}
-
-#pnl-logo {
+#pnl-brand {
     position: absolute;
     z-index: 110;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 150px;
-    margin: auto;
-    width: 480px;
-    height: 180px;
+    bottom: 0;
+    width: 100%;
+    height: 400px;
+}
+
+#pnl-brand .logo {
+    text-align: center;
+}
+
+#pnl-brand .text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+#pnl-brand .button {
+    width: 400px;
+    margin: 80px auto;
+}
+
+#pnl-brand .button svg {
+    margin: 10px;
+}
+
+#pnl-links {
+    position: absolute;
+    z-index: 200;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100px;
+}
+
+#pnl-links .nav-link {
+    margin-top: 15px;
+    padding: 0px;
+    border-bottom: 3px solid #aaaaaa;
+}
+
+#pnl-links .nav-link a {
+    font-weight: bold;
+    font-size: 24px;
+    color: #aaaaaa;
+}
+
+#pnl-links .nav-link:hover,
+#pnl-links .nav-link.active {
+    border-bottom: 5px solid #333333;
+}
+
+#pnl-links .nav-link:hover a,
+#pnl-links .nav-link.active a {
+    color: #333333;
+}
+
+#quick-scroll {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    margin-top: -80px;
+}
+
+#quick-scroll i {
+    font-size: 60px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+#pnl-domains {
+    background: url(../img/index-bg1.png) no-repeat top right;
+    display: block;
+    height: 1300px;
+}
+
+#pnl-domains .domain {
+    width: 1000px;
+    height: 350px;
+    margin: 80px auto;
+}
+
+#pnl-domains .domain img {
+    width: 500px;
+    height: 300px;
+    border: 1px solid #ccc;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#pnl-domains .domain h3 {
+    font-size: 45px;
+    font-weight: bolder;
+    padding: 20px;
+}
+
+#pnl-domains .domain h3.detail{
+    font-size: 32px;
+}
+
+#pnl-domains .domain ul {
+    background: rgba(255, 255, 255, 0.4);
+    width: 440px;
+    float: left;
+    padding-left: 20px;
+}
+
+#pnl-domains .domain ul li {
+    list-style: none;
+    padding: 10px;
+    font-size: 16px;
+    color: #666666;
+}
+
+#pnl-domains .domain ul.padding{
+    padding-top: 15px;
+}
+
+#pnl-domains .domain ul.padding li{
+    padding: 15px 10px;
+}
+
+#pnl-domains .domain ul.detail {
+    font-size: 12px;
+}
+
+#pnl-domains .domain a {
+    margin-left: 360px;
+    color: #333333;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#pnl-domains .domain a:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+#pnl-domains .img-left img {
+    float: left;
+}
+
+#pnl-domains .img-right img {
+    float: right;
+}
+
+#pnl-bookmarks {
+    background: url(../img/index-bg2.png) no-repeat center center;
+    background-size: cover;
+    height: 1000px;
+}
+
+#pnl-bookmarks h3 {
+    text-align: center;
+    padding: 25px;
+    display: block;
+    font-size: 60px;
+    font-weight: bolder;
+}
+
+#pnl-bookmarks .discribe {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#pnl-bookmarks .examples {
+    width: 1000px;
+    height: 700px;
+    display: block;
+    margin: 50px auto;
+    background-color: #fff;
+}
+
+#pnl-bookmarks .examples .block {
+    width: 50%;
+    height: 350px;
+    float: left;
+    border: 1px solid #cccccc;
+    background-color: #f4f6f9;
+    position: relative;
+    overflow: hidden;
+}
+
+#pnl-bookmarks .examples .mask {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 350px;
+    background: rgba(0, 123, 255, 0.2);
+}
+
+#pnl-bookmarks .examples .mask svg.btn-start {
+    width: 200px;
+    height: 48px;
+    margin-top: 150px;
+}
+
+#pnl-bookmarks .examples .block .mask {
+    display: none;
+}
+
+#pnl-bookmarks .examples .block:hover .mask {
+    display: block;
+}
+
+#pnl-bookmarks .examples .block img {
+    width: 100%;
+    height: 300px;
+}
+
+#pnl-bookmarks .examples .block p {
+    text-align: center;
+    font-size: 14px;
+    color: #333333;
+    font-weight: normal;
 }
