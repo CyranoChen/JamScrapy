@@ -277,6 +277,6 @@ def generate_cache(domain, timespot):
 if __name__ == '__main__':
     generate_people_cache()
     generate_meta_data()
-    #generate_all_cache()
+    generate_all_cache()
 
     print("done")
