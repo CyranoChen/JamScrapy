@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus | Dashboard</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="card card-widget mt-3" style="width:1000px; margin: auto">
+                    <div class="card-header">
+                        <div class="user-block">
+                            <i class="fa fa-users"></i> People Engagement Trend
+                        </div>
+                        <!-- /.user-block -->
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Mark as read">
+                                <i class="fa fa-circle-o"></i></button>
+                            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-widget="remove" onclick="window.location.href='./dashboard-new.html'">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <!-- /.card-tools -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div id="container" style="position: relative">
+                            <canvas id="canvas"></canvas>
+                            <button id="event-dkom" class="btn btn-block btn-danger btn-flat" type="button"
+                                style="width: 100px; position:absolute; left: 145px; bottom: 50px">SAP d-Kom</button>
+                            <button id="event-dk" class="btn btn-block btn-outline-success btn-flat" type="button"
+                                style="width: 160px; position:absolute; right: 192px; bottom: 50px">Talking Change
+                                with <br />Darren Koch</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="pnl-news">
+                            <img class="img-fluid pad" style="width: 100%" src="../dist/img/mockup-news1.png" alt="event news">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </section>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <script src="../plugins/chartjs/Chart.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#footer").load("../shared/footer.html");
+
+        $(function () {
+            $("#sidebar").load("../shared/sidebar.html", function () {
+                $(".sidebar li.dashboard-page>a").addClass("active");
+            });
+
+            $("#container button#event-dkom").click(function () {
+                $(this).addClass("btn-danger").removeClass("btn-outline-danger");
+                $("#container button#event-dk").addClass("btn-outline-success").removeClass("btn-success");
+
+                $("#pnl-news>img").prop("src", "../dist/img/mockup-news1.png");
+            });
+
+            $("#container button#event-dk").click(function () {
+                $(this).addClass("btn-success").removeClass("btn-outline-success");
+                $("#container button#event-dkom").addClass("btn-outline-danger").removeClass("btn-danger");
+
+                $("#pnl-news>img").prop("src", "../dist/img/mockup-news2.png");
+            });
+        });
+
+        var lineChartData = {
+            labels: ['Nov 2017', 'Dec 2017', 'Jan 2018', 'Feb 2018', 'Mar 2018', 'Apr 2018', 'May 2018',
+                'Jun 2018', 'Jul 2018', 'Aug 2018', 'Sep 2018', 'Oct 2018'
+            ],
+            datasets: [{
+                label: 'Ariba',
+                borderColor: 'rgb(91, 189, 205)',
+                backgroundColor: 'rgb(91, 189, 205)', // blue+green
+                fill: false,
+                data: [
+                    0.200000, 0.220000, 0.400860, 0.322381, 0.325293, 0.451159,
+                    0.477773, 0.438351, 0.300813, 0.623372, 0.633290, 0.735825,
+                ]
+            }, {
+                label: 'Intelligent Enterprise',
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: 'rgb(255, 159, 64)', // orange
+                fill: false,
+                hidden: true,
+                data: [
+                    0.388409, 0.480215, 0.698878, 0.450173, 0.416649, 0.580091,
+                    0.548740, 0.687337, 0.553295, 0.847240, 0.892010, 0.862339
+                ]
+            }, {
+                label: 'Global Benchmark',
+                borderColor: 'rgb(108, 186, 243, 0.5)',
+                backgroundColor: 'rgb(108, 186, 243, 0.5)', // blue + opacity
+                fill: true,
+                hidden: true,
+                data: [
+                    0.346429043, 0.330076457, 0.522637125, 0.328669427, 0.340467252, 0.335866913,
+                    0.377593043, 0.398335466, 0.378308536, 0.392741919, 0.378308536, 0.392741919
+                ]
+            }]
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = Chart.Line(ctx, {
+                data: lineChartData,
+                options: {
+                    responsive: true,
+                    hoverMode: 'index',
+                    stacked: false,
+                    title: {
+                        display: false,
+                        text: 'Chart.js Line Chart - Multi Axis'
+                    },
+                    tooltips: {
+                        position: 'nearest',
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: 'left',
+                            ticks: {
+                                suggestedMin: 0.15,
+                                suggestedMax: 1
+                            }
+                        }],
+                    }
+                }
+            });
+        };
+
+        // document.getElementById('randomizeData').addEventListener('click', function () {
+        //     lineChartData.datasets.forEach(function (dataset) {
+        //         dataset.data = dataset.data.map(function () {
+        //             return randomScalingFactor();
+        //         });
+        //     });
+
+        //     window.myLine.update();
+        // });
+    </script>
+</body>
+
+</html>

@@ -21,3 +21,11 @@
 .pnl-api-debug .comment-text {
     margin-left: 10px;
 }
+
+#panel-optimate .card-body {
+    background: #eaeaea;
+}
+
+#panel-optimate .card-body .info-box{
+    display: none !important;
+}

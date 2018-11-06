@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus | Dashboard</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div id="container-mockup" style="text-align: center; background: #ecf0f6; cursor: pointer" onclick="window.location.href='./dashboard-pe.html'">
+                <img src="../dist/img/mockup_new1.png" style="width: 1350px; height: 1170px" />
+            </div>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#footer").load("../shared/footer.html");
+
+        $(function () {
+            $("#sidebar").load("../shared/sidebar.html", function () {
+                $(".sidebar li.dashboard-page>a").addClass("active");
+            });
+
+            // $("#container-mockup>img").click(function () {
+            //     //alert($(this).prop("src"));
+            //     var filename = $(this).prop("src");
+            //     var fileno = parseInt(filename.substring(filename.length - 5, filename.length - 4));
+
+            //     if (fileno <= 3) {
+            //         fileno += 1;
+            //         $(this).prop("src", "../dist/img/mockup_new" + fileno + ".png");
+            //     }
+
+            // });
+        });
+    </script>
+</body>
+
+</html>

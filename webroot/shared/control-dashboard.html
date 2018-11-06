@@ -140,7 +140,7 @@
     <div class="card card-widget">
         <div class="card-header">
             <div class="user-block">
-                <i class="fa fa-exclamation-triangle"></i> Collaboration Issues
+                <i class="fa fa-exclamation-triangle"></i> Recommendations
             </div>
             <!-- /.user-block -->
             <div class="card-tools">
@@ -154,62 +154,137 @@
             <!-- /.card-tools -->
         </div>
         <!-- /.card-header -->
-        <div class="card-body" style="display:none">
+        <div class="card-footer card-comments" id="issue-uc0">
+            <div class="card-comment" style="cursor: pointer">
+                <span class="username">
+                    <i class="fa fa-bell"></i> Key Brokers
+                    <span class="text-muted float-right">9 Brokers</span>
+                </span>
+                Simulate the impact of key broker departures and their impact on team engagement.
+            </div>
+        </div>
+        <div class="card-body" id="pnl-uc0" style="display:none">
+            <div class="attachment-block clearfix">
+                <img src="../dist/img/usercase0.png" style="width:100%;" alt="usercase1">
+            </div>
+            <!-- Social sharing buttons -->
+            <button id="btn-action" type="button" class="btn btn-success btn-sm">
+                <i class="fa fa-thumbs-o-up"></i> Show</button>
+            <button id="btn-ignore" type="button" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Hide</button>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer card-comments" id="issue-uc1">
+            <div class="card-comment" style="cursor: pointer">
+                <span class="username">
+                    <i class="fa fa-bell"></i> Optimize Teams
+                    <span class="text-muted float-right">141 People Impacted</span>
+                </span>
+                Enhance collaboration by strategically building bridges between collaboration silos.
+            </div>
+        </div>
+        <div class="card-body" id="pnl-uc1" style="display:none">
             <div class="info-box bg-danger">
                 <span class="info-box-icon"><i class="fa fa-bell"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Silo Detected</span>
+                    <span class="info-box-text">Suggested Team Adjustments</span>
                     <span class="info-box-number">141 People Impacted</span>
                 </div>
                 <!-- /.info-box-content -->
                 <hr />
 
             </div>
+            <div class="attachment-block clearfix">
+                <img src="../dist/img/usercase1.png" style="width:100%;" alt="usercase1">
+            </div>
             <!-- /.info-box -->
-            <p>
-                Sales and Marketing Department indicates silo pattern. Your historical data indicates that
-                a closer collaboration leads to success. Enhance the collaboration by building bridges.</p>
+            <p>Detecting changes and making suggestions of data silos or possible attrition.</p>
 
             <!-- Social sharing buttons -->
             <button id="btn-action" type="button" class="btn btn-success btn-sm">
                 <i class="fa fa-thumbs-o-up"></i> Take Action</button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-ban"></i> Ignore</button>
-            <span class="float-right text-muted">
+            <button id="btn-ignore" type="button" class="btn btn-default btn-sm"><i class="fa fa-ban"></i> Ignore</button>
+            <span class="float-right text-muted hide">
                 <span class="badge bg-success">Betweenness 0.3 <i class="fa fa-long-arrow-up"></i></span>
                 <span class="badge bg-success">Health 20% <i class="fa fa-long-arrow-up"></i></span>
             </span>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer card-comments">
+        <div class="card-footer card-comments hide" id="issue-uc2">
             <div class="card-comment" style="cursor: pointer">
                 <span class="username">
-                    <i class="fa fa-bell"></i> Silo Detected
-                    <span class="text-muted float-right">141 People Impacted</span>
+                    <i class="fa fa-bell"></i> Simulation
+                    <span class="text-muted float-right">in next 6 months</span>
                 </span>
-                Sales and Marketing Department indicates silo pattern. Your historical data indicates that
-                a closer collaboration leads to success. Enhance the collaboration by building bridges.
-            </div>
-            <div class="card-comment">
-                <span class="username">
-                    <i class="fa fa-bell"></i> Low Network Density
-                    <span class="text-muted float-right">120 People Involved</span>
-                </span>
-                Network Density within Development Team is below average. Your historical data indicates a
-                high
-                collaboration density correlates to success. Foster intra team communication
-            </div>
-            <!-- /.card-comment -->
-            <div class="card-comment">
-                <span class="username">
-                    <i class="fa fa-bell"></i> Soloist Ratio
-                    <span class="text-muted float-right">120 People Involved</span>
-                </span>
-                The Soloist Ratio in the team is unhealthy. Your historical data indicates impact to
-                business
-                outcomes. Strengthen the connection between members in the team.
+                ? Network Density within Development Team is below average. Your historical data indicates a
+                high collaboration density correlates to success. Foster intra team communication
             </div>
         </div>
+        <div class="card-body" id="pnl-uc2" style="display:none">
+            <div class="info-box bg-danger">
+                <span class="info-box-icon"><i class="fa fa-bell"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Simulation</span>
+                    <span class="info-box-number">in next 6 months</span>
+                </div>
+                <!-- /.info-box-content -->
+                <hr />
+            </div>
+            <div class="attachment-block clearfix">
+                <img src="../dist/img/usercase2.png" style="width:100%;" alt="dashboard">
+            </div>
+            <!-- /.info-box -->
+            <p>Simulating outcomes and alerting to risks.</p>
+
+            <!-- Social sharing buttons -->
+            <button id="btn-action" type="button" class="btn btn-success btn-sm">
+                <i class="fa fa-thumbs-o-up"></i> Simulate</button>
+            <button id="btn-ignore" type="button" class="btn btn-default btn-sm"><i class="fa fa-ban"></i> Restore</button>
+            <span class="float-right text-muted">
+                <span class="badge bg-success" id="simulate-date"></span>
+            </span>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer card-comments hide" id="issue-uc3">
+            <div class="card-comment">
+                <span class="username">
+                    <i class="fa fa-bell"></i> Individuals Goals
+                    <span class="text-muted float-right">1 People Involved</span>
+                </span>
+                Setting development goals for individuals.
+            </div>
+        </div>
+
+        <div class="card-footer card-comments hide" id="issue-uc4">
+            <div class="card-comment" style="cursor: pointer">
+                <span class="username">
+                    <i class="fa fa-bell"></i> Budget Allocations
+                    <span class="text-muted float-right">?375 People Training or Team-building</span>
+                </span>
+                ?The Soloist Ratio in the team is unhealthy. Your historical data indicates impact to
+                business outcomes. Strengthen the connection between members in the team.
+            </div>
+        </div>
+        <div class="card-body hide" id="pnl-uc4" style="display:none">
+            <div class="info-box bg-danger">
+                <span class="info-box-icon"><i class="fa fa-bell"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Budget: $141,000</span>
+                    <span class="info-box-number">?375 People Training or Team-building</span>
+                </div>
+                <!-- /.info-box-content -->
+                <hr />
+
+            </div>
+            <div class="attachment-block clearfix">
+                <img src="../dist/img/usercase4.png" style="width:100%;" alt="dashboard">
+            </div>
+            <!-- /.info-box -->
+            <p>Suggestions on budget allocations for training or team-building</p>
+        </div>
+        <!-- /.card-body -->
     </div>
     <!-- /.card -->
 </div>

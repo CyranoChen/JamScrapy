@@ -3,7 +3,7 @@ var config = {
     'THRESHOLD_SHOW_LABEL': 75, // 2 sigma: 66, 3 sigma: 49
     'THRESHOLD_COMMUNITY_SIZE': 5,
     'THRESHOLD_COMMUNITY_MAX_SIZE': 30,
-    'MODE_SHOW_LABEL': 1,
+    'MODE_SHOW_LABEL': 0,
     'THRESHOLD_NODE': 66,
     'THRESHOLD_EDGE': 20,
     'THRESHOLD_DEGREE': 0,
@@ -144,6 +144,8 @@ function init_chart(topic, chart, debug) {
                 var filepath = config.API_SERVER_PATH + config.DOMAIN;
                 if (config.DATA_TIMESTAMP != null) {
                     filepath += ("?date=" + config.DATA_TIMESTAMP);
+                } else {
+                    config.DATA_TIMESTAMP = config.DATA_SOURCE_META[config.DOMAIN].jam_posts_end_date;
                 }
 
                 // for local version to visualize the json data source
@@ -351,7 +353,10 @@ function get_tooltips(param) {
                 '<li>id: ' + param.data.username + '</li>',
                 '<li>gender: ' + param.data.gender + '</li>',
                 '<li>mobile: ' + param.data.mobile + '</li>',
-                '<li>email: ' + param.data.email + '</li>'
+                '<li>email: ' + param.data.email + '</li>',
+                '<li>costcenter: ' + param.data.costcenter + '</li>',
+                '<li>officelocation: ' + param.data.officelocation + '</li>',
+                '<li>localinfo: ' + param.data.localinfo + '</li>'
             );
         } else {
             tooltips.push('<a><i class="fa fa-user"></i> People Description</a>',
@@ -362,12 +367,6 @@ function get_tooltips(param) {
             '<li>boardarea: ' + param.data.boardarea +
             '</li>',
             '<li>functionalarea: ' + param.data.functionalarea +
-            '</li>',
-            '<li>costcenter: ' + param.data.costcenter +
-            '</li>',
-            '<li>officelocation: ' + param.data.officelocation +
-            '</li>',
-            '<li>localinfo: ' + param.data.localinfo +
             '</li>'
         );
 

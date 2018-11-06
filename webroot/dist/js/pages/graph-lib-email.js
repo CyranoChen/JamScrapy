@@ -3,7 +3,7 @@ var config = {
     'THRESHOLD_SHOW_LABEL': 75, // 2 sigma: 66, 3 sigma: 49
     'THRESHOLD_COMMUNITY_SIZE': 5,
     'THRESHOLD_COMMUNITY_MAX_SIZE': 30,
-    'MODE_SHOW_LABEL': 1,
+    'MODE_SHOW_LABEL': 0,
     'THRESHOLD_NODE': 66,
     'THRESHOLD_EDGE': 20,
     'THRESHOLD_DEGREE': 0,
@@ -19,7 +19,7 @@ var config = {
         'FIELD': {
             // 'Geographic': ['networktype', 'boardarea', 'functionalarea', 'region', 'city', 'costcenter', 'gender'],
             'Category Burst': ['networktype'],
-            'Force': ['networktype','community'],
+            'Force': ['networktype', 'community'],
             'Circular': ['networktype']
         },
         'GEO_CITY': {},
@@ -144,6 +144,8 @@ function init_chart(topic, chart, debug) {
                 var filepath = config.API_SERVER_PATH + config.DOMAIN;
                 if (config.DATA_TIMESTAMP != null) {
                     filepath += ("?date=" + config.DATA_TIMESTAMP);
+                } else {
+                    config.DATA_TIMESTAMP = config.DATA_SOURCE_META[config.DOMAIN].jam_posts_end_date;
                 }
 
                 // for local version to visualize the json data source
