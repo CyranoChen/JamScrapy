@@ -85,6 +85,10 @@ class MainHandler(tornado.web.RequestHandler):
         phase2 = timer()
         time_records["contributions"] = phase2 - phase1
 
+        if len(ds.contributions) == 0:
+            self.write(json.dumps({"state": "success", "time": time_records, "data": []}))
+            return
+
         ds.set_links()
         phase3 = timer()
         time_records["links"] = phase3 - phase2

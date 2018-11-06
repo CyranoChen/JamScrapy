@@ -2,6 +2,7 @@ import json
 import config
 import datetime
 
+
 def max_min_normalize(x):
     x = (x - x.min()) / (x.max() - x.min());
     return x;
@@ -57,6 +58,19 @@ def generate_profiles(usernames, cache_profiles):
                 profiles.append(p)
 
         config.DICT_PROFILES = build_profile_dict(profiles)
+
+    return profiles
+
+
+def filter_profiles(usernames, filter_list):
+    profiles = []
+
+    if len(usernames) > 0 and len(filter_list) > 0:
+        for p in usernames:
+            if p['username'] in filter_list:
+                profiles.append(p)
+    else:
+        profiles = usernames
 
     return profiles
 
