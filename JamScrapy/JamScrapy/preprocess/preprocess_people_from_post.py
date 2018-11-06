@@ -564,8 +564,7 @@ if __name__ == '__main__':
     process_groups_documents()
     process_groups_sw_items()
 
-    clean_up_participators()
-
     fill_postid()
+    clean_up_participators()
 
     print("All Done")

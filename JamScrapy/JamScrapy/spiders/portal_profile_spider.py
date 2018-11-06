@@ -45,9 +45,13 @@ class PortalProfileSpider(scrapy.Spider):
         script = """        
         function main(splash)         
           splash:init_cookies({
-            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="people.wdf.sap.corp"},
-            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTM3NTY1YzI2ZjVkOWEyZTZkYTBiNDU2ZDY5NzVlYzdkBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiBi9JIhhhdmFpbGFiaWxpdHlfYmFza2V0BjsARnsGOgl1aWRzWwBJIhBfY3NyZl90b2tlbgY7AEZJIjFvTmRXUmZoaldqbnd2THU2Rk45WUkwYzZjVEU2SmV3M2ladFdGenVUaitRPQY7AEY%3D--3bdc1aba71abe19bdf0d8742f3f53d2f56bae862", domain="people.wdf.sap.corp"},  
-            {name="shpuvid", value="CmEGNFvGBaYBMwlWBaY1Ag==", domain=".sap.corp"}     
+            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a61073bo4000", domain="people.wdf.sap.corp"},
+            {name="_expertondemand_session", value="BAh7CkkiD3Nlc3Npb25faWQGOgZFVEkiJTA5N2I5Y2ViZjUxZWI0Mzc0MGFjM2M4ZGU4M2E3ZjQ1BjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiBi9JIhhhdmFpbGFiaWxpdHlfYmFza2V0BjsARnsGOgl1aWRzWwBJIhBfY3NyZl90b2tlbgY7AEZJIjF2dUFBWWJkdGtBTWhCbVdzSVI5NnpLWjVzbXlRYWhaRTJSVnJvb1E5OExrPQY7AEY%3D--b25221aec7b3fb2502f42e38205c6b2e32d50d94", domain="people.wdf.sap.corp"},  
+            {name="_pk_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="30ee70069e537272.1541397848.0.1541397848..", domain="people.wdf.sap.corp"},
+            {name="_swa_v_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="dfcc148942c37277.1541397848.1.1541397848.1541397848.", domain="people.wdf.sap.corp"},
+            {name="_swa_v_ref.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="%5B%22%22%2C%22%22%2C1541397848%2C%22https%3A%2F%2Fsearch.int.sap%2F%22%5D", domain="people.wdf.sap.corp"},
+            {name="_swa_v_ses.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="*", domain="people.wdf.sap.corp"},
+            {name="shpuvid", value="CmEHO1vf3VVzeQnVBBx8Ag==", domain=".sap.corp"}     
           })
           
           assert(splash:go{

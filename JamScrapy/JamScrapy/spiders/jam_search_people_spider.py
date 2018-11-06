@@ -24,14 +24,16 @@ class JamSearchPeopleSpider(scrapy.Spider):
     # print(name, len(request_urls))
 
     def start_requests(self):
+        # 自行初始化设置cookie
         script = """        
         function main(splash)
           splash:init_cookies({
-            {name="_ct_remember", value="136b5c2b205f2b86", domain="jam4.sapjam.com"},
-            {name="_ct_session", value="QzdNTitBa2p6c2NIOHFtM2lyM3JnWkVvUFpEMHNMM2laYUc1RXdJWFVHZ1VxVER0bUlmMlMzT1lDdjZsYTc5Nkp2WDhsdTRUNmp3V1l2ekZJcHIzYzlhbktDM1hQdzhPQVFUcVNPQVdEWlo3ekl1L1lpUVh3d3VrcWhJbWlIbTBtUEUyclBFczB1cXpuMzdmbFpnVjJNNUcycXhJa3ovSHFvNHZRamJCWlRsRkJTYlRhdnNhN2RlbFFxKzk3WDNqNmg3R0F0U3NMeUVleW1VdFlOd0loZUFpaHQ3bFlVUVdQQis5OTF4RGV0R25aUVhPV3pWT1R3VDhGY0RRK0VyUHNlUE9LYXMwcytBRVVvVm5DSFl1NHpSV203bXA0UGhMUDl0NnhFRXNaVndYbUNXdzBIeDVSeXluYStFekNaV3oyOFBDTmpzWCtodWwwRUpxcG9FQnh1SDJSWmVrQnRjN2ZJK3FKd1plU0xUNTcyVjJjaFhFS3BWNWQ1ajROT1FLOGsxWGFWUkRZb2d6NUxpZkpnTmhvVzBOeG94bWtrcHdVdHlwNE44dnJZTUJJQytxODVrQWdhMXVHeHhFa1lYOFF2ZE1Md3RMY1p6RWthTlB5TUY5YldrZVh3aWRlZGJleVd1YmtoU0VyRVpUTDZWV05jdzNpZ2d0RS9lMlErMWJtN1NPc0J1MUZ3L2hLdGdEajZkdEZpL3NYRTdzV0E3cCtSdUNTeTJLWTFQazZGVURmNkIwUU53ZE5KT2VycnZDbEZ4MGRyUDlEaHN5a3pxUDJXbG9peS9tSkU2NC9IQ1llOUhoNlhXNjNyQlB2TnZONVpaUUVadHpOWnh6NXRWbC0td0hoZzBIWHpCbzU4Q2Q4WkpwM1BCUT09--1cab28eebbf0c902ac9c84244eee661e7e027c2d", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="jamatsap.com", domain="jam4.sapjam.com"}   
+            {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
+            {name="_ct_se", value="#_ct_se#", domain="jam4.sapjam.com"},
+            {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}    
           })
-          
+
           assert(splash:go{
             splash.args.url,
             headers=splash.args.headers,
@@ -39,7 +41,7 @@ class JamSearchPeopleSpider(scrapy.Spider):
             body=splash.args.body,
             })
           assert(splash:wait(5))
-                   
+
           local entries = splash:history()
           local last_response = entries[#entries].response
           return {
@@ -51,6 +53,11 @@ class JamSearchPeopleSpider(scrapy.Spider):
           }
         end
         """
+
+        script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
+        script = script.replace('#_ct_se#', config.JAM_COOKIE['_ct_se'])
+        script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
+        script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
 
         for url in self.request_urls:
             # yield scrapy.FormRequest(url, cookies=self.cookies, callback=self.parse)

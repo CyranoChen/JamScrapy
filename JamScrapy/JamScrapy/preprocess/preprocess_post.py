@@ -359,7 +359,7 @@ def process_ideas():
     results = query_posts_by_category('ideas')
 
     for r in tqdm(results):
-        print(r.baseurl)
+        #print(r.baseurl)
 
         html = scrapy.Selector(text=r.body)
 

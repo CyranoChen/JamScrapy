@@ -31,11 +31,12 @@ class JamProfileGroupSpider(scrapy.Spider):
 
         # 自行初始化设置cookie
         script = """        
-        function main(splash)         
+        function main(splash)
           splash:init_cookies({
             {name="_ct_remember", value="#_ct_remember#", domain="jam4.sapjam.com"},
+            {name="_ct_se", value="#_ct_se#", domain="jam4.sapjam.com"},
             {name="_ct_session", value="#_ct_session#", domain="jam4.sapjam.com"},
-            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}   
+            {name="_ct_sso", value="#_ct_sso#", domain="jam4.sapjam.com"}    
           })
 
           assert(splash:go{
@@ -59,6 +60,7 @@ class JamProfileGroupSpider(scrapy.Spider):
         """
 
         script = script.replace('#_ct_remember#', config.JAM_COOKIE['_ct_remember'])
+        script = script.replace('#_ct_se#', config.JAM_COOKIE['_ct_se'])
         script = script.replace('#_ct_session#', config.JAM_COOKIE['_ct_session'])
         script = script.replace('#_ct_sso#', config.JAM_COOKIE['_ct_sso'])
 
