@@ -21,11 +21,11 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <section class="content">
-                <div class="card card-widget mt-3" style="width:1000px; margin: auto">
+            <section class="content" style="height: 1170px; background: rgba(50, 50, 50, 0.7) url(../dist/img/mockup_new1.png) no-repeat top center;background-blend-mode: overlay">
+                <div class="card card-widget" style="width:1000px; margin: auto">
                     <div class="card-header">
                         <div class="user-block">
-                            <i class="fa fa-users"></i> People Engagement Trend
+                            <i class="fa fa-users"></i> People Engagement over time
                         </div>
                         <!-- /.user-block -->
                         <div class="card-tools">
@@ -43,11 +43,14 @@
                     <div class="card-body">
                         <div id="container" style="position: relative">
                             <canvas id="canvas"></canvas>
-                            <button id="event-dkom" class="btn btn-block btn-danger btn-flat" type="button"
-                                style="width: 100px; position:absolute; left: 145px; bottom: 50px">SAP d-Kom</button>
-                            <button id="event-dk" class="btn btn-block btn-outline-success btn-flat" type="button"
-                                style="width: 160px; position:absolute; right: 192px; bottom: 50px">Talking Change
-                                with <br />Darren Koch</button>
+                            <div id="event-dkom" style="width: 96px; height: 66px; cursor:pointer; position: absolute; left: 149px; bottom: 60px; padding: 8px 20px; line-height: 1.2; background: url(../dist/img/event1_active.png) no-repeat">
+                                SAP<br /> d-Kom</div>
+                            <div id="event-dk" style="width: 146px; height: 87px; cursor:pointer; position:absolute; right: 200px; bottom: 60px; padding: 8px 20px; line-height: 1.2;  background: url(../dist/img/event2.png) no-repeat"">Talking Change
+                                with <br />Darren Koch</div>
+                            <div style="
+                                position: absolute; width: 1px; height: 80px; border-left: 1px dashed #ff2d55; bottom:
+                                120px; left: 196px;"></div>
+                            <div style="position: absolute; width: 1px; height: 8px; border-left: 1px dashed #ff2d55; bottom: 142px; right: 272px;"></div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -87,16 +90,16 @@
                 $(".sidebar li.dashboard-page>a").addClass("active");
             });
 
-            $("#container button#event-dkom").click(function () {
-                $(this).addClass("btn-danger").removeClass("btn-outline-danger");
-                $("#container button#event-dk").addClass("btn-outline-success").removeClass("btn-success");
+            $("#container #event-dkom").click(function () {
+                $(this).css("background", "url(../dist/img/event1_active.png) no-repeat");
+                $("#container #event-dk").css("background", "url(../dist/img/event2.png) no-repeat");
 
                 $("#pnl-news>img").prop("src", "../dist/img/mockup-news1.png");
             });
 
-            $("#container button#event-dk").click(function () {
-                $(this).addClass("btn-success").removeClass("btn-outline-success");
-                $("#container button#event-dkom").addClass("btn-outline-danger").removeClass("btn-danger");
+            $("#container #event-dk").click(function () {
+                $(this).css("background", "url(../dist/img/event2_active.png) no-repeat");
+                $("#container #event-dkom").css("background", "url(../dist/img/event1.png) no-repeat");
 
                 $("#pnl-news>img").prop("src", "../dist/img/mockup-news2.png");
             });
@@ -123,7 +126,7 @@
                 hidden: true,
                 data: [
                     0.388409, 0.480215, 0.698878, 0.450173, 0.416649, 0.580091,
-                    0.548740, 0.687337, 0.553295, 0.847240, 0.892010, 0.862339
+                    0.548740, 0.687337, 0.753295, 0.847240, 0.892010, 0.862339
                 ]
             }, {
                 label: 'Global Benchmark',
@@ -134,15 +137,27 @@
                 data: [
                     0.346429043, 0.330076457, 0.522637125, 0.328669427, 0.340467252, 0.335866913,
                     0.377593043, 0.398335466, 0.378308536, 0.392741919, 0.378308536, 0.392741919
-                ]
+                ] 
             }]
         };
+
+        lineChartData.datasets.forEach(function (node) {
+            var data_percent = []
+            node.data.forEach(function (v) {
+                data_percent.push(Math.round(v*100));
+            });
+            node.data = data_percent;
+        });
 
         window.onload = function () {
             var ctx = document.getElementById('canvas').getContext('2d');
             window.myLine = Chart.Line(ctx, {
                 data: lineChartData,
                 options: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                    },
                     responsive: true,
                     hoverMode: 'index',
                     stacked: false,
@@ -161,8 +176,8 @@
                             display: true,
                             position: 'left',
                             ticks: {
-                                suggestedMin: 0.15,
-                                suggestedMax: 1
+                                suggestedMin: 15,
+                                suggestedMax: 100
                             }
                         }],
                     }

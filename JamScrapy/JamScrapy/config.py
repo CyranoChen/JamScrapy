@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-DB_CONNECT_STRING = 'mysql+pymysql://root:Initial0@10.178.200.23:3306/nexus?charset=utf8mb4'
+DB_CONNECT_STRING = 'mysql+pymysql://root:Initial0@10.58.78.253:3306/nexus?charset=utf8mb4'
 
 # 爬取域名
 DOMAIN = 'jam4.sapjam.com'

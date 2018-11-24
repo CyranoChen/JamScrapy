@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import create_engine
 
-DB_CONNECT_STRING = "mysql+pymysql://root:Initial0@10.178.200.23:3306/nexus?charset=utf8mb4"
+DB_CONNECT_STRING = "mysql+pymysql://root:Initial0@10.58.78.253:3306/nexus?charset=utf8mb4"
 CACHE_PROFILES_PATH = "./cache/cache-people.json"
 CACHE_META_DATA = "./cache/cache-meta-data.json"
 # DOMAINS = ['blockchain', 'business+one', 'bydesign', 'intelligent+enterprise']

@@ -3,11 +3,12 @@ from sqlalchemy.orm import sessionmaker
 
 from JamScrapy.preprocess.entity import Profile, PortalProfile
 
+# TODO modify the value of field assistant of table people_profile
 sql = '''
 Insert into people_profile(profileurl,username,displayname,avatar,mobile,email,phone,address,managers,reports,groups,followers,following,
                            boardarea,functionalarea,costcenter,officelocation,localinfo,assistant) 
   select j.profileurl, j.username, j.displayname, j.avatar, p.mobile, p.email, p.phone, p.address, j.managers, j.reports, j.groups, j.followers, j.following,
-    p.boardarea, p.functionalarea, p.costcenter, p.officelocation, p.localinfo, p.address 
+    p.boardarea, p.functionalarea, p.costcenter, p.officelocation, p.localinfo, p.assistant 
 from jam_profile j left outer join portal_profile p 
     on j.username = p.username where j.username not in (select username from people_profile)  
 

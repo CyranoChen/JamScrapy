@@ -31,7 +31,7 @@ var config = {
     'DATA_TIMESTAMP': null,
     'DOMAIN': '',
     'DEBUG': false,
-    'API_SERVER_PATH': 'http://10.178.200.23:8001/api/',
+    'API_SERVER_PATH': 'http://127.0.0.1:8001/api/',
     'CACHE': false
 };
 
@@ -359,7 +359,7 @@ function get_tooltips(param) {
                 '<li>localinfo: ' + param.data.localinfo + '</li>'
             );
         } else {
-            tooltips.push('<a><i class="fa fa-user"></i> People Description</a>',
+            tooltips.push('<a><i class="fa fa-user"></i> Anonymous</a>',
                 '<hr size="1"  style="margin: 3px 0" />', '<ul>');
         }
 
