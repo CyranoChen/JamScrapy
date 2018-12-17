@@ -2,14 +2,259 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Create profile spider and crawl the profile of people">
+      <change afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_comment_spider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace-Cyrano-MacBook-Pro-15-4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_knowledge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/img/mockup_new1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/img/mockup_new1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/img/usercase0_active.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/img/usercase0_active.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib-email.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib-email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/dist/js/pages/graph-lib.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/pages/dashboard-pe.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/dashboard-pe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../webroot/shared/control-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/shared/control-dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_group_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JamScrapy/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/JamScrapy/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Chatbot-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Chatbot-Generate.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Chatbot-Report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Chatbot-Report.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-Dataset-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-Dataset-Generate.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Generate.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Report.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus-intelligent-enterprise-Report.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dict_email_user_count.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/dict_email_user_count.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global_ps_score.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/contributes-blockchain-3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/output/contributes-blockchain-3.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/cache-meta-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../server/cache/cache-meta-data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/cache/cache-people.json" beforeDir="false" afterPath="$PROJECT_DIR$/../server/cache/cache-people.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/generate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/tornoda.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/tornoda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../server/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/dashboard-domain.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/dashboard-domain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/domain-time-travel.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/domain-time-travel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/domain-viewer-email.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/domain-viewer-email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/domain-viewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/domain-viewer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/domain.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/domain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/pages/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/pages/project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/dataTables.bootstrap4.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/dataTables.bootstrap4.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/dataTables.bootstrap4.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/dataTables.bootstrap4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/css/dataTables.autoFill.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/columns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/columns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/complete-callback.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/complete-callback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/fill-both.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/fill-both.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/fill-horizontal.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/fill-horizontal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/scrolling.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/scrolling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/step-callback.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/examples/step-callback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/images/filler.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/images/filler.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/AutoFill/js/dataTables.autoFill.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/License.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/License.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/alt_insert.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/alt_insert.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/col_filter.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/col_filter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/colvis.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/colvis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/fixedcolumns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/fixedcolumns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/fixedheader.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/fixedheader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/jqueryui.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/jqueryui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/new_init.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/new_init.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/predefined.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/predefined.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/realtime.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/realtime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/reset.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/scrolling.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/scrolling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/server_side.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/server_side.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/state_save.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/examples/state_save.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/images/insert.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/images/insert.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/License.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/License.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colVis.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colVis.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colVis.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colVis.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colvis.jqueryui.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/css/dataTables.colvis.jqueryui.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/button_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/button_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/exclude_columns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/exclude_columns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/group_columns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/group_columns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/jqueryui.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/jqueryui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/mouseover.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/mouseover.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/new_init.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/new_init.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/restore.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/restore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/title_callback.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/title_callback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/two_tables.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/two_tables.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/two_tables_identical.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/examples/two_tables_identical.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/js/dataTables.colVis.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/js/dataTables.colVis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/js/dataTables.colVis.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/ColVis/js/dataTables.colVis.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/License.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/License.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/bootstrap.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/bootstrap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/col_filter.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/col_filter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/colvis.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/colvis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/css_size.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/css_size.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/index_column.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/index_column.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/left_right_columns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/left_right_columns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/right_column.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/right_column.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/rowspan.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/rowspan.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/server-side-processing.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/server-side-processing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/size_fixed.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/size_fixed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/size_fluid.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/size_fluid.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/two_columns.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/examples/two_columns.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/header_footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/header_footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/top_left_right.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/top_left_right.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/two_tables.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/two_tables.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/zIndexes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/examples/zIndexes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/css/dataTables.keyTable.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/html.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/html.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/scrolling.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/scrolling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/KeyTable/js/dataTables.keyTable.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/License.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/License.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/css/dataTables.responsive.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/css/dataTables.responsive.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/column-control.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/column-control.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/custom-renderer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/custom-renderer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/disable-child-rows.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/disable-child-rows.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/right-column.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/right-column.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/whole-row-control.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/child-rows/whole-row-control.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/auto.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/auto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/classes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/complexHeader.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/complexHeader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/fixedHeader.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/fixedHeader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/init-classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/display-control/init-classes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/ajax.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/ajax.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/className.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/className.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/option.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/initialisation/option.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/bootstrap.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/bootstrap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/compact.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/compact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/foundation.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/foundation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/scrolling.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/examples/styling/scrolling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/js/dataTables.responsive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/Readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/css/dataTables.scroller.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/css/dataTables.scroller.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/api_scrolling.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/api_scrolling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/data/2500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/data/2500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/data/ssp.php" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/data/ssp.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/large_js_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/large_js_source.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/server-side_processing.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/server-side_processing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/state_saving.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/examples/state_saving.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/images/loading-background.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/images/loading-background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/js/dataTables.scroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/js/dataTables.scroller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/ajax.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/ajax.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/alter_buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/alter_buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/bootstrap.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/bootstrap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/button_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/button_text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/collection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/defaults.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/defaults.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/jqueryui.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/jqueryui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/multi_instance.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/multi_instance.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/multiple_tables.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/multiple_tables.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/new_init.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/new_init.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/pdf_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/pdf_message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/plug-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/plug-in.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_column.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_column.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_multi.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_multi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_os.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_os.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/select_single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/simple.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/simple.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/swf_path.html" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/examples/swf_path.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/collection.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/collection.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/collection_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/collection_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/copy.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/copy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/copy_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/copy_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/csv.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/csv.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/csv_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/csv_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/pdf.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/pdf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/pdf_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/pdf_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/print.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/print.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/print_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/print_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/collection.psd" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/collection.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/copy document.psd" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/copy document.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/file_types.psd" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/file_types.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/printer.psd" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/psd/printer.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/xls.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/xls.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/xls_hover.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/images/xls_hover.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/swf/copy_csv_xls.swf" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/swf/copy_csv_xls.swf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_asc.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_asc.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_asc_disabled.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_asc_disabled.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_both.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_both.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_desc.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_desc.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_desc_disabled.png" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/images/sort_desc_disabled.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables_themeroller.css" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/datatables/jquery.dataTables_themeroller.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../webroot/plugins/knob/jquery.knob.js" beforeDir="false" afterPath="$PROJECT_DIR$/../webroot/plugins/knob/jquery.knob.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,22 +264,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_sync_profile.coverage" NAME="preprocess_sync_profile Coverage Results" MODIFIED="1544154675796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$topic2post.coverage" NAME="topic2post Coverage Results" MODIFIED="1520498982476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$jam_profile_spider.coverage" NAME="jam_profile_spider Coverage Results" MODIFIED="1533703000230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/spiders" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people_from_post.coverage" NAME="preprocess_people_from_post Coverage Results" MODIFIED="1541358563154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/AcnScrapy$acn_url_spider.coverage" NAME="acn_url_spider Coverage Results" MODIFIED="1520321980659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy/spiders" />
+    <SUITE FILE_PATH="coverage/JamScrapy$jam_search_comment_spider.coverage" NAME="jam_search_comment_spider Coverage Results" MODIFIED="1544174056683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/spiders" />
     <SUITE FILE_PATH="coverage/JamScrapy$process_spider_people.coverage" NAME="process_spider_people Coverage Results" MODIFIED="1530161799935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_knowledge.coverage" NAME="preprocess_knowledge Coverage Results" MODIFIED="1525841607517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$gender.coverage" NAME="gender Coverage Results" MODIFIED="1539852284101" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_people.coverage" NAME="preprocess_people Coverage Results" MODIFIED="1522824082906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_clean_people.coverage" NAME="preprocess_clean_people Coverage Results" MODIFIED="1541413070318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_clean_people.coverage" NAME="preprocess_clean_people Coverage Results" MODIFIED="1544154877650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/AcnScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1520328461577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AcnScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1522732091774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_profile.coverage" NAME="preprocess_profile Coverage Results" MODIFIED="1541397783694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
-    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_portal_profile.coverage" NAME="preprocess_portal_profile Coverage Results" MODIFIED="1541407239853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_profile.coverage" NAME="preprocess_profile Coverage Results" MODIFIED="1543913176459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
+    <SUITE FILE_PATH="coverage/JamScrapy$preprocess_portal_profile.coverage" NAME="preprocess_portal_profile Coverage Results" MODIFIED="1544150785102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$py_test_in_test_gender_py.coverage" NAME="py.test in test_gender.py Coverage Results" MODIFIED="1539852068914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$jam_profile_group_spider.coverage" NAME="jam_profile_group_spider Coverage Results" MODIFIED="1531912769909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/spiders" />
-    <SUITE FILE_PATH="coverage/JamScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1539852988250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
+    <SUITE FILE_PATH="coverage/JamScrapy$test.coverage" NAME="test Coverage Results" MODIFIED="1544093001682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_group.coverage" NAME="preprocess_group Coverage Results" MODIFIED="1522821636146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
     <SUITE FILE_PATH="coverage/JamScrapy$preprocess_post.coverage" NAME="preprocess_post Coverage Results" MODIFIED="1541349685744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/JamScrapy/preprocess" />
   </component>
@@ -52,7 +299,18 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="root@10.178.200.23" type="feb32156:DbDataSourceImpl" />
+        <item name="root@10.58.78.253" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="root@10.58.78.253" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="root@10.58.78.253" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nexus: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
     </expand>
     <select />
@@ -61,7 +319,68 @@
     <favorites_list name="JamScrapy" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-137">
+              <caret line="210" column="18" selection-start-line="210" selection-start-column="18" selection-end-line="210" selection-end-column="18" />
+              <folding>
+                <element signature="e#193#221#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocess_portal_profile.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocess_clean_people.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2739">
+              <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preprocess_sync_profile.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="610">
+              <caret line="88" selection-start-line="88" selection-end-line="90" />
+              <folding>
+                <element signature="e#699#727#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,6 +405,9 @@
       <find>print(r.url)</find>
       <find>get_people_username</find>
       <find>REACTOR_THREADPOOL_MAXSIZE</find>
+      <find>not found</find>
+      <find>postid=p.id,</find>
+      <find>text</find>
     </findStrings>
     <replaceStrings>
       <replace>print(r.baseurl)</replace>
@@ -97,8 +419,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/post.py" />
-        <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile_spider.sql" />
         <option value="6cc0c932-fb67-4cbb-a330-ec5909eaffaa/schema/scrapy/table/portal_profile.sql" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_group.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console_2.sql" />
@@ -109,9 +429,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6cc0c932-fb67-4cbb-a330-ec5909eaffaa/console.sql" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/process_spider_people.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
         <option value="$PROJECT_DIR$/JamScrapy/mysql.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console_1.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_3.sql" />
         <option value="7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_profile.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_4.sql" />
@@ -122,18 +440,12 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/41d7c54a-f0a5-495c-8c77-33feb217252f/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console_2.sql" />
         <option value="$PROJECT_DIR$/JamScrapy/items.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/entity.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql" />
-        <option value="$PROJECT_DIR$/JamScrapy/pipelines.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" />
         <option value="$PROJECT_DIR$/JamScrapy/test_gender.py" />
         <option value="$PROJECT_DIR$/JamScrapy/gender.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/test.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py" />
@@ -143,11 +455,21 @@
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_group_content_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
-        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/entity.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/test.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console_1.sql" />
+        <option value="$PROJECT_DIR$/JamScrapy/entity.py" />
         <option value="$PROJECT_DIR$/JamScrapy/config.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_comment_spider.py" />
         <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py" />
+        <option value="$PROJECT_DIR$/JamScrapy/pipelines.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql" />
       </list>
     </option>
   </component>
@@ -160,11 +482,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="47" />
-    <option name="y" value="23" />
-    <option name="width" value="1633" />
-    <option name="height" value="1027" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="2560" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -211,6 +531,21 @@
               <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
               <item name="preprocess" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JamScrapy" type="462c0819:PsiDirectoryNode" />
+              <item name="log" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JamScrapy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -240,8 +575,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/JamScrapy" />
       <recent name="$PROJECT_DIR$/JamScrapy/spiders" />
+      <recent name="$PROJECT_DIR$/JamScrapy" />
       <recent name="$PROJECT_DIR$/JamScrapy/preprocess" />
     </key>
   </component>
@@ -257,7 +592,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.preprocess_clean_people">
+  <component name="RunManager" selected="Python.jam_search_comment_spider">
+    <configuration name="jam_search_comment_spider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/spiders" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/spiders/jam_search_comment_spider.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="preprocess_clean_people" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="AcnScrapy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -272,25 +626,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="preprocess_people_from_post" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AcnScrapy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -315,25 +650,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="preprocess_post" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="AcnScrapy" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="preprocess_profile" type="PythonConfigurationType" factoryName="Python">
       <module name="AcnScrapy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -348,6 +664,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="preprocess_sync_profile" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="AcnScrapy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/JamScrapy/preprocess" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -377,15 +712,15 @@
       <item itemvalue="Python.test" />
       <item itemvalue="Python.preprocess_clean_people" />
       <item itemvalue="Python.preprocess_portal_profile" />
-      <item itemvalue="Python.preprocess_post" />
-      <item itemvalue="Python.preprocess_people_from_post" />
+      <item itemvalue="Python.preprocess_sync_profile" />
+      <item itemvalue="Python.jam_search_comment_spider" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.jam_search_comment_spider" />
         <item itemvalue="Python.preprocess_clean_people" />
+        <item itemvalue="Python.preprocess_sync_profile" />
         <item itemvalue="Python.preprocess_portal_profile" />
-        <item itemvalue="Python.preprocess_people_from_post" />
-        <item itemvalue="Python.preprocess_post" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -440,31 +775,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32615384" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32563338" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50252205" side_tool="true" weight="0.25913978" />
+      <window_info anchor="right" x="0" y="0" width="357" height="827" id="Documentation" order="5" sideWeight="0.27606636" side_tool="true" weight="0.09769659" />
       <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32922128" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.35913977" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3271795" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32580644" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49979568" weight="0.2580645" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.22039072" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3733234" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3271237" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32563338" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49979568" visible="true" weight="0.37108794" />
+      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49747792" weight="0.40163934" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.1556791" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" sideWeight="0.71924883" visible="true" weight="0.23687424" />
+      <window_info anchor="right" id="Database" order="3" sideWeight="0.72393364" visible="true" weight="0.09769659" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32962668" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24980143" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39865872" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3979487" />
       <window_info id="Favorites" order="2" sideWeight="0.50388455" side_tool="true" weight="0.25416997" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="590" height="1240" id="Documentation" order="5" sideWeight="0.28075117" side_tool="true" visible="true" weight="0.10405084" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49747792" weight="0.40215054" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.32923076" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993895" weight="0.328614" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,6 +821,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -492,119 +840,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_2.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="1" lean-forward="true" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_3.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console_4.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/jam_group">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/spider_jam_search">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console_2.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-674">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7331fb95-07b4-420b-ab71-b4fb22430c69/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_group">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_people_from_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7331fb95-07b4-420b-ab71-b4fb22430c69/schema/nexus/table/people_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_jam_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/spider_portal_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/people_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_portal_profile">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/people_profile">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -621,27 +861,6 @@
     <entry file="file://$USER_HOME$/Downloads/jam_post_shanghai.csv" />
     <entry file="file://$PROJECT_DIR$/JamScrapy/test_gender.py" />
     <entry file="file://$PROJECT_DIR$/JamScrapy/gender.py" />
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="26" selection-start-line="26" selection-end-line="34" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_people_from_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="43" selection-start-column="43" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/spider_jam_profile">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -653,20 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
           <caret line="212" column="62" lean-forward="true" selection-start-line="212" selection-start-column="62" selection-end-line="212" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2765">
-          <caret line="156" column="24" selection-start-line="156" selection-start-column="24" selection-end-line="156" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_post">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -686,52 +891,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="59" column="74" selection-start-line="59" selection-start-column="74" selection-end-line="59" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_group_spider.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="64" column="74" selection-start-line="64" selection-start-column="74" selection-end-line="64" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="65" column="74" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="92" column="74" selection-start-line="92" selection-start-column="74" selection-end-line="92" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -749,73 +912,261 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console.sql" />
+    <entry file="file://$PROJECT_DIR$/Untitled.ipynb" />
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/jam_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/portal_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0285a792-1e1f-4f3e-946e-a48a01f02663/schema/nexus/table/people_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_fetch_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3654">
-          <caret line="361" column="9" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
+        <state relative-caret-position="918">
+          <caret line="58" column="74" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/entity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/not_found_profileurl.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="85" selection-start-column="28" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/jam_people_from_post">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_people_from_post.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
+        <state relative-caret-position="315">
+          <caret line="409" column="104" selection-start-line="409" selection-start-column="12" selection-end-line="409" selection-end-column="104" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        <state relative-caret-position="578">
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1743">
-          <caret line="83" column="51" selection-start-line="83" selection-start-column="51" selection-end-line="83" selection-end-column="51" />
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/spider_jam_search">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        <state relative-caret-position="119">
+          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/entity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        <state relative-caret-position="1071">
+          <caret line="66" column="6" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0285a792-1e1f-4f3e-946e-a48a01f02663/console.sql">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_post.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="6001">
+          <caret line="361" column="9" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="217" column="22" selection-start-line="217" selection-start-column="22" selection-end-line="217" selection-end-column="22" />
+        <state relative-caret-position="476">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/spider_jam_comment">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_post_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-364">
+          <caret line="52" selection-start-line="52" selection-end-line="57" selection-end-column="48" />
+          <folding>
+            <element signature="e#45#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/global_ps_score.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_comment_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="e#45#58#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        <state relative-caret-position="391">
+          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_follow_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_clean_people.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2739">
+          <caret line="219" column="32" selection-start-line="219" selection-start-column="32" selection-end-line="219" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/people_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-467">
+          <caret line="43" column="23" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://6632bb82-7efd-429d-9ad4-92a1553cad2c/schema/nexus/table/portal_profile">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="49" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/items.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_portal_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="81" column="14" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-137">
+          <caret line="210" column="18" selection-start-line="210" selection-start-column="18" selection-end-line="210" selection-end-column="18" />
+          <folding>
+            <element signature="e#193#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6632bb82-7efd-429d-9ad4-92a1553cad2c/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JamScrapy/preprocess/preprocess_sync_profile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="88" selection-start-line="88" selection-end-line="90" />
+          <folding>
+            <element signature="e#699#727#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

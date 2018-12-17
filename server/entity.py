@@ -14,7 +14,187 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 import config
-from utils import max_min_normalize, generate_relation, generate_profiles, filter_profiles, get_people_network_type, month_get, day_get
+from tqdm import tqdm
+from utils import max_min_normalize, generate_relation, generate_profiles, filter_profiles, get_people_network_type, \
+    month_get, day_get
+
+
+class PeopleNetwork:
+    def __init__(self, username, level, s_level, f_level, follow=False):
+        self.profiles = dict()
+        self.contributions = DataFrame()
+        self.links = []
+        self.nodes = []
+        self.thresholds = {"degree": 5, "closeness": 5, "betweenness": 20}
+        self.level = level
+        self.s_level = s_level
+        self.f_level = f_level
+        self.username = username.upper()
+        self.follow = follow
+
+    def set_links(self):
+        with open(config.CACHE_RELATIONSHIP_PATH) as json_file:
+            cache_relationship = json.load(json_file)
+
+        current_lv = 0
+        current_gen = {self.username: int(self.level)}  # 设置初始节点为最高层，层数为总层数，之后逐层递减
+        self.profiles[f'lv{current_lv}'] = [self.username]  # 生成的树的各层节点集合
+        set_nodes = set([self.username])  # 最终生成的节点索引集合，不重复
+
+        relations = []
+        while current_lv < self.level:
+            print('level:', current_lv)
+            print('current:', len(current_gen))
+
+            children = set()
+            for r in tqdm(cache_relationship):
+                if (not self.follow or self.f_level < current_lv) and r['role'] == 'follow':
+                    continue  # ignore
+
+                if (self.s_level < current_lv) and r['role'] == 'comment':
+                    continue  # ignore
+
+                if r['source'] in current_gen or r['target'] in current_gen:
+                    relations.append(r)
+
+                if r['role'] == 'org':  # 通过组织关系生长
+                    if r['source'] in current_gen and r['target'] not in current_gen:
+                        children.add(r['target'])
+                    elif r['source'] not in current_gen and r['target'] in current_gen:
+                        children.add(r['source'])
+
+            current_lv += 1
+            children -= set_nodes
+            current_gen = {c: int(self.level - current_lv) for c in list(children)}  # 新增成员加入下个迭代
+            self.profiles[f'lv{current_lv}'] = list(children)
+            set_nodes = set_nodes | children  # 合并新增成员到现有节点集合
+
+            print('children:', len(current_gen))
+            print('set_nodes:', len(set_nodes))
+
+        # print(self.profiles)
+        self.nodes = list(set_nodes)
+
+        # 生成最终输出的links，包含组织关系org，社交关系social with weight，需反映follow元素
+        dict_relations_social = dict()  # (weight, c_mode, f_mode)
+        for r in tqdm(relations):
+            if r['role'] == 'org':
+                self.links.append(r)
+                continue
+
+            key = f"{r['source']}>>{r['target']}" if r['source'] <= r['target'] else f"{r['target']}>>{r['source']}"
+            if r['role'] == 'comment':
+                c_mode = 1 if r['source'] <= r['target'] else 0
+                if key in dict_relations_social:
+                    v = dict_relations_social[key]
+                    if c_mode != v[1]:  # 关系方向相反，或为2
+                        dict_relations_social[key] = (v[0]+1, 2, v[2])
+                    else:
+                        dict_relations_social[key] = (v[0]+1, v[1], v[2])
+                else:
+                    dict_relations_social[key] = (1, c_mode, -1)
+
+            if self.follow and r['role'] == 'follow':
+                f_mode = 1 if r['source'] <= r['target'] else 0
+                if key in dict_relations_social:
+                    v = dict_relations_social[key]
+                    if f_mode != v[2]:  # 关系方向相反，或为2
+                        dict_relations_social[key] = (v[0], v[1], 2)
+                    else:
+                        dict_relations_social[key] = v
+                else:
+                    dict_relations_social[key] = (0, -1, f_mode)
+
+        for k, v in dict_relations_social.items():
+            s, t = k.split('>>')
+            self.links.append(
+                {'source': s, 'target': t, 'role': 'social', 'weight': v[0], 'c_mode': v[1], 'f_mode': v[2]})
+
+        # self.links = [dict(t) for t in set([tuple(r.items()) for r in relations])]
+
+        print('links:', len(self.links), len(relations))
+
+    # Generate Nodes #
+    def set_nodes(self):
+        sql = f'''select username, displaynameformatted as displayname, gender, avatar, boardarea, functionalarea,
+                  costcenter, officelocation, localinfo, profileurl, email, mobile from people_profile'''
+
+        profiles = config.ENGINE.execute(sql).fetchall()
+
+        dict_nodes = {x: True for x in list(self.nodes)}
+        profiles_filtered = [x for x in profiles if x.username.upper() in dict_nodes]
+
+        print('build cache of people profiles:', len(profiles_filtered), '/', len(profiles))
+
+        dict_value = dict()
+        for k, v in self.profiles.items():
+            if len(v) > 0:
+                for uid in v:
+                    dict_value[uid] = self.level - int(str(k).replace('lv', ''))
+
+        nodes = []
+        for p in tqdm(profiles_filtered):
+            if p["username"] is None:
+                print(p)
+                continue
+
+            username = p['username']
+
+            node = dict()
+            node['name'] = username
+            node['username'] = username
+            node['displayname'] = p["displayname"]
+            node['gender'] = p["gender"]
+            node['avatar'] = p["avatar"]
+            node['boardarea'] = p["boardarea"]
+            node['functionalarea'] = p["functionalarea"]
+            node['costcenter'] = p["costcenter"]
+            node['officelocation'] = p["officelocation"]
+            node['localinfo'] = p["localinfo"]
+            if p["localinfo"] and len(str.split(p["localinfo"], '/')) > 1:
+                node['region'] = str.split(p["localinfo"], '/')[0]
+                node['city'] = str.split(p["localinfo"], '/')[1]
+            else:
+                node['region'] = 'None'
+                node['city'] = 'None'
+            node['profile'] = p["profileurl"]
+            node['email'] = p["email"]
+            node['mobile'] = p["mobile"]
+
+            node['value'] = dict_value[username]
+            # node['posts'] = int(item.posts)
+            # node['comments'] = int(item.comments)
+            # node['likes'] = int(item.likes)
+            # node['views'] = int(item.views)
+            #
+            # node['degree'] = round(float(item.degree), 2)
+            # node['betweenness'] = round(float(item.betweenness), 2)
+            # node['closeness'] = round(float(item.closeness), 2)
+            #
+            # node['networktype'] = get_people_network_type(item, self.thresholds)
+
+            # node['category'] = 'None'
+
+            nodes.append(node)
+
+        # 去掉重复节点
+        self.nodes = [dict(t) for t in set([tuple(d.items()) for d in nodes])]
+
+        print("nodes", len(self.nodes))
+
+    # Export DataSet #
+    def export_dataset(self):
+        result = {"nodes": self.nodes, "links": self.links}
+
+        if self.follow:
+            json_file_path = f"./cache/peoplenetwork-{self.username}-l{self.level}-s{self.s_level}-f{self.f_level}.json"
+        else:
+            json_file_path = f"./cache/peoplenetwork-{self.username}-l{self.level}-s{self.s_level}-f0.json"
+
+        with open(json_file_path, 'w', encoding='utf-8') as json_file:
+            json.dump(result, json_file, ensure_ascii=False)
+
+        return result
 
 
 class PeopleEngagement:
@@ -31,11 +211,13 @@ class PeopleEngagement:
 
         self.date = datetime.datetime.fromtimestamp(int(timestamp))
 
-        self.timestamp_end = int(time.mktime(time.strptime(self.date.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
+        self.timestamp_end = int(
+            time.mktime(time.strptime(self.date.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
         end_date = datetime.datetime.fromtimestamp(int(self.timestamp_end))
         begin_date = day_get(end_date) if daily else month_get(end_date)
 
-        self.timestamp_begin = int(time.mktime(time.strptime(begin_date.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
+        self.timestamp_begin = int(
+            time.mktime(time.strptime(begin_date.strftime("%Y-%m-%d 00:00:00"), '%Y-%m-%d %H:%M:%S')))
         begin_date = datetime.datetime.fromtimestamp(int(self.timestamp_begin))
 
         print('begin_time:', begin_date, self.timestamp_begin, 'end_time:', end_date, self.timestamp_end)
@@ -119,28 +301,28 @@ class PeopleEngagement:
 
     # Generate Links #
     def set_links(self, follow=False, max_relations=99):
-        filters = [p["username"] for p in self.profiles]
+        filters = dict((p['username'], 1) for p in self.profiles)
 
         relations = []
         for p in self.profiles:
             relations.extend(generate_relation(filters, p["managers"], config.RELA_BLACK_LIST, target=p["username"],
-                                                   role='managers', ))
+                                               role='managers'))
             relations.extend(generate_relation(filters, p["reports"], config.RELA_BLACK_LIST, source=p["username"],
-                                                   role='reports'))
+                                               role='reports'))
             if follow:
                 relations.extend(
-                    generate_relation(relations, filters, p["followers"], config.RELA_BLACK_LIST, target=p["username"],
+                    generate_relation(filters, p["followers"], config.RELA_BLACK_LIST, target=p["username"],
                                       role='followers',
                                       ban=True, max_relations=max_relations))
                 relations.extend(
-                    generate_relation(relations, filters, p["following"], config.RELA_BLACK_LIST, source=p["username"],
+                    generate_relation(filters, p["following"], config.RELA_BLACK_LIST, source=p["username"],
                                       role='following',
                                       ban=True, max_relations=max_relations))
 
         print('relations:', len(relations))
         self.people_engagement_score['relation_org'] = len(relations)
 
-        sql = f'''select creators.username as source, commenters.username as target from
+        sql = f'''select creators.username as target, commenters.username as source from
   (select postid, username from jam_people_from_post
  where keyword = '{self.keyword}' and roletype = 'participator' and position >= 0 and (username is not null or username <> '')
   ) AS commenters
@@ -352,7 +534,7 @@ class DomainDataSet:
 
     # Generate Links #
     def set_links(self, follow=False, max_relations=99):
-        filters = [p["username"] for p in self.profiles]
+        filters = dict((p['username'], 1) for p in self.profiles)
 
         relations = []
         for p in self.profiles:
@@ -373,7 +555,7 @@ class DomainDataSet:
 
         print('relations:', len(relations))
 
-        sql = f'''select creators.username as source, commenters.username as target from
+        sql = f'''select creators.username as target, commenters.username as source from
   (select postid, username from jam_people_from_post
  where keyword = '{self.keyword}' and roletype = 'participator' and position >= 0 and (username is not null or username <> '')
   ) AS commenters

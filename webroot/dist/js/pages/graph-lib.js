@@ -31,7 +31,7 @@ var config = {
     'DATA_TIMESTAMP': null,
     'DOMAIN': '',
     'DEBUG': false,
-    'API_SERVER_PATH': 'http://127.0.0.1:8001/api/',
+    'API_SERVER_PATH': 'http://10.58.78.253:8001/api/',
     'CACHE': false
 };
 

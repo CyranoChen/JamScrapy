@@ -59,3 +59,14 @@ class SpiderPortalProfile(Base):
     url = Column(String(16))
     body = Column(String(64))
     createtime = Column(DateTime)
+
+
+class SpiderComment(Base):
+    __tablename__ = 'spider_jam_comment'
+
+    id = Column(Integer, primary_key=True)
+    url = Column(String(16))
+    body = Column(String(64))
+    topics = Column(String(64))
+    createtime = Column(DateTime)
+    keyword = Column(String(16))

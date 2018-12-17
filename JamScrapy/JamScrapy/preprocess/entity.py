@@ -28,6 +28,7 @@ class People(Base):
     username = Column(String(16))
     displayname = Column(String(16))
     postid = Column(Integer)
+    postusername = Column(String(16))
     posturl = Column(String(16))
     position = Column(Integer)
     profileurl = Column(String(16))

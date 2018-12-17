@@ -5,22 +5,26 @@ import config
 import time
 import pandas as pd
 
+from tqdm import tqdm
 from sqlalchemy import text
-from utils import month_get, day_get
+from utils import month_get, day_get, generate_relation, build_profile_dict
 from entity import DomainDataSet, CommunityStructure, PeopleEngagement
 
 
 def generate_people_cache():
+    # sql = f'''select username, displaynameformatted as displayname, gender, avatar, profileurl, boardarea, functionalarea,
+    #         costcenter, officelocation, localinfo, email, mobile, managers, reports
+    #         from people_profile where username in (select distinct jam_post.username from jam_post)'''
+
     sql = f'''select username, displaynameformatted as displayname, gender, avatar, profileurl, boardarea, functionalarea, 
-            costcenter, officelocation, localinfo, email, mobile, managers, reports
-            from people_profile where username in (select distinct jam_post.username from jam_post)'''
+            costcenter, officelocation, localinfo, email, mobile, managers, reports from people_profile'''
 
     people = config.ENGINE.execute(sql).fetchall()
-    print('build cache of people:', len(people))
+    print('build cache of all people profile:', len(people))
 
     results = []
 
-    for p in people:
+    for p in tqdm(people):
         if p.username:
             node = dict()
             node["username"] = p.username
@@ -40,8 +44,51 @@ def generate_people_cache():
 
             results.append(node)
 
+    # config.CACHE_PROFILE = [{'username': p['username'], 'displayname': p['displayname']} for p in results]
+
     with open(config.CACHE_PROFILES_PATH, 'w', encoding='utf-8') as json_file:
         json.dump(results, json_file, ensure_ascii=False)
+
+
+def generate_relationship_cache():
+    sql = f'''select username, managers, reports, followers, following from people_profile
+        where managers is not null or reports is not null or followers is not null or following is not null'''
+
+    people = config.ENGINE.execute(sql).fetchall()
+    print('build cache of people link:', len(people))
+
+    filters = dict((p.username.upper(), 1) for p in people)
+
+    relations = []
+    for p in tqdm(people):
+        if p.managers:
+            relations.extend(generate_relation(filters, p.managers, target=p.username, role='org'))
+
+        if p.reports:
+            relations.extend(generate_relation(filters, p.reports, source=p.username, role='org'))
+
+        if p.followers:
+            relations.extend(generate_relation(filters, p.followers, target=p.username, role='follow'))
+
+        if p.following:
+            relations.extend(generate_relation(filters, p.following, source=p.username, role='follow'))
+
+    print('build cache of links without comments:', len(relations))
+
+    sql = f'''select username as source, postusername as target from jam_people_from_post 
+        where roletype = 'participator' and position >= 0 and (username is not null or username <> '' and 
+        postusername is not null or postusername <> '')'''
+
+    comments = config.ENGINE.execute(sql).fetchall()
+
+    for c in comments:
+        if c.source in filters and c.target in filters:
+            relations.append({"source": c.source, "target": c.target, "role": 'comment'})
+
+    print('build cache of all links:', len(relations))
+
+    with open(config.CACHE_RELATIONSHIP_PATH, 'w', encoding='utf-8') as json_file:
+        json.dump(relations, json_file, ensure_ascii=False)
 
 
 def get_spider_fetch_count(domain):
@@ -221,7 +268,7 @@ def generate_all_cache():
                 nodes_count, links_count, posts_count = generate_cache(domain, timespot)
 
                 date = month_get(date)  # 上个月
-                counts_list[-1]['posts'] -= posts_count # 去除累计数，只记录增量
+                counts_list[-1]['posts'] -= posts_count  # 去除累计数，只记录增量
                 counts_list.append(
                     {"month": date.strftime("%Y-%m"),
                      "nodes": int(nodes_count),
@@ -299,7 +346,7 @@ def generate_all_people_engagement(daily=False, filter_people=False):
 
                 # 由于作为end_date传入函数，故日期索引需要使用前一天（月）
                 if daily:
-                    date = day_get(date) # 前一天
+                    date = day_get(date)  # 前一天
                     print("day", date)
                     pe_score['date'] = date.strftime("%Y-%m-%d")
 
@@ -327,7 +374,6 @@ def generate_all_people_engagement(daily=False, filter_people=False):
 def generate_people_engagement(domain, timespot, daily=False, filter_people=False):
     # Domain People Engagement Score Generate
     ds = PeopleEngagement(domain, timespot, daily, filter_people)
-
     ds.set_profiles()
 
     if len(ds.profiles) == 0:
@@ -345,12 +391,13 @@ def generate_people_engagement(domain, timespot, daily=False, filter_people=Fals
 
 if __name__ == '__main__':
     generate_people_cache()
-    generate_meta_data()
+    generate_relationship_cache()
 
-    #print(generate_people_engagement('intelligent+enterprise', 1541192623, daily=False, filter_people=True))
-    generate_all_people_engagement(filter_people=True)
-    #generate_all_people_engagement()
+    # generate_meta_data()
 
-    #generate_all_cache()
+    # generate_all_people_engagement(filter_people=True)
+    # generate_all_people_engagement()
+
+    # generate_all_cache()
 
     print("done")

@@ -1,107 +1,90 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-from JamScrapy.preprocess.entity import Profile, PortalProfile
-
-# TODO modify the value of field assistant of table people_profile
+# Insert the new people profile, run it first
 sql = '''
 Insert into people_profile(profileurl,username,displayname,avatar,mobile,email,phone,address,managers,reports,groups,followers,following,
                            boardarea,functionalarea,costcenter,officelocation,localinfo,assistant) 
-  select j.profileurl, j.username, j.displayname, j.avatar, p.mobile, p.email, p.phone, p.address, j.managers, j.reports, j.groups, j.followers, j.following,
+  select j.profileurl, j.username, j.displayname, j.avatar, p.mobile, p.email, p.phone, p.address, p.manager, j.reports, j.groups, j.followers, j.following,
     p.boardarea, p.functionalarea, p.costcenter, p.officelocation, p.localinfo, p.assistant 
 from jam_profile j left outer join portal_profile p 
     on j.username = p.username where j.username not in (select username from people_profile)  
 
 '''
 
+from JamScrapy import config
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+from tqdm import tqdm
 
-DB_CONNECT_STRING_LOCAL = 'mysql+pymysql://root:Initial0@127.0.0.1:3306/scrapy?charset=utf8mb4'
-DB_CONNECT_STRING_SERVER = 'mysql+pymysql://root:Initial0@10.58.78.253:3306/nexus?charset=utf8mb4'
+import json
 
-engine_l = create_engine(DB_CONNECT_STRING_LOCAL, max_overflow=5)
-engine_s = create_engine(DB_CONNECT_STRING_SERVER, max_overflow=5)
-
-session_l = sessionmaker(bind=engine_l)()
-session_s = sessionmaker(bind=engine_s)()
-
-## jam_profiles
+engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
+NOT_FOUND_PROFILEURL = set()
 
 
-profiles_exist = engine_s.execute("select username from jam_profile")
+def build_profile_field_by_url(field, dict_profileurl):
+    ret_list = []
+    if field:
+        json_list = json.loads(field)
+        for item in json_list:
+            url = item['url'].split('/')[-1]
+            if url in dict_profileurl:
+                ret_list.append({'name': item['name'], 'username': dict_profileurl[url]})
+            else:
+                NOT_FOUND_PROFILEURL.add(url)
+                print(item, 'not found')
 
-print('profiles server', profiles_exist.rowcount)
+    return json.dumps(ret_list) if len(ret_list) > 0 else None
 
-exist = []
-for p in profiles_exist:
-    exist.append(p.username)
 
-jam_profiles = engine_l.execute("select * from jam_profile")
+# Initial the dictionary of latest portal_profile
+sql = "select username, managers, reports, followers, following, groups from jam_profile"
+results = engine.execute(sql)
 
-print('jam_profiles local', jam_profiles.rowcount)
+dict_jam_profile = dict()
+for row in results:
+    dict_jam_profile[row.username] = row
 
-count = 0
-for p in jam_profiles:
-    if p.username not in exist:
-        print(p.id, p.username, p.displayname)
-        profile_s = Profile(
-            profileurl=p.profileurl.strip(),
-            username=p.username.strip(),
-            displayname=p.displayname.strip(),
-            avatar=p.avatar,
-            mobile=p.mobile,
-            email=p.email,
-            managers=p.managers,
-            reports=p.reports,
-            groups=p.groups,
-            followers=p.followers,
-            following=p.following
-        )
-        session_s.add(profile_s)
-        count += 1
+print('dict_jam_profile:', len(dict_jam_profile))
 
-print(count)
+# Get the people_profile
+sql = "select id, profileurl, username from people_profile order by id"
+results = engine.execute(sql)
 
-## portal_profiles
+# Initial the dictionary of profile url and build the list of people
+dict_profileurl = dict()
+list_people = []
+for row in results:
+    uid = row.profileurl.split('/')[-1]
+    dict_profileurl[uid] = row.username
+    list_people.append({'id': row.id, 'username': row.username})
 
-profiles_exist = engine_s.execute("select username from portal_profile")
+print('dict_profileurl:', len(dict_profileurl), 'list_people', len(list_people))
 
-print('profiles server', profiles_exist.rowcount)
+count_not_found = 0
+for p in tqdm(list_people):
+    if p['username'] in dict_jam_profile:
+        p_jam = dict_jam_profile[p['username']]
 
-exist = []
-for p in profiles_exist:
-    exist.append(p.username)
+        # print(p_jam.username, p_jam.managers, p_jam.reports, p_jam.followers, p_jam.following)
+        managers = build_profile_field_by_url(p_jam['managers'], dict_profileurl)
+        reports = build_profile_field_by_url(p_jam['reports'], dict_profileurl)
+        followers = build_profile_field_by_url(p_jam['followers'], dict_profileurl)
+        following = build_profile_field_by_url(p_jam['following'], dict_profileurl)
+        groups = json.dumps(json.loads(p_jam['groups'])) if p_jam['groups'] else None
+        # print(p_jam.username, managers, reports, followers, following)
 
-portal_profiles = engine_l.execute("select * from portal_profile")
+        sql = '''update people_profile set managers=:managers, reports=:reports,
+                groups=:groups, followers=:followers, following=:following
+                where id=:id and username=:username '''
+        para = {'managers': managers, 'reports': reports, 'groups': groups,
+                'followers': followers, 'following': following, 'id': int(p['id']), 'username': p['username']}
+        engine.execute(text(sql), para)
+    else:
+        count_not_found += 1
+        print(p['username'], ' not found')
 
-print('portal_profiles local', portal_profiles.rowcount)
+print('count_not_found:', count_not_found)
 
-count = 0
-for p in portal_profiles:
-    if p.username not in exist:
-        print(p.id, p.username, p.displayname)
-        profile_s = PortalProfile(
-            profileurl=p.profileurl.strip(),
-            username=p.username.strip(),
-            displayname=p.displayname.strip(),
-            boardarea=p.boardarea,
-            functionalarea=p.functionalarea,
-            costcenter=p.costcenter,
-            officelocation=p.officelocation,
-            manager=p.manager,
-            localinfo=p.localinfo,
-            email=p.email,
-            phone=p.phone,
-            mobile=p.mobile,
-            address=p.address,
-            assistant=p.assistant
-        )
-        session_s.add(profile_s)
-        count += 1
+print('NOT_FOUND_PROFILEURL:', len(NOT_FOUND_PROFILEURL))
 
-print(count)
-
-session_l.commit()
-session_l.close()
-
-session_s.commit()
-session_s.close()
+with open('../../output/not_found_profileurl.json', 'w', encoding='utf-8') as json_file:
+    json.dump(list(NOT_FOUND_PROFILEURL), json_file, ensure_ascii=False)

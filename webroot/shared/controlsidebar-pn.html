@@ -1,0 +1,58 @@
+<!-- Control Sidebar -->
+<!-- Control sidebar content goes here -->
+<div class="p-3" id="panel-config">
+    <h5>
+        <b>NEXUS</b> Configuration</h5>
+    <hr class="mb-2">
+    <div class="config-graph">
+        <h6>Nexus Type</h6>
+        <div class="form-group mb-3">
+            <select class="form-control" id="ddl-layout">
+                <option value="geo">Geographic</option>
+                <option value="none">Category Burst</option>
+                <option value="force">Force</option>
+                <option value="circular">Circular</option>
+            </select>
+        </div>
+        <div class="input-group mb-3 config config-n">
+            <input id="cb-fix-location" type="checkbox" class="mr-1">
+            <span>Fix the location of nodes</span>
+        </div>
+    </div>
+    <div class="config-group">
+        <h6>Group By</h6>
+        <div class="form-group mb-3">
+            <select class="form-control" id="ddl-groupby">
+                <option value="networktype" disabled="disabled">networktype</option>
+                <option value="boardarea">boardarea</option>
+                <option value="functionalarea">functionalarea</option>
+                <option value="region">region</option>
+                <option value="city">city</option>
+                <option value="costcenter">costcenter</option>
+                <option value="gender">gender</option>
+                <option value="community" disabled="disabled">community</option>
+            </select>
+        </div>
+    </div>
+    <div class="config-dataset">
+        <!-- <h6>Modularity Filter</h6>
+        <div class="mb-3">
+            <input id="range-community" type="text" name="range-community" value="" />
+        </div> -->
+        <h6>Level Filter</h6>
+        <div class="mb-3">
+            <input id="range-node" type="text" name="range-node" value="" />
+        </div>
+        <h6>Links Pattern</h6>
+        <div class="mb-3 cbl-links-pattern">
+            <input id="cb-show-org" type="checkbox" class="mr-1" checked="checked" /> <span>Organization</span>
+        </div>
+        <div class="mb-3 cbl-links-pattern">
+            <input id="cb-show-social" type="checkbox" class="mr-1" checked="checked" /> <span>Social Relationship</span>
+        </div>
+        <div class="mb-3 cbl-links-pattern">
+            <input id="cb-show-follow" type="checkbox" class="mr-1" checked="checked" /> <span>Follow Relationship</span>
+        </div>
+    </div>
+</div>
+<!-- /.control-sidebar -->

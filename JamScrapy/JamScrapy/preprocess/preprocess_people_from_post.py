@@ -59,7 +59,25 @@ def get_people_username(profileurl):
     if len(PROFILES) > 0 and url in PROFILES.keys():
         return PROFILES[url]
     else:
-        return ''
+        return None
+
+
+def persist_people(session, post, creators, creator_profiles, participators, participator_profiles):
+    if len(creators) > 0:
+        for index in range(len(creators)):
+            creator_username = get_people_username(creator_profiles[index])
+            obj = People(username=creator_username, displayname=creators[index],
+                         postid=post.id, postusername=creator_username, posturl=post.baseurl, position=index,
+                         profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
+            session.add(obj)
+
+    if len(participators) > 0:
+        for index in range(len(participators)):
+            obj = People(username=get_people_username(participator_profiles[index]),
+                         displayname=participators[index],
+                         postid=post.id, postusername=creator_username, posturl=post.baseurl, position=index,
+                         profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
+            session.add(obj)
 
 
 def process_questions():
@@ -79,23 +97,9 @@ def process_questions():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -119,23 +123,9 @@ def process_blogs():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -157,23 +147,9 @@ def process_discussions():
         participator_profiles = html.xpath('//div[@class="feed-comment-actor"]/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -197,23 +173,9 @@ def process_wiki():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -237,23 +199,9 @@ def process_articles():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -273,12 +221,7 @@ def process_poll():
 
         print('creators:', creators)
 
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, [], [])
 
     session.commit()
 
@@ -301,12 +244,7 @@ def process_profile():
 
         print('creators:', creators)
 
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, [], [])
 
     session.commit()
 
@@ -328,23 +266,9 @@ def process_feed():
         participator_profiles = html.xpath('//div[@class="inline-action"]/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -366,23 +290,9 @@ def process_ideas():
         session = sessionmaker(bind=engine)()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -406,23 +316,9 @@ def process_groups_events():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -446,23 +342,9 @@ def process_groups_documents():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -486,23 +368,9 @@ def process_groups_sw_items():
         participator_profiles = html.xpath('//div[@class="feed-action-container"]/span/a/@href').extract()
 
         print('creators:', creators)
-
-        if len(creators) > 0:
-            for index in range(len(creators)):
-                obj = People(username=get_people_username(creator_profiles[index]), displayname=creators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=creator_profiles[index], roletype='creator', keyword=KEYWORD)
-                session.add(obj)
-
         print('participators:', participators)
 
-        if len(participators) > 0:
-            for index in range(len(participators)):
-                obj = People(username=get_people_username(participator_profiles[index]),
-                             displayname=participators[index],
-                             postid=p.id, posturl=p.baseurl, position=index,
-                             profileurl=participator_profiles[index], roletype='participator', keyword=KEYWORD)
-                session.add(obj)
+        persist_people(session, p, creators, creator_profiles, participators, participator_profiles)
 
     session.commit()
 
@@ -523,28 +391,29 @@ def clean_up_participators():
 
 def fill_postid():
     engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
-    results = engine.execute(f"select id, url from jam_post where keyword = '{KEYWORD}'").fetchall()
+    results = engine.execute(f"select id, url, username from jam_post where keyword = '{KEYWORD}'").fetchall()
 
     print('jam_posts:', len(results))
 
-    post_dict = dict()
+    dict_post = dict()
     for r in results:
         url = r.url.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '')
-        post_dict[url] = r.id
+        dict_post[url] = (r.id, r.username)
 
     results = engine.execute(
-        f"select id, posturl, postid from jam_people_from_post where keyword = '{KEYWORD}'").fetchall()
+        f"select id, posturl, postid, postusername from jam_people_from_post where keyword = '{KEYWORD}'").fetchall()
 
     print('jam_people_from_posts:', len(results))
 
     if len(results) > 0:
         for r in tqdm(results):
             url = r.posturl.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '')
-            if url in post_dict:
-                postid = post_dict[url]
-                if postid != r.postid:
-                    engine.execute(text("update jam_people_from_post set postid=:postid where id = :id"),
-                                   {"postid": postid, "id": r.id})
+            if url in dict_post:
+                postid, postusername = dict_post[url]
+                if postid != r.postid or postusername != r.postusername:
+                    engine.execute(text("update jam_people_from_post set postid=:postid, postusername=:postusername"
+                                        " where id = :id"),
+                                   {'postid': postid, 'postusername': postusername, 'id': r.id})
 
 
 if __name__ == '__main__':

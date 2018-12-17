@@ -37,13 +37,14 @@ def generate_relation(filters, str_relations, black_list=[], source=None, target
         json_list = json.loads(str_relations)
         if not ban or ban and (len(json_list) <= max_relations):
             for item in json_list:
-                url = item['url']
-                name = get_people_username(url)
+                # url = item['url']
+                # name = get_people_username(url)
+                name = item['username'].upper()
                 if (name in filters) and (name not in black_list) and name != '':
                     if source is not None:
-                        relations.append({"source": source, "target": name, "role": role})
+                        relations.append({"source": source.upper(), "target": name, "role": role})
                     elif target is not None:
-                        relations.append({"source": name, "target": target, "role": role})
+                        relations.append({"source": name, "target": target.upper(), "role": role})
     return relations
 
 
@@ -66,8 +67,9 @@ def filter_profiles(usernames, filter_list):
     profiles = []
 
     if len(usernames) > 0 and len(filter_list) > 0:
+        dict_filter_list = dict((x, 1) for x in filter_list)
         for p in usernames:
-            if p['username'] in filter_list:
+            if p['username'] in dict_filter_list:
                 profiles.append(p)
     else:
         profiles = usernames

@@ -1,40 +1,50 @@
 from JamScrapy import config
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
 from tqdm import tqdm
 
-from JamScrapy.preprocess.entity import People
+engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
 
-DB_CONNECT_STRING_LOCAL = 'mysql+pymysql://root:Initial0@10.178.200.23:3306/nexus?charset=utf8mb4'
-DB_CONNECT_STRING_SERVER = 'mysql+pymysql://root:Initial0@10.58.78.253:3306/nexus?charset=utf8mb4'
+sql = '''select id, url, username from jam_post'''
 
-engine_l = create_engine(DB_CONNECT_STRING_LOCAL, max_overflow=5)
-engine_s = create_engine(DB_CONNECT_STRING_SERVER, max_overflow=5)
+results = engine.execute(sql).fetchall()
 
-session_l = sessionmaker(bind=engine_l)()
-session_s = sessionmaker(bind=engine_s)()
+print('total jam post counts:', len(results))
 
-sql = "select * from jam_people_from_post where keyword = 'innovation' and id > 900000 order by id"
-results = engine_s.execute(sql).fetchall()
+dict_post = dict((x.url.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', ''), (x.id, x.username)) for x in results)
+print(dict_post)
 
-print('post on server', len(results))
+sql = '''select id, postid, postusername, posturl from jam_people_from_post'''
 
-count = 0
+results = engine.execute(sql).fetchall()
+
 for r in tqdm(results):
-    people_l = People(
-        username = r.username,
-        displayname = r.displayname,
-        postid = r.postid,
-        posturl = r.posturl,
-        position = r.position,
-        profileurl = r.profileurl,
-        roletype = r.roletype,
-        keyword = r.keyword
-    )
-    session_l.add(people_l)
-    count += 1
+    url = r.posturl.replace('http://jam4.sapjam.com', '').replace('https://jam4.sapjam.com', '')
+    if url in dict_post:
+        postid, postusername = dict_post[url]
+        if postid != r.postid or postusername != r.postusername:
+            engine.execute(text("update jam_people_from_post set postid=:postid, postusername=:postusername"
+                                " where id = :id"), {'postid': postid, 'postusername': postusername, 'id': r.id})
+    else:
+        engine.execute(text("update jam_people_from_post set postid=null where id = :id"), {'postid': postid, 'id': r.id})
+        print(r.id, r.posturl)
 
-print('people imported:', count)
 
-session_l.commit()
-session_l.close()
+# sql = '''select id, username, postusername, posturl from jam_people_from_post where roletype = 'creator' and username is not null '''
+# results = engine.execute(sql).fetchall()
+#
+# print('total jam creators from post counts:', len(results))
+#
+# dict_post = dict((x.posturl, x.postusername) for x in results)
+# print(len(dict_post))
+#
+# sql = '''select id, postusername, posturl from jam_people_from_post where postusername is null and username is not null'''
+# results = engine.execute(sql).fetchall()
+#
+# for r in tqdm(results):
+#     if r.posturl in dict_post:
+#         postusername = dict_post[r.posturl]
+#         if postusername != r.postusername:
+#             engine.execute(text("update jam_people_from_post set postusername=:postusername"
+#                                 " where id = :id"), {'postusername': postusername, 'id': r.id})
+#     else:
+#         print(r.id, r.posturl)

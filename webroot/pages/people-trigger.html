@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus | Project</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+
+    <!-- Ion Slider -->
+    <link rel="stylesheet" href="../plugins/ion.rangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="../plugins/ion.rangeslider/css/ion.rangeSlider.skinHTML5.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+
+    <style type="text/css">
+        .tbl-form {
+            width: 100%
+        }
+
+        .tbl-form td {
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">People Network</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                                <li class="breadcrumb-item active">People Network</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="card" style="width: 60%; min-width: 500px; margin: auto">
+                    <div class="card-body login-card-body">
+                        <p class="login-box-msg">Choose an employee to check his/her network</p>
+                        <table class="tbl-form">
+                            <tr>
+                                <td><i class="fa fa-address-book-o"></i> Choose People: </td>
+                                <td>
+                                    <select id="ddl-search" class="form-control select2"  data-placeholder="Choose People ...">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 180px"><i class="fa fa-sitemap"></i> Organization: </td>
+                                <td><input id="range-lv" type="text" name="range-lv" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-handshake-o"></i> Corporation: </td>
+                                <td> <input id="range-s-lv" type="text" name="range-s-lv" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-users"></i> Followship: </td>
+                                <td><input id="range-f-lv" type="text" name="range-f-lv" value="" /></td>
+                            </tr>
+                        </table>
+                        <div class="row m-3">
+                            <div class="col-8">
+                                <div class="checkbox icheck">
+                                    <label>
+                                        <input id="cb-debug" type="checkbox" class="mr-1"> nonsensitive
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button id="btn-generate" type="submit" class="btn btn-primary btn-block btn-flat">Generate Network</button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.login-card-body -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <!-- Ion Slider -->
+    <script src="../plugins/ion.rangeslider/js/ion.rangeSlider.min.js"></script>
+    <!-- Select2 -->
+    <script src="../plugins/select2/select2.full.min.js"></script>
+
+    <script src="../dist/js/pages/people-network.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#footer").load("../shared/footer.html");
+
+        $(function () {
+            $("#sidebar").load("../shared/sidebar.html", function () {
+                $(".sidebar li.pn-page>a").addClass("active");
+            });
+        });
+    </script>
+</body>
+
+</html>

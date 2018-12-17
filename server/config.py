@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 
 DB_CONNECT_STRING = "mysql+pymysql://root:Initial0@10.58.78.253:3306/nexus?charset=utf8mb4"
 CACHE_PROFILES_PATH = "./cache/cache-people.json"
+CACHE_RELATIONSHIP_PATH = "./cache/cache-relationship.json"
 CACHE_META_DATA = "./cache/cache-meta-data.json"
 # DOMAINS = ['blockchain', 'business+one', 'bydesign', 'intelligent+enterprise']
 DOMAINS = ['intelligent+enterprise', 'sap.io', 'gdpr', 'healthcare', 'chatbot', 'business+one', 'bydesign',

@@ -31,7 +31,8 @@ def process_profiles():
             count += 1
 
         html = scrapy.Selector(text=p.body)
-        email = html.xpath('//div[@class="member_more_info"]/table/tbody/tr/td[label="Primary Email: "]/a/text()').extract()
+        email = html.xpath(
+            '//div[@class="member_more_info"]/table/tbody/tr/td[label="Primary Email: "]/a/text()').extract()
         user_name = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize uid"]'
                                '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
         display_name = html.xpath('//header[@class="full_name"]/text()').extract()
@@ -45,6 +46,8 @@ def process_profiles():
                                      '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
         manager = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize manager_link"]'
                              '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        manager_href = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize manager_link"]'
+                                  '//div[@class="table-cell"]/span[@class="value"]/a/@href').extract()
         local_time = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize local_time"]'
                                 '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
         email = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize email_link"]'
@@ -57,6 +60,8 @@ def process_profiles():
                              '//div[@class="table-cell"]/span[@class="value"]/text()').extract()
         assistant = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize assistant_link"]'
                                '//div[@class="table-cell"]/span[@class="value"]/a/text()').extract()
+        assistant_href = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize assistant_link"]'
+                                    '//div[@class="table-cell"]/span[@class="value"]/a/@href').extract()
 
         print(user_name, display_name, board_area, functional_area, cost_center, office_location, manager, local_time,
               email, phone, mobile, address, assistant)
@@ -90,7 +95,8 @@ def process_profiles():
                 profile.officelocation = office_location[0].replace('\\n', '').replace('\\xa0\\xa0', '').strip()
 
             if manager:
-                profile.manager = manager[0].replace('\\n', '').strip()
+                profile.manager = [{"name": manager[0].replace('\\n', '').strip(),
+                                    "username": manager_href[0].split('/')[-1]}]
 
             if local_time:
                 profile.localinfo = local_time[0].replace('\\n', '').strip()
@@ -105,7 +111,8 @@ def process_profiles():
                 profile.address = address[0].replace('\\n', '').strip()
 
             if assistant:
-                profile.assistant = assistant[0].replace('\\n', '').strip()
+                profile.assistant = [{"name": assistant[0].replace('\\n', '').strip(),
+                                      "username": assistant_href[0].split('/')[-1]}]
 
             if profile:
                 session.merge(profile)
