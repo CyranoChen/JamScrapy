@@ -1,1 +1,1 @@
-nohup python tornoda.py  > ./log/tornoda.log &
+nohup python main.py  > ./log/tornado.log &

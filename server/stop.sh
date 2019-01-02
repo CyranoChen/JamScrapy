@@ -1,1 +1,1 @@
-pkill -f tornoda
+pkill -f main
