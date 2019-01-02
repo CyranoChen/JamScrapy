@@ -105,9 +105,26 @@ class PeoplePorfile(Base):
     localinfo = Column(String(16))
     assistant = Column(String(16))
 
+
 class Knowledge(Base):
     __tablename__ = 'jam_knowledge'
     id = Column(Integer, primary_key=True)
     title = Column(String(16))
     abstract = Column(String(64))
     score = Column(Float)
+
+
+class Comment(Base):
+    __tablename__ = 'jam_comment'
+    id = Column(Integer, primary_key=True)
+    baseurl = Column(String(16))
+    url = Column(String(16))
+    title = Column(String(16))
+    category = Column(String(16))
+    author = Column(String(16))
+    postrecency = Column(String(16))
+    postmetadata = Column(String(64))
+    commentor = Column(String(16))
+    commentrecency = Column(String(16))
+    commentmetadata = Column(String(64))
+    subcomment = Column(Integer)

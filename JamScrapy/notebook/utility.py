@@ -1,6 +1,10 @@
-def max_min_normalize(x):  
-    x = (x - x.min()) / (x.max() - x.min());  
+import json
+
+
+def max_min_normalize(x):
+    x = (x - x.min()) / (x.max() - x.min());
     return x;
+
 
 def build_profileurl_dict(profiles):
     profileurl_dict = dict()
@@ -11,16 +15,18 @@ def build_profileurl_dict(profiles):
             profileurl_dict[url] = p.username.strip()
         else:
             print(p)
-    
+
     return profileurl_dict
+
 
 def get_people_username(profileurl):
     url = profileurl.split('/')[-1]
 
-    if len(PROFILE_URL)>0 and url in PROFILE_URL.keys():
+    if len(PROFILE_URL) > 0 and url in PROFILE_URL.keys():
         return PROFILE_URL[url]
     else:
         return ''
+
 
 def generate_relation(list, filters, str, source=None, target=None, role=None, ban=False):
     if str:
@@ -34,20 +40,23 @@ def generate_relation(list, filters, str, source=None, target=None, role=None, b
                         list.append({"source": source, "target": name, "role": role})
                     elif target is not None:
                         list.append({"source": name, "target": target, "role": role})
-                        
+
+
 def get_people_contribution(username):
-    item = df[df['username']==username]    
+    item = df[df['username'] == username]
     if item.size > 0:
         return float(item['contribution']);
     else:
         return 0;
 
-def get_people_indicators(username, key):    
-    item = df[df['username']==username]     
-    if item.size > 0 and key in item.keys():      
+
+def get_people_indicators(username, key):
+    item = df[df['username'] == username]
+    if item.size > 0 and key in item.keys():
         return int(item[key])
     else:
         return 0;
+
 
 def get_people_network_degree(username):
     if username in nodes_degree.keys():
@@ -55,9 +64,10 @@ def get_people_network_degree(username):
     else:
         return 0;
 
+
 def get_people_network_type(username):
-    item = df[df['username']==username]
-    #print(item, item.betweenness)
+    item = df[df['username'] == username]
+    # print(item, item.betweenness)
     if float(item.betweenness) >= betweenness_threshold:
         return 'Brokers'
     elif float(item.closeness) >= closeness_threshold:
@@ -69,7 +79,9 @@ def get_people_network_type(username):
 
     return 'Soloists'
 
+
 import matplotlib.pyplot as plt
+
 
 def plt_pie(values, labels):
     # 设置绘图的主题风格（不妨使用R中的ggplot分隔）  

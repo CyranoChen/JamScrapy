@@ -146,7 +146,7 @@ def clean_dirty_displayname(update_all_flag=False):
 
     peoples = engine.execute(sql).fetchall()
 
-    print('people profile:', update_all_flag, len(peoples))
+    print('portal profile:', update_all_flag, len(peoples))
 
     if len(peoples) == 0:
         return
@@ -188,7 +188,7 @@ def fill_people_profile_gender():
                on p.username = s.username where p.gender is null and s.body <> '[]' order by p.id'''
     peoples = engine.execute(sql).fetchall()
 
-    print('people without gender:', len(peoples))
+    print('portal without gender:', len(peoples))
 
     count_update_gender = 0
     for p in tqdm(peoples):
@@ -211,7 +211,7 @@ def fill_people_profile_gender():
             count_update_gender += 1
 
     print('---------------------------------------------------')
-    print('people gender updated:', count_update_gender, '/', len(peoples))
+    print('portal gender updated:', count_update_gender, '/', len(peoples))
 
 
 if __name__ == '__main__':

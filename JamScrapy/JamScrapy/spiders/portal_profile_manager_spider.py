@@ -14,7 +14,7 @@ class PortalProfileManagerSpider(scrapy.Spider):
     # 设置下载延时, 避免被BAN
     download_delay = 5
     # 允许域名
-    allowed_domains = ['people.wdf.sap.corp']
+    allowed_domains = ['portal.wdf.sap.corp']
 
     request_urls = []
 
@@ -30,12 +30,12 @@ class PortalProfileManagerSpider(scrapy.Spider):
         script = """        
         function main(splash)         
           splash:init_cookies({
-            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="people.wdf.sap.corp"},
-            {name="_expertondemand_session", value="BAh7DkkiD3Nlc3Npb25faWQGOgZFVEkiJTQyNGJjODlhNzY2MDQ2ZGRlZGJlYjM2OGM1YmNkZGRkBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiFi9wcm9maWxlcy9JMzQ1Nzk1SSIYYXZhaWxhYmlsaXR5X2Jhc2tldAY7AEZ7BjoJdWlkc1sASSIQX2NzcmZfdG9rZW4GOwBGSSIxeXV4Mm5TZGpnN05rSDlDMytTS0NaMktUT2c5blREVnRrWStVWDhWOWlmcz0GOwBGSSILcnRva2VuBjsARkkiLTc3LS1mOGU4OTg2YS0zZTljLTRlOWQtOWFjNS0xMWQ0ZTQ4ZWI3ODAGOwBUSSIMcnNlY3JldAY7AEZJIikxMDMyYTMyNi05ZGU3LTRlZmItOTYzNy1kYTAxMDg1NTFiZGQGOwBUSSILYXRva2VuBjsARkkiKWQyMjljNDNkLTY1ZGItNGJmYi1hMzA2LWQ2Y2QyY2FjNTY0NAY7AFRJIgxhc2VjcmV0BjsARkkiKTRmZDliY2MwLTJkYmUtNGJkNy1hMDg1LWRiYWUyYjk3ZmM4ZgY7AFQ%3D--6a6a39335da7fa958b44fe0d8466021a7b02b6cc", domain="people.wdf.sap.corp"},  
-            {name="_pk_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="03931306e91b305c.1542597044.0.1543977112..", domain="people.wdf.sap.corp"},
-            {name="_swa_v_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="635b071493dfd52c.1542597044.10.1543977112.1543552484.", domain="people.wdf.sap.corp"},
-            {name="_swa_v_ref.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="%5B%22%22%2C%22%22%2C1543977070%2C%22https%3A%2F%2Fwww.linkedin.com%2Fuas%2Foauth%2Fauthorize%2Fsubmit%22%5D", domain="people.wdf.sap.corp"},
-            {name="_swa_v_ses.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="*", domain="people.wdf.sap.corp"},
+            {name="BIGipServer~sap_it_corp_webapps-people_prod~lb-4c7322be4-e721", value="rd5o00000000000000000000ffff0a610634o4000", domain="portal.wdf.sap.corp"},
+            {name="_expertondemand_session", value="BAh7DkkiD3Nlc3Npb25faWQGOgZFVEkiJTQyNGJjODlhNzY2MDQ2ZGRlZGJlYjM2OGM1YmNkZGRkBjsAVEkiCHVpZAY7AEZJIgxJMzQ1Nzk1BjsAVEkiDnJldHVybl90bwY7AEYiFi9wcm9maWxlcy9JMzQ1Nzk1SSIYYXZhaWxhYmlsaXR5X2Jhc2tldAY7AEZ7BjoJdWlkc1sASSIQX2NzcmZfdG9rZW4GOwBGSSIxeXV4Mm5TZGpnN05rSDlDMytTS0NaMktUT2c5blREVnRrWStVWDhWOWlmcz0GOwBGSSILcnRva2VuBjsARkkiLTc3LS1mOGU4OTg2YS0zZTljLTRlOWQtOWFjNS0xMWQ0ZTQ4ZWI3ODAGOwBUSSIMcnNlY3JldAY7AEZJIikxMDMyYTMyNi05ZGU3LTRlZmItOTYzNy1kYTAxMDg1NTFiZGQGOwBUSSILYXRva2VuBjsARkkiKWQyMjljNDNkLTY1ZGItNGJmYi1hMzA2LWQ2Y2QyY2FjNTY0NAY7AFRJIgxhc2VjcmV0BjsARkkiKTRmZDliY2MwLTJkYmUtNGJkNy1hMDg1LWRiYWUyYjk3ZmM4ZgY7AFQ%3D--6a6a39335da7fa958b44fe0d8466021a7b02b6cc", domain="portal.wdf.sap.corp"},  
+            {name="_pk_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="03931306e91b305c.1542597044.0.1543977112..", domain="portal.wdf.sap.corp"},
+            {name="_swa_v_id.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="635b071493dfd52c.1542597044.10.1543977112.1543552484.", domain="portal.wdf.sap.corp"},
+            {name="_swa_v_ref.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="%5B%22%22%2C%22%22%2C1543977070%2C%22https%3A%2F%2Fwww.linkedin.com%2Fuas%2Foauth%2Fauthorize%2Fsubmit%22%5D", domain="portal.wdf.sap.corp"},
+            {name="_swa_v_ses.b2fbf9a2-64b4-46d6-b19d-8699f0a3d43e.2ff0", value="*", domain="portal.wdf.sap.corp"},
             {name="shpuvid", value="CmEHO1s55ySNCQm4BNojAg==", domain=".sap.corp"}     
           })
           

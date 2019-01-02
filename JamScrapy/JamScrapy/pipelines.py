@@ -239,7 +239,6 @@ class JamScrapyPipeline(object):
 
         return item
 
-
     def __process_jam_comment_spider(self, item):
         if 'request_access' not in str(item['url']) and len(item['topics']) > 0:
             s = SpiderComment()
