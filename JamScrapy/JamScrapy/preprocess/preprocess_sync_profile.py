@@ -88,7 +88,8 @@ NOT_FOUND_PROFILEURL = set()
 # with open('../../output/not_found_profileurl.json', 'w', encoding='utf-8') as json_file:
 #     json.dump(list(NOT_FOUND_PROFILEURL), json_file, ensure_ascii=False)
 
-sql = "select id, username, manager, assistant from portal_profile where manager is not null or assistant is not null order by id"
+
+sql = "select id, username, manager, assistant from portal_profile order by id"
 results = engine.execute(sql).fetchall()
 
 for r in tqdm(results):

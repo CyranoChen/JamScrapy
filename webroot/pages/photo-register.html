@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus | Photo Labelling Registration</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+
+    <link href="../dist/css/photo-register.css" rel="stylesheet">
+</head>
+
+<body class="hold-transition">
+    <div id="brim-main" class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <div id="pnl-photo">
+                <div id="svg-take-photo">Take Photo</div>
+                <div id="img-preview" style="display:none"><img /></div>
+            </div>
+            <div id="pnl-form">
+                <input id="tb-photo" name="tb-photo" type="file" accept="image/*" style="display: none;" />
+                <input id="tb-employee" name="tb-employee" class="form-control form-control-lg" type="text" maxlength="10"
+                    placeholder="employee id" />
+            </div>
+            <div id="pnl-button">
+                <button id="btn-submit" class="btn btn-primary">Submit</button>
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $uploader = $("#pnl-form>#tb-photo");
+            $("#pnl-photo>#svg-take-photo").on("click", function () {
+                $uploader.click();
+            });
+            $("#pnl-photo>#img-preview").on("click", function () {
+                $uploader.click();
+            });
+
+            $uploader.change(function (e) {
+                var src;
+                var url = window.URL || window.webkitURL || window.mozURL;
+                var files = e.target.files;
+
+                for (var i = 0; i < files.length; ++i) {
+                    var file = files[i];
+                    console.log(file)
+
+                    if (url) {
+                        src = url.createObjectURL(file);
+                    } else {
+                        src = e.target.result;
+                    }
+
+                    $("#pnl-photo>#img-preview>img").prop("src", src);
+                }
+
+                $("#pnl-photo>#svg-take-photo").hide();
+                $("#pnl-photo>#img-preview").show();
+            });
+
+            $("#pnl-photo>#img-preview>img").on('load', function () {
+                var base_size = $("#pnl-photo>#img-preview").width();
+                var $img = $("#pnl-photo>#img-preview>img");
+
+                $img.css("width", "auto").css("height", "auto").css("margin", "auto");
+
+                var w = $img.width(),
+                    h = $img.height();
+
+                if (w >= h) {
+                    $img.css("height", base_size);
+                    $img.css("margin-left", -(w * base_size / h - base_size) / 2);
+                } else if (w < h) {
+                    $img.css("width", base_size);
+                    $img.css("margin-top", -(h * base_size / w - base_size) / 2);
+                }
+            });
+
+            $("#btn-submit").click(function () {
+                if ($('input#tb-employee').val() == '') {
+                    alert("Employee ID is required");
+                    return;
+                }
+                if ($('input#tb-photo')[0].files[0] == null || $('input#tb-photo')[0].files[0] ==
+                    undefined) {
+                    alert("Please upload photo");
+                    return;
+                }
+
+                var form_data = new FormData();
+                form_data.append('employee', $('input#tb-employee').val());
+                form_data.append('photo', $('input#tb-photo')[0].files[0]);
+
+                $.ajax({
+                    url: 'http://10.58.78.253:8001/photo/labelling',
+                    data: form_data,
+                    type: 'POST',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    success: function (data) {
+                        console.log(data);
+                        alert('register successfully')
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert('server error')
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

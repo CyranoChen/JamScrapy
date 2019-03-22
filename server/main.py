@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import time
 import os
@@ -14,8 +15,10 @@ from tornado.options import define, options
 from timeit import default_timer as timer
 
 import config
+import utils
 from entity import DomainDataSet, CommunityStructure, PeopleNetwork
-from generate import generate_people_cache, generate_relationship_cache, get_last_timespot_by_domain
+from generate import generate_people_cache, get_last_timespot_by_domain
+from photo import generate_face, generate_photo, cvimg_to_base64
 
 define("port", default=8001, help="nexus backend server", type=int)
 
@@ -23,7 +26,7 @@ define("port", default=8001, help="nexus backend server", type=int)
 class MainHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header('Access-Control-Allow-Methods', 'GET')
         self.set_header('Access-Control-Allow-Headers', '*')
         self.set_header('Content-type', 'application/json')
 
@@ -145,7 +148,7 @@ class MainHandler(tornado.web.RequestHandler):
 class TimeTravelHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header('Access-Control-Allow-Methods', 'GET')
         self.set_header('Access-Control-Allow-Headers', '*')
         self.set_header('Content-type', 'application/json')
 
@@ -183,7 +186,7 @@ class TimeTravelHandler(tornado.web.RequestHandler):
 class PeopleNetworkHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header('Access-Control-Allow-Methods', 'GET')
         self.set_header('Access-Control-Allow-Headers', '*')
         self.set_header('Content-type', 'application/json')
 
@@ -261,7 +264,7 @@ class PeopleNetworkHandler(tornado.web.RequestHandler):
 class ProfileCacheHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         self.set_header('Access-Control-Allow-Origin', '*')
-        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header('Access-Control-Allow-Methods', 'GET')
         self.set_header('Access-Control-Allow-Headers', '*')
         self.set_header('Content-type', 'application/json')
 
@@ -285,6 +288,73 @@ class ProfileCacheHandler(tornado.web.RequestHandler):
         pass
 
 
+class PhotoLabellingHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        self.set_header('Access-Control-Allow-Origin', '*')
+        self.set_header('Access-Control-Allow-Methods', 'POST')
+        self.set_header('Access-Control-Allow-Headers', '*')
+        self.set_header('Content-type', 'application/json')
+
+    def post(self, *args, **kwargs):
+        employee = self.get_argument('employee').strip().upper()
+        photo = self.request.files['photo'][0]
+        # photo = self.get_body_argument('photo')
+
+        if not employee or employee == "" or len(photo) <= 0:
+            self.write(json.dumps({"state": "error", "message": "invalid post data"}))
+            return
+
+        print('employee:', employee)
+        print('photo:', photo)
+
+        try:
+            with open(config.PHOTO_FILE_PATH + employee + f'_{str(hash(time.time()))}' +
+                      utils.get_file_extension(photo['content_type']), 'wb') as img_file:
+                img_file.write(photo['body'])
+                img_file.close
+
+            resp = json.dumps({"state": "success", "employee": employee})
+            self.write(resp)
+        except Exception as e:
+            raise e
+            self.write(json.dumps({"state": "error", "message": str(e)}))
+            return
+
+    def data_received(self, chunk):
+        pass
+
+
+class PhotoFinderHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        self.set_header('Access-Control-Allow-Origin', '*')
+        self.set_header('Access-Control-Allow-Methods', 'GET')
+        self.set_header('Access-Control-Allow-Headers', '*')
+        self.set_header('Content-type', 'application/json')
+
+    def get(self, username):
+        sql = f"select * from face_extraction where username = :username order by confidence desc "
+        results = config.ENGINE.execute(text(sql), {'username': username}).fetchall()
+
+        print('face found:', username, len(results))
+
+        if len(results) <= 0:
+            self.write(json.dumps({"state": "error", "message": "no face found"}))
+            return
+
+        _list_face_detected = []
+        for r in results:
+            face = {'id': r.id, 'filepath': r.filepath, 'confidence': r.confidence, 'event': r.event}
+            face_img, _ = generate_face(r.filepath, json.loads(r.coordinate))
+            face['image'] = str(cvimg_to_base64(face_img), encoding='utf-8')
+            _list_face_detected.append(face)
+
+        resp = {"state": "success", "data": _list_face_detected}
+        self.write(json.dumps(resp))
+
+    def data_received(self, chunk):
+        pass
+
+
 if __name__ == "__main__":
     generate_people_cache()
     # generate_relationship_cache()
@@ -295,7 +365,10 @@ if __name__ == "__main__":
     app = tornado.web.Application(handlers=[(r'/api/([^\?]*)', MainHandler),
                                             (r'/tt/([^\?]*)', TimeTravelHandler),
                                             (r'/pn/([^\?]*)', PeopleNetworkHandler),
-                                            (r'/profile/([^\?]*)', ProfileCacheHandler)])
+                                            (r'/profile/([^\?]*)', ProfileCacheHandler),
+                                            (r'/photo/labelling', PhotoLabellingHandler),
+                                            (r'/photo/finder/([^\?]*)', PhotoFinderHandler)
+                                            ])
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()

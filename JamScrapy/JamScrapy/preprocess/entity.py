@@ -128,3 +128,14 @@ class Comment(Base):
     commentrecency = Column(String(16))
     commentmetadata = Column(String(64))
     subcomment = Column(Integer)
+
+
+class FaceDetected(Base):
+    __tablename__ = 'face_extraction'
+    id = Column(Integer, primary_key=True)
+    filepath = Column(String(16))
+    username = Column(String(16))
+    confidence = Column(Float)
+    coordinate = Column(String(16))
+    event = Column(String(16))
+    featurevectors = Column(String(64))

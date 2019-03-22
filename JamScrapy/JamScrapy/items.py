@@ -42,6 +42,7 @@ class JamScrapyProfileItem(scrapy.Item):
     url = scrapy.Field()
     body = scrapy.Field()
 
+
 class PortalScrapyProfileItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
@@ -69,3 +70,9 @@ class JamScrapyProfileFollowItem(scrapy.Item):
     url = scrapy.Field()
     followers = scrapy.Field()
     following = scrapy.Field()
+
+
+class PortalSuccessFactorsItem(scrapy.Item):
+    id = scrapy.Field()
+    url = scrapy.Field()
+    body = scrapy.Field()

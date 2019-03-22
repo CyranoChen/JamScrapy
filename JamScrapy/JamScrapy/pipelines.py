@@ -38,6 +38,8 @@ class JamScrapyPipeline(object):
             return self.__process_jam_group_spider(item)
         elif spider.name == 'JamSearchCommentSpider':
             return self.__process_jam_comment_spider(item)
+        elif spider.name == 'PortalSuccessFactorsSpider':
+            return self.__process_portal_successfactors_spider(item)
 
     def __process_jam_search_spider(self, item):
         if 'request_access' not in str(item['url']) and len(item['topics']) > 0:
@@ -222,9 +224,9 @@ class JamScrapyPipeline(object):
         assistant_href = html.xpath('//div[@class="col-lg-2 col-md-4 col-sm-4 col-xs-12 customize assistant_link"]'
                                     '//div[@class="table-cell"]/span[@class="value"]/a/@href').extract()
 
+        username = user_name[0].replace('\\n', '').strip()
         print(user_name, manager, manager_href, assistant, assistant_href)
 
-        username = user_name[0].replace('\\n', '').strip()
         if username == item['url'].split('/')[-1]:
             m_val = [{"name": manager[0].replace('\\n', '').strip(),
                       "username": manager_href[0].split('/')[-1]}] if manager and manager_href else None
@@ -234,7 +236,7 @@ class JamScrapyPipeline(object):
             if m_val is not None or a_val is not None:
                 engine = create_engine(config.DB_CONNECT_STRING, max_overflow=5)
                 sql = '''update portal_profile set manager=:manager, assistant=:assistant where id=:id'''
-                para = {'manager': str(m_val), 'assistant': str(a_val), "id": int(item["id"])}
+                para = {'manager': str(m_val), 'assistant': str(a_val), 'id': int(item['id'])}
                 engine.execute(text(sql), para)
 
         return item
@@ -254,3 +256,13 @@ class JamScrapyPipeline(object):
             session.close()
 
         return item
+
+    def __process_portal_successfactors_spider(self, item):
+        print(str(item['id']))
+        print(str(item['body']))
+
+        if str(item['body']) == '':
+            return
+
+        # html = scrapy.Selector(text=str(item['body']))
+

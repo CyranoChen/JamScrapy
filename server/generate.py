@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import ast
 import datetime
@@ -393,11 +394,11 @@ if __name__ == '__main__':
     generate_people_cache()
     generate_relationship_cache()
 
-    # generate_meta_data()
+    generate_meta_data()
 
     # generate_all_people_engagement(filter_people=True)
     # generate_all_people_engagement()
 
-    # generate_all_cache()
+    generate_all_cache()
 
     print("done")

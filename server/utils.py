@@ -1,6 +1,17 @@
+# -*- coding: utf-8 -*-
 import json
 import config
 import datetime
+import mimetypes
+
+
+def get_file_extension(content_type):
+    ext = mimetypes.guess_extension(content_type.split(';')[0])
+    if ext == '.htm':  # Python 3
+        ext = '.html'
+    elif ext == '.jpe':
+        ext = '.jpeg'
+    return ext
 
 
 def max_min_normalize(x):
@@ -34,6 +45,7 @@ def generate_relation(filters, str_relations, black_list=[], source=None, target
                       role=None, ban=False, max_relations=99):
     relations = []
     if str_relations:
+        #print(str_relations)
         json_list = json.loads(str_relations)
         if not ban or ban and (len(json_list) <= max_relations):
             for item in json_list:

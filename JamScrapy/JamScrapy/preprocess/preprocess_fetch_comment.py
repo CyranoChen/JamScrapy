@@ -4,6 +4,8 @@ import json
 import re
 import requests
 import urllib3
+import time
+import random
 
 from tqdm import tqdm
 
@@ -59,6 +61,8 @@ def get_total_request_urls():
     list_request_urls = list(set_request_urls - set_exist_urls)
     print('set_request_urls - set_exist_urls:', len(set_request_urls), len(set_exist_urls), len(list_request_urls))
 
+    random.shuffle(list_request_urls)
+
     return list_request_urls
 
 
@@ -106,6 +110,7 @@ def save_comment(baseurl, url, title, category, author, post_recency, post_metad
     session.commit()
     session.close()
     print('-' * 20, 'saved')
+
 
 def persist_comments(obj, url):
     count_comments = 0
@@ -171,8 +176,9 @@ def persist_comments(obj, url):
 
 
 def preprocess_comment(url):
-    r = requests.get('https://' + config.DOMAIN + url, cookies=config.JAM_COOKIE, verify=False)
+    r = requests.get('https://' + config.DOMAIN + url, cookies=config.JAM_COOKIE, verify=False, timeout=30)
     print(r.url)
+
     if r.status_code == 200:
         obj = get_json_from_raw_text(r.text)
         if obj is None:
@@ -189,8 +195,11 @@ def preprocess_comments():
     list_processed_urls = dict()
     for url in tqdm(list_urls):
         if url not in list_processed_urls:
-            preprocess_comment(url)
-            list_processed_urls[url] = 1
+            try:
+                preprocess_comment(url)
+                list_processed_urls[url] = 1
+            except:
+                continue
 
 
 if __name__ == '__main__':

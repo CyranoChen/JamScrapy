@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Domain Nexus</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="../dist/css/fonts.css" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <nav id="navbar" class="main-header navbar navbar-expand bg-white navbar-light border-bottom"></nav>
+        <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"></aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <h1 class="m-0 text-dark">Photo Finder</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-4">
+                            <select id="ddl-search" class="form-control select2" data-placeholder="Choose People ...">
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Photo Finder</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#d-kom2019" data-toggle="tab">d-kom2019</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#d-kom2018" data-toggle="tab">d-kom2018</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#d-kom2017" data-toggle="tab">d-kom2017</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="d-kom2019">
+                                <!-- Post -->
+                                <div class="post">
+                                    <div class="user-block">
+                                        <img class="img-circle img-bordered-sm" src="http://127.0.0.1/adminlte/dist/img/user4-128x128.jpg"
+                                            style="width:40px; height:40px" alt="User Image">
+                                        <span class="username">
+                                            <a href="#">Username</a>
+                                        </span>
+                                        <span class="description">x photos found</span>
+                                    </div>
+                                    <!-- /.user-block -->
+                                    <div id='photo-container' class="row mb-3">
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.post -->
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer id="footer" class="main-footer"></footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="../dist/js/gtag.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <!-- Select2 -->
+    <script src="../plugins/select2/select2.full.min.js"></script>
+
+    <script type="text/javascript">
+        $("#navbar").load("../shared/navbar.html");
+        $("#footer").load("../shared/footer.html");
+
+        var config = {
+            'THRESHOLD_USER': null,
+            'THRESHOLD_LV': 4,
+            'THRESHOLD_S_LV': 3,
+            'THRESHOLD_F_LV': 2,
+            'API_SERVER_PATH': 'http://10.58.78.253:8001/'
+        };
+
+        $(function () {
+            $("#sidebar").load("../shared/sidebar.html", function () {
+                $(".sidebar li.pf-page>a").addClass("active");
+            });
+
+            $("#ddl-search").empty().select2({
+                ajax: {
+                    url: function (params) {
+                        return config.API_SERVER_PATH + 'profile/' + params.term;
+                    },
+                    dataType: 'json',
+                    delay: 500,
+                    processResults: function (d) {
+                        console.log(d.data);
+                        return {
+                            results: d.data
+                        };
+                    }
+                },
+                minimumInputLength: 3
+            }).change(function () {
+                $("#photo-container").empty();
+                $.get(config.API_SERVER_PATH + 'photo/finder/' + $(this).val(), function (d, status) {
+                    if (status === "success" && d != null) {
+                        if (d.state === "success") {
+                            if (d.data.length > 0) {
+                                d.data.forEach(function (node) {
+                                    let $img = $('<img src="data:image/jpeg;base64, ' +
+                                        node.image +
+                                        '" style="width:100px; height:100px" />');
+                                    $img.prop("title", node.confidence);
+                                    $("#photo-container").append($img);
+                                });
+                            }
+                        } else {
+                            alert(d.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

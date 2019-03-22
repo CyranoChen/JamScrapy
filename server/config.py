@@ -93,4 +93,6 @@ ARIBA_EMPLOYEES = ['I859541',
                    'I801711',
                    'I500312']
 
+PHOTO_FILE_PATH = './output/label/'
+
 ENGINE = create_engine(DB_CONNECT_STRING, max_overflow=5)
