@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76f555af-d661-40fd-874d-b5ce44280267" name="Default" comment="Create profile spider and crawl the profile of people">
-      <change beforePath="$PROJECT_DIR$/.idea/AcnScrapy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AcnScrapy.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +73,7 @@
       <file leaf-file-name="portal_successfactors.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_successfactors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="315">
               <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
             </state>
           </provider>
@@ -83,26 +82,17 @@
       <file leaf-file-name="jam_profile_spider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state relative-caret-position="315">
+              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jam_search_people_spider.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jam_search_people_spider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
-              <caret line="23" column="74" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="23" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="portal_profile_manager_spider.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1201">
-              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+              <caret line="23" column="74" selection-start-line="22" selection-start-column="6" selection-end-line="23" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -240,7 +230,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1638" />
     <option name="height" value="1027" />
@@ -524,28 +514,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1638" height="1027" extended-state="0" />
+    <frame x="0" y="23" width="1634" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32414308" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5015733" side_tool="true" weight="0.52473116" />
-      <window_info anchor="right" x="0" y="0" width="359" height="827" id="Documentation" order="5" sideWeight="0.29545453" side_tool="true" weight="0.2575188" />
       <window_info anchor="bottom" id="Database Changes" order="8" weight="0.328614" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49842668" weight="0.47494218" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32637855" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32563338" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49842668" weight="0.47494218" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49979568" weight="0.37108794" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.24185464" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49611542" visible="true" weight="0.24748744" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" sideWeight="0.70454544" weight="0.2575188" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32962668" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24980143" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3979487" />
       <window_info id="Favorites" order="2" sideWeight="0.50388455" side_tool="true" weight="0.25416997" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3979487" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="357" height="827" id="Documentation" order="5" sideWeight="0.29545453" side_tool="true" weight="0.25739458" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49747792" visible="true" weight="0.3204301" />
@@ -871,15 +861,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_successfactors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="315">
           <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_profile_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        <state relative-caret-position="315">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -890,17 +880,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="23" column="74" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="23" selection-end-column="74" />
+        <state relative-caret-position="271">
+          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/portal_profile_manager_spider.py">
+    <entry file="file://$PROJECT_DIR$/JamScrapy/spiders/jam_search_people_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1201">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        <state relative-caret-position="336">
+          <caret line="23" column="74" selection-start-line="22" selection-start-column="6" selection-end-line="23" selection-end-column="74" />
         </state>
       </provider>
     </entry>
