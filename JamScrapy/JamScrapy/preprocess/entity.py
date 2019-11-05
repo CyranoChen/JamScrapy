@@ -79,6 +79,7 @@ class PortalProfile(Base):
     mobile = Column(String(16))
     address = Column(String(16))
     assistant = Column(String(16))
+    alumni = Column(Integer)
 
 
 class PeoplePorfile(Base):

@@ -18,7 +18,7 @@ def generate_people_cache():
     #         from people_profile where username in (select distinct jam_post.username from jam_post)'''
 
     sql = f'''select username, displaynameformatted as displayname, gender, avatar, profileurl, boardarea, functionalarea, 
-            costcenter, officelocation, localinfo, email, mobile, managers, reports from people_profile'''
+            costcenter, officelocation, localinfo, email, mobile, managers, reports from people_profile where alumni = 0'''
 
     people = config.ENGINE.execute(sql).fetchall()
     print('build cache of all people profile:', len(people))
@@ -53,7 +53,7 @@ def generate_people_cache():
 
 def generate_relationship_cache():
     sql = f'''select username, managers, reports, followers, following from people_profile
-        where managers is not null or reports is not null or followers is not null or following is not null'''
+        where managers is not null or reports is not null or followers is not null or following is not null and alumni = 0'''
 
     people = config.ENGINE.execute(sql).fetchall()
     print('build cache of people link:', len(people))
